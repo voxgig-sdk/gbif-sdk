@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// Gbif SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+GbifUtility::setRegistrar(function (GbifUtility $u): void {
+    $u->clean = [GbifClean::class, 'call'];
+    $u->done = [GbifDone::class, 'call'];
+    $u->make_error = [GbifMakeError::class, 'call'];
+    $u->feature_add = [GbifFeatureAdd::class, 'call'];
+    $u->feature_hook = [GbifFeatureHook::class, 'call'];
+    $u->feature_init = [GbifFeatureInit::class, 'call'];
+    $u->fetcher = [GbifFetcher::class, 'call'];
+    $u->make_fetch_def = [GbifMakeFetchDef::class, 'call'];
+    $u->make_context = [GbifMakeContext::class, 'call'];
+    $u->make_options = [GbifMakeOptions::class, 'call'];
+    $u->make_request = [GbifMakeRequest::class, 'call'];
+    $u->make_response = [GbifMakeResponse::class, 'call'];
+    $u->make_result = [GbifMakeResult::class, 'call'];
+    $u->make_point = [GbifMakePoint::class, 'call'];
+    $u->make_spec = [GbifMakeSpec::class, 'call'];
+    $u->make_url = [GbifMakeUrl::class, 'call'];
+    $u->param = [GbifParam::class, 'call'];
+    $u->prepare_auth = [GbifPrepareAuth::class, 'call'];
+    $u->prepare_body = [GbifPrepareBody::class, 'call'];
+    $u->prepare_headers = [GbifPrepareHeaders::class, 'call'];
+    $u->prepare_method = [GbifPrepareMethod::class, 'call'];
+    $u->prepare_params = [GbifPrepareParams::class, 'call'];
+    $u->prepare_path = [GbifPreparePath::class, 'call'];
+    $u->prepare_query = [GbifPrepareQuery::class, 'call'];
+    $u->result_basic = [GbifResultBasic::class, 'call'];
+    $u->result_body = [GbifResultBody::class, 'call'];
+    $u->result_headers = [GbifResultHeaders::class, 'call'];
+    $u->transform_request = [GbifTransformRequest::class, 'call'];
+    $u->transform_response = [GbifTransformResponse::class, 'call'];
+});

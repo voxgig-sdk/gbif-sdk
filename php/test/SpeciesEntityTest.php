@@ -1,0 +1,125 @@
+<?php
+declare(strict_types=1);
+
+// Species entity test
+
+require_once __DIR__ . '/../gbif_sdk.php';
+require_once __DIR__ . '/Runner.php';
+
+use PHPUnit\Framework\TestCase;
+use Voxgig\Struct\Struct as Vs;
+
+class SpeciesEntityTest extends TestCase
+{
+    public function test_create_instance(): void
+    {
+        $testsdk = GbifSDK::test(null, null);
+        $ent = $testsdk->Species(null);
+        $this->assertNotNull($ent);
+    }
+
+    public function test_basic_flow(): void
+    {
+        $setup = species_basic_setup(null);
+        // Per-op sdk-test-control.json skip.
+        $_live = !empty($setup["live"]);
+        foreach (["list", "load"] as $_op) {
+            [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "species." . $_op, $_live ? "live" : "unit");
+            if ($_shouldSkip) {
+                $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
+                return;
+            }
+        }
+        // The basic flow consumes synthetic IDs from the fixture. In live mode
+        // without an *_ENTID env override, those IDs hit the live API and 4xx.
+        if (!empty($setup["synthetic_only"])) {
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set GBIF_TEST_SPECIES_ENTID JSON to run live");
+            return;
+        }
+        $client = $setup["client"];
+
+        // Bootstrap entity data from existing test data.
+        $species_ref01_data_raw = Vs::items(Helpers::to_map(
+            Vs::getpath($setup["data"], "existing.species")));
+        $species_ref01_data = null;
+        if (count($species_ref01_data_raw) > 0) {
+            $species_ref01_data = Helpers::to_map($species_ref01_data_raw[0][1]);
+        }
+
+        // LIST
+        $species_ref01_ent = $client->Species(null);
+        $species_ref01_match = [];
+
+        [$species_ref01_list_result, $err] = $species_ref01_ent->list($species_ref01_match, null);
+        $this->assertNull($err);
+        $this->assertIsArray($species_ref01_list_result);
+
+        // LOAD
+        $species_ref01_match_dt0 = [];
+        [$species_ref01_data_dt0_loaded, $err] = $species_ref01_ent->load($species_ref01_match_dt0, null);
+        $this->assertNull($err);
+        $this->assertNotNull($species_ref01_data_dt0_loaded);
+
+    }
+}
+
+function species_basic_setup($extra)
+{
+    Runner::load_env_local();
+
+    $entity_data_file = __DIR__ . '/../../.sdk/test/entity/species/SpeciesTestData.json';
+    $entity_data_source = file_get_contents($entity_data_file);
+    $entity_data = json_decode($entity_data_source, true);
+
+    $options = [];
+    $options["entity"] = $entity_data["existing"];
+
+    $client = GbifSDK::test($options, $extra);
+
+    // Generate idmap.
+    $idmap = [];
+    foreach (["species01", "species02", "species03"] as $k) {
+        $idmap[$k] = strtoupper($k);
+    }
+
+    // Detect ENTID env override before envOverride consumes it. When live
+    // mode is on without a real override, the basic test runs against synthetic
+    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    $entid_env_raw = getenv("GBIF_TEST_SPECIES_ENTID");
+    $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
+
+    $env = Runner::env_override([
+        "GBIF_TEST_SPECIES_ENTID" => $idmap,
+        "GBIF_TEST_LIVE" => "FALSE",
+        "GBIF_TEST_EXPLAIN" => "FALSE",
+        "GBIF_APIKEY" => "NONE",
+    ]);
+
+    $idmap_resolved = Helpers::to_map(
+        $env["GBIF_TEST_SPECIES_ENTID"]);
+    if ($idmap_resolved === null) {
+        $idmap_resolved = Helpers::to_map($idmap);
+    }
+
+    if ($env["GBIF_TEST_LIVE"] === "TRUE") {
+        $merged_opts = Vs::merge([
+            [
+                "apikey" => $env["GBIF_APIKEY"],
+            ],
+            $extra ?? [],
+        ]);
+        $client = new GbifSDK(Helpers::to_map($merged_opts));
+    }
+
+    $live = $env["GBIF_TEST_LIVE"] === "TRUE";
+    return [
+        "client" => $client,
+        "data" => $entity_data,
+        "idmap" => $idmap_resolved,
+        "env" => $env,
+        "explain" => $env["GBIF_TEST_EXPLAIN"] === "TRUE",
+        "live" => $live,
+        "synthetic_only" => $live && !$idmap_overridden,
+        "now" => (int)(microtime(true) * 1000),
+    ];
+}

@@ -1,0 +1,146 @@
+# Entity: occurrence
+
+main: kit: entity: occurrence: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "creator"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "decimal_latitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "decimal_longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "format"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "key"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "notification_address"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "predicate"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "scientific_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "year"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "occurrence"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/occurrence/download/request"
+          parts: [
+            "occurrence"
+            "download"
+            "request"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "GB"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "2000"
+                kind: "query"
+                name: "year"
+                orig: "year"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/occurrence/search"
+          parts: [
+            "occurrence"
+            "search"
+          ]
+          select: {
+            "$action": "search"
+            exist: [
+              "country"
+              "limit"
+              "offset"
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

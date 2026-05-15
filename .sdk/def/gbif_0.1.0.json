@@ -1,0 +1,930 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GBIF API",
+    "version": "1.0.0",
+    "description": "The GBIF API provides a programmatic interface to query and publish biodiversity data on GBIF.org, enabling advanced queries not supported by the website. Users can integrate GBIF data into scripts, workflows, or analyses, ensuring reliable and automated results.",
+    "contact": {
+      "name": "GBIF Support",
+      "url": "https://www.gbif.org/contact-us",
+      "email": "helpdesk@gbif.org"
+    },
+    "termsOfService": "https://www.gbif.org/terms",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "GBIF API Technical Documentation",
+    "url": "https://techdocs.gbif.org/en/openapi/"
+  },
+  "servers": [
+    {
+      "url": "https://api.gbif.org/v1",
+      "description": "GBIF API Production Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Registry",
+      "description": "Create, edit, update and search for information about datasets, publishing organizations, networks and technical endpoints"
+    },
+    {
+      "name": "Species",
+      "description": "Discover and access information about species and higher taxa, including name interpretation and lookup services"
+    },
+    {
+      "name": "Occurrence",
+      "description": "Access occurrence information crawled and indexed by GBIF, with search and download services"
+    },
+    {
+      "name": "Occurrence Image",
+      "description": "Access low or medium resolution images linked to occurrences"
+    },
+    {
+      "name": "Maps",
+      "description": "Services to show maps of GBIF-mobilized content"
+    },
+    {
+      "name": "Literature",
+      "description": "Access peer-reviewed papers and literature indexed by GBIF"
+    },
+    {
+      "name": "Validator",
+      "description": "Run data structure and quality checks against datasets before publication"
+    },
+    {
+      "name": "Vocabulary",
+      "description": "Access controlled vocabularies used during data interpretation"
+    },
+    {
+      "name": "Enumeration",
+      "description": "Access controlled vocabularies and enumerations used across the API"
+    }
+  ],
+  "paths": {
+    "/occurrence/search": {
+      "get": {
+        "tags": [
+          "Occurrence"
+        ],
+        "summary": "Search occurrences",
+        "description": "Search for occurrence records with various filters. Supports paging and multiple filter parameters.",
+        "operationId": "searchOccurrences",
+        "parameters": [
+          {
+            "name": "country",
+            "in": "query",
+            "description": "The 2-letter country code (ISO 3166-1 alpha-2). Repeatable for multiple countries.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "example": "GB"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Year or year range (e.g., '2000' or '1800,1899' for range)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2000"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 0,
+              "maximum": 300
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination (number of records to skip)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with occurrence search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "offset": {
+                      "type": "integer",
+                      "description": "Current offset"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Current page size limit"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean",
+                      "description": "Indicates if this is the last page"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of results matching the query"
+                    },
+                    "results": {
+                      "type": "array",
+                      "description": "Array of occurrence records",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "integer",
+                            "description": "Unique GBIF identifier for the occurrence"
+                          },
+                          "scientificName": {
+                            "type": "string",
+                            "description": "Scientific name of the species"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country code"
+                          },
+                          "decimalLatitude": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Latitude in decimal degrees"
+                          },
+                          "decimalLongitude": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "Longitude in decimal degrees"
+                          },
+                          "year": {
+                            "type": "integer",
+                            "description": "Year of occurrence"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded. Reduce query rate or use download API for large queries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/occurrence/download/request": {
+      "post": {
+        "tags": [
+          "Occurrence"
+        ],
+        "summary": "Request occurrence download",
+        "description": "Request an asynchronous download of occurrence data. Requires authentication. Accepts up to 100,000 search parameters.",
+        "operationId": "requestOccurrenceDownload",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Download request filter in JSON format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "creator": {
+                    "type": "string",
+                    "description": "Username of the download creator"
+                  },
+                  "notificationAddresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "description": "Email addresses for download notification"
+                  },
+                  "predicate": {
+                    "type": "object",
+                    "description": "Download filter predicate"
+                  },
+                  "format": {
+                    "type": "string",
+                    "enum": [
+                      "DWCA",
+                      "SIMPLE_CSV",
+                      "SPECIES_LIST"
+                    ],
+                    "description": "Download format"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Download request created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Download key/identifier"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/species/search": {
+      "get": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Search species",
+        "description": "Search for species and higher taxa information",
+        "operationId": "searchSpecies",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with species search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "integer",
+                            "description": "Unique GBIF species key"
+                          },
+                          "scientificName": {
+                            "type": "string",
+                            "description": "Scientific name"
+                          },
+                          "canonicalName": {
+                            "type": "string",
+                            "description": "Canonical name"
+                          },
+                          "rank": {
+                            "type": "string",
+                            "description": "Taxonomic rank"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/species/match": {
+      "get": {
+        "tags": [
+          "Species"
+        ],
+        "summary": "Match species name",
+        "description": "Match a scientific name to the GBIF backbone taxonomy",
+        "operationId": "matchSpecies",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Scientific name to match",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "kingdom",
+            "in": "query",
+            "description": "Kingdom to improve matching accuracy",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful species match",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "usageKey": {
+                      "type": "integer",
+                      "description": "GBIF taxon key"
+                    },
+                    "scientificName": {
+                      "type": "string",
+                      "description": "Matched scientific name"
+                    },
+                    "confidence": {
+                      "type": "integer",
+                      "description": "Confidence score of the match"
+                    },
+                    "matchType": {
+                      "type": "string",
+                      "description": "Type of match"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enumeration/basic": {
+      "get": {
+        "tags": [
+          "Enumeration"
+        ],
+        "summary": "List all enumerations",
+        "description": "Lists all available enumerations (controlled vocabularies)",
+        "operationId": "listEnumerations",
+        "responses": {
+          "200": {
+            "description": "List of available enumerations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enumeration/basic/{enumeration}": {
+      "get": {
+        "tags": [
+          "Enumeration"
+        ],
+        "summary": "Get enumeration values",
+        "description": "Lists all available values for a given enumeration",
+        "operationId": "getEnumerationValues",
+        "parameters": [
+          {
+            "name": "enumeration",
+            "in": "path",
+            "description": "Name of the enumeration",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of enumeration values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Enumeration not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enumeration/country": {
+      "get": {
+        "tags": [
+          "Enumeration"
+        ],
+        "summary": "List countries and areas",
+        "description": "Lists all countries and areas with their code and title",
+        "operationId": "listCountries",
+        "responses": {
+          "200": {
+            "description": "List of countries and areas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "iso2": {
+                        "type": "string",
+                        "description": "ISO 3166-1 alpha-2 country code"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Country or area name"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/enumeration/license": {
+      "get": {
+        "tags": [
+          "Enumeration"
+        ],
+        "summary": "List licenses",
+        "description": "Lists all supported GBIF licenses using the License URL or enum name",
+        "operationId": "listLicenses",
+        "responses": {
+          "200": {
+            "description": "List of supported licenses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "License name"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "License URL"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataset/search": {
+      "get": {
+        "tags": [
+          "Registry"
+        ],
+        "summary": "Search datasets",
+        "description": "Search for registered datasets",
+        "operationId": "searchDatasets",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Dataset type filter",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with dataset search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "Dataset UUID"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Dataset title"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Dataset type"
+                          },
+                          "publishingOrganizationKey": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "Publishing organization UUID"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organization/search": {
+      "get": {
+        "tags": [
+          "Registry"
+        ],
+        "summary": "Search organizations",
+        "description": "Search for publishing organizations",
+        "operationId": "searchOrganizations",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Country code filter",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with organization search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "format": "uuid",
+                            "description": "Organization UUID"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Organization name"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country code"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/literature/search": {
+      "get": {
+        "tags": [
+          "Literature"
+        ],
+        "summary": "Search literature",
+        "description": "Search peer-reviewed papers and literature citing GBIF datasets",
+        "operationId": "searchLiterature",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Search query string",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Publication year",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with literature search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Literature identifier"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Publication title"
+                          },
+                          "year": {
+                            "type": "integer",
+                            "description": "Publication year"
+                          },
+                          "authors": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "List of authors"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vocabulary": {
+      "get": {
+        "tags": [
+          "Vocabulary"
+        ],
+        "summary": "List vocabularies",
+        "description": "List available controlled vocabularies used during data interpretation",
+        "operationId": "listVocabularies",
+        "responses": {
+          "200": {
+            "description": "List of available vocabularies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Vocabulary name"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Vocabulary description"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "HTTP Basic Authentication using GBIF user credentials"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error description"
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        }
+      }
+    }
+  }
+}

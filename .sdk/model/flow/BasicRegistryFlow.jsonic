@@ -1,0 +1,22 @@
+# BasicRegistryFlow
+
+main: kit: flow: BasicRegistryFlow:
+{
+  entity: "registry",
+  kind: "basic",
+  name: "BasicRegistryFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "registry_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRegistryFlow"
+}

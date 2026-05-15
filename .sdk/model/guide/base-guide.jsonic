@@ -1,0 +1,69 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 12
+  metrics: count: method: 12
+
+  entity: enumeration: {
+    path: "/enumeration/basic": {
+      action: "basic": {}
+      op: list: method: *GET
+    }
+    path: "/enumeration/basic/{enumeration}": {
+      op: load: method: *GET
+    }
+    path: "/enumeration/country": {
+      action: "country": {}
+      op: list: method: *GET
+    }
+    path: "/enumeration/license": {
+      action: "licenses": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: literature: {
+    path: "/literature/search": {
+      action: "search": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: occurrence: {
+    path: "/occurrence/download/request": {
+      op: create: method: *POST
+    }
+    path: "/occurrence/search": {
+      action: "search": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: registry: {
+    path: "/dataset/search": {
+      op: list: method: *GET
+    }
+    path: "/organization/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: species: {
+    path: "/species/match": {
+      action: "match": {}
+      op: load: method: *GET
+    }
+    path: "/species/search": {
+      action: "search": {}
+      op: list: method: *GET
+    }
+  }
+
+  entity: vocabulary: {
+    path: "/vocabulary": {
+      op: list: method: *GET
+    }
+  }
+
+}

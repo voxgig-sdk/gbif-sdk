@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "vocabulary": {
+      "VOCABULARY00": {
+        "description": "s14",
+        "name": "s15"
+      },
+      "VOCABULARY01": {
+        "description": "s28",
+        "name": "s29"
+      },
+      "VOCABULARY02": {
+        "description": "s3c",
+        "name": "s3d"
+      }
+    }
+  },
+  "new": {
+    "vocabulary": {
+      "vocabulary_ref01": {
+        "description": "s50",
+        "name": "s51"
+      }
+    }
+  }
+}

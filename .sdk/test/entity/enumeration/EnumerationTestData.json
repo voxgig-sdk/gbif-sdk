@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "enumeration": {
+      "ENUMERATION00": {
+        "iso2": "s28",
+        "name": "s29",
+        "title": "s2a",
+        "url": "s2b",
+        "enumeration": "ENUMERATION01"
+      },
+      "ENUMERATION01": {
+        "iso2": "s50",
+        "name": "s51",
+        "title": "s52",
+        "url": "s53",
+        "enumeration": "ENUMERATION01"
+      },
+      "ENUMERATION02": {
+        "iso2": "s78",
+        "name": "s79",
+        "title": "s7a",
+        "url": "s7b",
+        "enumeration": "ENUMERATION01"
+      }
+    }
+  },
+  "new": {
+    "enumeration": {
+      "enumeration_ref01": {
+        "iso2": "sa0",
+        "name": "sa1",
+        "title": "sa2",
+        "url": "sa3"
+      }
+    }
+  }
+}

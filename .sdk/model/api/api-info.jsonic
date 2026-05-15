@@ -1,0 +1,30 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "helpdesk@gbif.org"
+        name: "GBIF Support"
+        url: "https://www.gbif.org/contact-us"
+      }
+      description: "The GBIF API provides a programmatic interface to query and publish biodiversity data on GBIF.org, enabling advanced queries not supported by the website. Users can integrate GBIF data into scripts, workflows, or analyses, ensuring reliable and automated results."
+      license: {
+        name: "Apache 2.0"
+        url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+      servers: [
+        {
+          description: "GBIF API Production Server"
+          url: "https://api.gbif.org/v1"
+        }
+      ]
+      termsOfService: "https://www.gbif.org/terms"
+      title: "GBIF API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

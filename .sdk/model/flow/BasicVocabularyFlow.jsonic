@@ -1,0 +1,22 @@
+# BasicVocabularyFlow
+
+main: kit: flow: BasicVocabularyFlow:
+{
+  entity: "vocabulary",
+  kind: "basic",
+  name: "BasicVocabularyFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "vocabulary_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVocabularyFlow"
+}

@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "registry": {
+      "REGISTRY00": {
+        "country": "s32",
+        "key": "s33",
+        "publishing_organization_key": "s34",
+        "title": "s35",
+        "type": "s36"
+      },
+      "REGISTRY01": {
+        "country": "s64",
+        "key": "s65",
+        "publishing_organization_key": "s66",
+        "title": "s67",
+        "type": "s68"
+      },
+      "REGISTRY02": {
+        "country": "s96",
+        "key": "s97",
+        "publishing_organization_key": "s98",
+        "title": "s99",
+        "type": "s9a"
+      }
+    }
+  },
+  "new": {
+    "registry": {
+      "registry_ref01": {
+        "country": "sc8",
+        "key": "sc9",
+        "publishing_organization_key": "sca",
+        "title": "scb",
+        "type": "scc"
+      }
+    }
+  }
+}

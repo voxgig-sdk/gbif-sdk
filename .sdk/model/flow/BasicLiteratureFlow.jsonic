@@ -1,0 +1,22 @@
+# BasicLiteratureFlow
+
+main: kit: flow: BasicLiteratureFlow:
+{
+  entity: "literature",
+  kind: "basic",
+  name: "BasicLiteratureFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "literature_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLiteratureFlow"
+}

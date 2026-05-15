@@ -1,0 +1,44 @@
+# BasicEnumerationFlow
+
+main: kit: flow: BasicEnumerationFlow:
+{
+  entity: "enumeration",
+  kind: "basic",
+  name: "BasicEnumerationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "enumeration_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "enumeration_ref01",
+        srcdatavar: "enumeration_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "enumeration01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-enumeration_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEnumerationFlow"
+}

@@ -1,0 +1,40 @@
+# BasicSpeciesFlow
+
+main: kit: flow: BasicSpeciesFlow:
+{
+  entity: "species",
+  kind: "basic",
+  name: "BasicSpeciesFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "species_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "species_ref01",
+        srcdatavar: "species_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-species_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSpeciesFlow"
+}
