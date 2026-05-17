@@ -70,7 +70,7 @@ main: kit: entity: enumeration: {
             "license"
           ]
           select: {
-            "$action": "licenses"
+            "$action": "license"
           }
           transform: {
             req: "`reqdata`"

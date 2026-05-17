@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/gbif-sdk"
-	"github.com/voxgig-sdk/gbif-sdk/core"
+	sdk "github.com/voxgig-sdk/gbif-sdk/go"
+	"github.com/voxgig-sdk/gbif-sdk/go/core"
 )
 
 func TestVocabularyDirect(t *testing.T) {

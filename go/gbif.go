@@ -1,10 +1,10 @@
 package voxgiggbifsdk
 
 import (
-	"github.com/voxgig-sdk/gbif-sdk/core"
-	"github.com/voxgig-sdk/gbif-sdk/entity"
-	"github.com/voxgig-sdk/gbif-sdk/feature"
-	_ "github.com/voxgig-sdk/gbif-sdk/utility"
+	"github.com/voxgig-sdk/gbif-sdk/go/core"
+	"github.com/voxgig-sdk/gbif-sdk/go/entity"
+	"github.com/voxgig-sdk/gbif-sdk/go/feature"
+	_ "github.com/voxgig-sdk/gbif-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

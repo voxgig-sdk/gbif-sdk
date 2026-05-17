@@ -11,7 +11,8 @@
         "notification_address": [],
         "predicate": {},
         "scientific_name": "s6c",
-        "year": "s6d"
+        "year": "s6d",
+        "id": "OCCURRENCE00"
       },
       "OCCURRENCE01": {
         "country": "sc8",
@@ -23,7 +24,8 @@
         "notification_address": [],
         "predicate": {},
         "scientific_name": "sd0",
-        "year": "sd1"
+        "year": "sd1",
+        "id": "OCCURRENCE01"
       },
       "OCCURRENCE02": {
         "country": "s12c",
@@ -35,7 +37,8 @@
         "notification_address": [],
         "predicate": {},
         "scientific_name": "s134",
-        "year": "s135"
+        "year": "s135",
+        "id": "OCCURRENCE02"
       }
     }
   },

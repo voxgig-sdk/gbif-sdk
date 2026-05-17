@@ -6,21 +6,24 @@
         "name": "s29",
         "title": "s2a",
         "url": "s2b",
-        "enumeration": "ENUMERATION01"
+        "enumeration": "ENUMERATION01",
+        "id": "ENUMERATION00"
       },
       "ENUMERATION01": {
         "iso2": "s50",
         "name": "s51",
         "title": "s52",
         "url": "s53",
-        "enumeration": "ENUMERATION01"
+        "enumeration": "ENUMERATION01",
+        "id": "ENUMERATION01"
       },
       "ENUMERATION02": {
         "iso2": "s78",
         "name": "s79",
         "title": "s7a",
         "url": "s7b",
-        "enumeration": "ENUMERATION01"
+        "enumeration": "ENUMERATION01",
+        "id": "ENUMERATION02"
       }
     }
   },

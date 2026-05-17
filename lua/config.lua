@@ -110,7 +110,7 @@ local function make_config()
                   "license",
                 },
                 ["select"] = {
-                  ["$action"] = "licenses",
+                  ["$action"] = "license",
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",

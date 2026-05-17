@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/gbif-sdk/core"
+	"github.com/voxgig-sdk/gbif-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/gbif-sdk/go/utility/struct"
 )
 
 type VocabularyEntity struct {

@@ -110,7 +110,7 @@ func MakeConfig() map[string]any {
 									"license",
 								},
 								"select": map[string]any{
-									"$action": "licenses",
+									"$action": "license",
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",

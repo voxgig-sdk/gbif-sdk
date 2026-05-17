@@ -151,7 +151,7 @@ class Config {
                 "license"
               ],
               "select": {
-                "$action": "licenses"
+                "$action": "license"
               },
               "transform": {
                 "req": "`reqdata`",

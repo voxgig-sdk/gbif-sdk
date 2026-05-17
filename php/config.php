@@ -116,7 +116,7 @@ class GbifConfig
                     'license',
                   ],
                   'select' => [
-                    '$action' => 'licenses',
+                    '$action' => 'license',
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
