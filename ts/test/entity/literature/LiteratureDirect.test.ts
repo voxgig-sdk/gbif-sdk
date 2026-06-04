@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'GBIF_TEST_LITERATURE_ENTID': {},
     'GBIF_TEST_LIVE': 'FALSE',
-    'GBIF_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.GBIF_TEST_LIVE
 
   if (live) {
     const client = new GbifSDK({
-      apikey: env.GBIF_APIKEY,
     })
 
     let idmap: any = env['GBIF_TEST_LITERATURE_ENTID']

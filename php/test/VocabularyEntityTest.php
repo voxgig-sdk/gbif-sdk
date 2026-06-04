@@ -86,7 +86,6 @@ function vocabulary_basic_setup($extra)
         "GBIF_TEST_VOCABULARY_ENTID" => $idmap,
         "GBIF_TEST_LIVE" => "FALSE",
         "GBIF_TEST_EXPLAIN" => "FALSE",
-        "GBIF_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function vocabulary_basic_setup($extra)
     if ($env["GBIF_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GBIF_APIKEY"],
             ],
             $extra ?? [],
         ]);

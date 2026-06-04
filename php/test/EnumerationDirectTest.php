@@ -123,14 +123,12 @@ function enumeration_direct_setup($mockres)
     $env = Runner::env_override([
         "GBIF_TEST_ENUMERATION_ENTID" => [],
         "GBIF_TEST_LIVE" => "FALSE",
-        "GBIF_APIKEY" => "NONE",
     ]);
 
     $live = $env["GBIF_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["GBIF_APIKEY"],
         ];
         $client = new GbifSDK($merged_opts);
         return [

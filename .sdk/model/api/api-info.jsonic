@@ -23,8 +23,33 @@ main: {
       termsOfService: "https://www.gbif.org/terms"
       title: "GBIF API"
       version: "1.0.0"
+      tagline: "Query global biodiversity records — species, occurrences, datasets and supporting literature from GBIF.org"
+      homepage: "https://www.gbif.org"
+      docs_url: "https://techdocs.gbif.org/en/openapi/"
+      license_short: "Apache 2.0 (SDK); GBIF data carries dataset-specific Creative Commons licences (CC0, CC BY, CC BY-NC)."
+      license_md: `- This SDK is distributed under the Apache 2.0 licence.
+- Biodiversity data returned by the API is published under per-dataset licences — typically CC0, CC BY, or CC BY-NC — surfaced on each record.
+- Users are expected to cite GBIF and the contributing datasets; for large extractions the GBIF download API issues a DOI to support citation.
+- Most read endpoints are open and require no authentication; write operations use HTTP Basic auth tied to a GBIF user account.`
+      about_md: `[GBIF](https://www.gbif.org) — the Global Biodiversity Information Facility — is an international network and data infrastructure funded by the world's governments, providing open access to data about all types of life on Earth. The v1 web services at \`https://api.gbif.org/v1\` are the same REST endpoints that power GBIF.org and allow advanced queries beyond what the website exposes.
+
+What you get from the API:
+
+- Search and retrieval of occurrence records (where and when species were observed or collected) with filtering by taxon, location, date, dataset, basis of record and more.
+- A taxonomic backbone for species lookup, name parsing and matching against the GBIF taxonomy.
+- A registry of datasets, publishing organizations, installations and network endpoints.
+- Indexed literature that cites GBIF-mediated data, controlled vocabularies for interpreted terms (life stage, sex, etc.), and enumerations of the codes used throughout the API.
+
+Operational notes: most GET endpoints are unauthenticated; modifying calls (POST/PUT/DELETE) require HTTP Basic auth with a GBIF account. Rapid scripted searches can trigger HTTP 429 responses, so GBIF recommends the asynchronous Occurrence Download API for large extractions (up to 100,000 parameters, with a citable DOI).`
+      entity_desc: {
+        enumeration: "Enumerated value lists used across the API — country codes, basis-of-record values, threat statuses and similar controlled vocabularies served under `/enumeration`."
+        literature: "Index of peer-reviewed papers and grey literature that cite GBIF-mediated data, searchable under `/literature`."
+        occurrence: "Individual records of organisms observed, collected or otherwise recorded at a place and time, searchable and downloadable under `/occurrence` and `/occurrence/search`."
+        registry: "Metadata registry of datasets, publishing organizations, installations, networks and nodes that mobilise data to GBIF, exposed under `/dataset`, `/organization`, `/installation` and related paths."
+        species: "Taxonomic backbone services for species discovery, name matching, parsing and identifier lookups under `/species` and `/species/match`."
+        vocabulary: "Standardised vocabularies and concepts (e.g. Life Stage) used to interpret occurrence and species fields, served under `/vocabularies`."
+      }
+      auth: false
     }
   }
-}
-
 }

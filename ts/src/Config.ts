@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.gbif.org/v1',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

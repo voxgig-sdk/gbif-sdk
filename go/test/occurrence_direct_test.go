@@ -93,14 +93,12 @@ func occurrenceDirectSetup(mockres any) *occurrenceDirectSetupResult {
 	env := envOverride(map[string]any{
 		"GBIF_TEST_OCCURRENCE_ENTID": map[string]any{},
 		"GBIF_TEST_LIVE":    "FALSE",
-		"GBIF_APIKEY":       "NONE",
 	})
 
 	live := env["GBIF_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["GBIF_APIKEY"],
 		}
 		client := sdk.NewGbifSDK(mergedOpts)
 
