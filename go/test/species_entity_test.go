@@ -129,6 +129,7 @@ func speciesBasicSetup(extra map[string]any) *entityTestSetup {
 		"GBIF_TEST_SPECIES_ENTID": idmap,
 		"GBIF_TEST_LIVE":      "FALSE",
 		"GBIF_TEST_EXPLAIN":   "FALSE",
+		"GBIF_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["GBIF_TEST_SPECIES_ENTID"])
@@ -139,6 +140,7 @@ func speciesBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["GBIF_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["GBIF_APIKEY"],
 			},
 			extra,
 		})

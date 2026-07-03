@@ -1,21 +1,8 @@
 # Gbif SDK
 
-Query global biodiversity records — species, occurrences, datasets and supporting literature from GBIF.org
+GBIF API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About GBIF API
-
-[GBIF](https://www.gbif.org) — the Global Biodiversity Information Facility — is an international network and data infrastructure funded by the world's governments, providing open access to data about all types of life on Earth. The v1 web services at `https://api.gbif.org/v1` are the same REST endpoints that power GBIF.org and allow advanced queries beyond what the website exposes.
-
-What you get from the API:
-
-- Search and retrieval of occurrence records (where and when species were observed or collected) with filtering by taxon, location, date, dataset, basis of record and more.
-- A taxonomic backbone for species lookup, name parsing and matching against the GBIF taxonomy.
-- A registry of datasets, publishing organizations, installations and network endpoints.
-- Indexed literature that cites GBIF-mediated data, controlled vocabularies for interpreted terms (life stage, sex, etc.), and enumerations of the codes used throughout the API.
-
-Operational notes: most GET endpoints are unauthenticated; modifying calls (POST/PUT/DELETE) require HTTP Basic auth with a GBIF account. Rapid scripted searches can trigger HTTP 429 responses, so GBIF recommends the asynchronous Occurrence Download API for large extractions (up to 100,000 parameters, with a citable DOI).
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install gbif-sdk
 luarocks install gbif-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { GbifSDK } from 'gbif'
 
-const client = new GbifSDK({})
+const client = new GbifSDK({
+  apikey: process.env.GBIF_APIKEY,
+})
 
 // List all enumerations
 const enumerations = await client.Enumeration().list()
+console.log(enumerations.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,12 +90,12 @@ The API exposes 6 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Enumeration** | Enumerated value lists used across the API — country codes, basis-of-record values, threat statuses and similar controlled vocabularies served under `/enumeration`. | `/enumeration/basic` |
-| **Literature** | Index of peer-reviewed papers and grey literature that cite GBIF-mediated data, searchable under `/literature`. | `/literature/search` |
-| **Occurrence** | Individual records of organisms observed, collected or otherwise recorded at a place and time, searchable and downloadable under `/occurrence` and `/occurrence/search`. | `/occurrence/download/request` |
-| **Registry** | Metadata registry of datasets, publishing organizations, installations, networks and nodes that mobilise data to GBIF, exposed under `/dataset`, `/organization`, `/installation` and related paths. | `/organization/search` |
-| **Species** | Taxonomic backbone services for species discovery, name matching, parsing and identifier lookups under `/species` and `/species/match`. | `/species/search` |
-| **Vocabulary** | Standardised vocabularies and concepts (e.g. Life Stage) used to interpret occurrence and species fields, served under `/vocabularies`. | `/vocabulary` |
+| **Enumeration** |  | `/enumeration/basic` |
+| **Literature** |  | `/literature/search` |
+| **Occurrence** |  | `/occurrence/download/request` |
+| **Registry** |  | `/organization/search` |
+| **Species** |  | `/species/search` |
+| **Vocabulary** |  | `/vocabulary` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -116,17 +105,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from gbif_sdk import GbifSDK
 
-client = GbifSDK({})
+client = GbifSDK({
+    "apikey": os.environ.get("GBIF_APIKEY"),
+})
 
 # List all enumerations
-enumerations, err = client.Enumeration(None).list(None, None)
+enumerations, err = client.Enumeration().list()
+print(enumerations)
 
 # Load a specific enumeration
-enumeration, err = client.Enumeration(None).load(
-    {"id": "example_id"}, None
-)
+enumeration, err = client.Enumeration().load({"id": "example_id"})
+print(enumeration)
 ```
 
 ### PHP
@@ -135,15 +127,17 @@ enumeration, err = client.Enumeration(None).load(
 <?php
 require_once 'gbif_sdk.php';
 
-$client = new GbifSDK([]);
+$client = new GbifSDK([
+    "apikey" => getenv("GBIF_APIKEY"),
+]);
 
 // List all enumerations
-[$enumerations, $err] = $client->Enumeration(null)->list(null, null);
+[$enumerations, $err] = $client->Enumeration()->list();
+print_r($enumerations);
 
 // Load a specific enumeration
-[$enumeration, $err] = $client->Enumeration(null)->load(
-    ["id" => "example_id"], null
-);
+[$enumeration, $err] = $client->Enumeration()->load(["id" => "example_id"]);
+print_r($enumeration);
 ```
 
 ### Golang
@@ -151,10 +145,13 @@ $client = new GbifSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/gbif-sdk/go"
 
-client := sdk.NewGbifSDK(map[string]any{})
+client := sdk.NewGbifSDK(map[string]any{
+    "apikey": os.Getenv("GBIF_APIKEY"),
+})
 
 // List all enumerations
 enumerations, err := client.Enumeration(nil).List(nil, nil)
+fmt.Println(enumerations)
 ```
 
 ### Ruby
@@ -162,15 +159,17 @@ enumerations, err := client.Enumeration(nil).List(nil, nil)
 ```ruby
 require_relative "Gbif_sdk"
 
-client = GbifSDK.new({})
+client = GbifSDK.new({
+  "apikey" => ENV["GBIF_APIKEY"],
+})
 
 # List all enumerations
-enumerations, err = client.Enumeration(nil).list(nil, nil)
+enumerations, err = client.Enumeration().list
+puts enumerations
 
 # Load a specific enumeration
-enumeration, err = client.Enumeration(nil).load(
-  { "id" => "example_id" }, nil
-)
+enumeration, err = client.Enumeration().load({ "id" => "example_id" })
+puts enumeration
 ```
 
 ### Lua
@@ -178,15 +177,17 @@ enumeration, err = client.Enumeration(nil).load(
 ```lua
 local sdk = require("gbif_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("GBIF_APIKEY"),
+})
 
 -- List all enumerations
-local enumerations, err = client:Enumeration(nil):list(nil, nil)
+local enumerations, err = client:Enumeration():list()
+print(enumerations)
 
 -- Load a specific enumeration
-local enumeration, err = client:Enumeration(nil):load(
-  { id = "example_id" }, nil
-)
+local enumeration, err = client:Enumeration():load({ id = "example_id" })
+print(enumeration)
 ```
 
 ## Unit testing in offline mode
@@ -205,25 +206,21 @@ const result = await client.Enumeration().load({ id: 'test01' })
 ### Python
 
 ```python
-client = GbifSDK.test(None, None)
-result, err = client.Enumeration(None).load(
-    {"id": "test01"}, None
-)
+client = GbifSDK.test()
+result, err = client.Enumeration().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = GbifSDK::test(null, null);
-[$result, $err] = $client->Enumeration(null)->load(
-    ["id" => "test01"], null
-);
+$client = GbifSDK::test();
+[$result, $err] = $client->Enumeration()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Enumeration(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -232,19 +229,15 @@ result, err := client.Enumeration(nil).Load(
 ### Ruby
 
 ```ruby
-client = GbifSDK.test(nil, nil)
-result, err = client.Enumeration(nil).load(
-  { "id" => "test01" }, nil
-)
+client = GbifSDK.test
+result, err = client.Enumeration().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Enumeration(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Enumeration():load({ id = "test01" })
 ```
 
 ## How it works
@@ -348,16 +341,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the GBIF API
-
-- Upstream: [https://www.gbif.org](https://www.gbif.org)
-- API docs: [https://techdocs.gbif.org/en/openapi/](https://techdocs.gbif.org/en/openapi/)
-
-- This SDK is distributed under the Apache 2.0 licence.
-- Biodiversity data returned by the API is published under per-dataset licences — typically CC0, CC BY, or CC BY-NC — surfaced on each record.
-- Users are expected to cite GBIF and the contributing datasets; for large extractions the GBIF download API issues a DOI to support citation.
-- Most read endpoints are open and require no authentication; write operations use HTTP Basic auth tied to a GBIF user account.
 
 ---
 

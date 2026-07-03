@@ -92,6 +92,7 @@ function registry_basic_setup(extra)
     ["GBIF_TEST_REGISTRY_ENTID"] = idmap,
     ["GBIF_TEST_LIVE"] = "FALSE",
     ["GBIF_TEST_EXPLAIN"] = "FALSE",
+    ["GBIF_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function registry_basic_setup(extra)
   if env["GBIF_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["GBIF_APIKEY"],
       },
       extra or {},
     })

@@ -98,6 +98,7 @@ def _species_basic_setup(extra):
         "GBIF_TEST_SPECIES_ENTID": idmap,
         "GBIF_TEST_LIVE": "FALSE",
         "GBIF_TEST_EXPLAIN": "FALSE",
+        "GBIF_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -108,6 +109,7 @@ def _species_basic_setup(extra):
     if env.get("GBIF_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("GBIF_APIKEY"),
             },
             extra or {},
         ])

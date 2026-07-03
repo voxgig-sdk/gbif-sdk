@@ -63,12 +63,14 @@ function vocabulary_direct_setup(mockres)
   local env = runner.env_override({
     ["GBIF_TEST_VOCABULARY_ENTID"] = {},
     ["GBIF_TEST_LIVE"] = "FALSE",
+    ["GBIF_APIKEY"] = "NONE",
   })
 
   local live = env["GBIF_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["GBIF_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
