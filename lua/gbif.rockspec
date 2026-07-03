@@ -8,12 +8,14 @@ source = {
   dir = "gbif-sdk/lua"
 }
 description = {
-  summary = "Gbif SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the GBIF public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/gbif-sdk",
+  issues_url = "https://github.com/voxgig-sdk/gbif-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "gbif" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

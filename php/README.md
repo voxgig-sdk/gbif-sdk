@@ -10,7 +10,7 @@ The PHP SDK for the Gbif API — an entity-oriented client using PHP conventions
 
 ## Install
 ```bash
-composer require voxgig/gbif-sdk
+composer require voxgig-sdk/gbif
 ```
 
 

@@ -10,7 +10,7 @@ The TypeScript SDK for the Gbif API — a type-safe, entity-oriented client with
 
 ## Install
 ```bash
-npm install gbif
+npm install @voxgig-sdk/gbif
 ```
 ## Tutorial: your first API call
 

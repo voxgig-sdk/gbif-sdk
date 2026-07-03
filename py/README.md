@@ -10,7 +10,7 @@ The Python SDK for the Gbif API — an entity-oriented client following Pythonic
 
 ## Install
 ```bash
-pip install gbif-sdk
+pip install voxgig-sdk-gbif
 ```
 
 Or install from source:

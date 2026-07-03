@@ -10,13 +10,13 @@ The Ruby SDK for the Gbif API — an entity-oriented client using idiomatic Ruby
 
 ## Install
 ```bash
-gem install gbif-sdk
+gem install voxgig-sdk-gbif
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "gbif-sdk"
+gem "voxgig-sdk-gbif"
 ```
 
 Then run:

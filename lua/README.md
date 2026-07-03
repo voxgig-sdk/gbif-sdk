@@ -10,7 +10,7 @@ The Lua SDK for the Gbif API — an entity-oriented client using Lua conventions
 
 ## Install
 ```bash
-luarocks install gbif-sdk
+luarocks install voxgig-sdk-gbif
 ```
 
 If the module is not yet published, add the source directory to
