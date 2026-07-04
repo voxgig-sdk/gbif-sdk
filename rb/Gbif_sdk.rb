@@ -208,78 +208,42 @@ class GbifSDK
   end
 
 
-  # Idiomatic facade: client.enumeration.list / client.enumeration.load({ "id" => ... })
-  def enumeration
-    require_relative 'entity/enumeration_entity'
-    @enumeration ||= EnumerationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.enumeration instead.
+  # Canonical facade: client.Enumeration.list / client.Enumeration.load({ "id" => ... })
   def Enumeration(data = nil)
     require_relative 'entity/enumeration_entity'
     EnumerationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.literature.list / client.literature.load({ "id" => ... })
-  def literature
-    require_relative 'entity/literature_entity'
-    @literature ||= LiteratureEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.literature instead.
+  # Canonical facade: client.Literature.list / client.Literature.load({ "id" => ... })
   def Literature(data = nil)
     require_relative 'entity/literature_entity'
     LiteratureEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.occurrence.list / client.occurrence.load({ "id" => ... })
-  def occurrence
-    require_relative 'entity/occurrence_entity'
-    @occurrence ||= OccurrenceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.occurrence instead.
+  # Canonical facade: client.Occurrence.list / client.Occurrence.load({ "id" => ... })
   def Occurrence(data = nil)
     require_relative 'entity/occurrence_entity'
     OccurrenceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.registry.list / client.registry.load({ "id" => ... })
-  def registry
-    require_relative 'entity/registry_entity'
-    @registry ||= RegistryEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.registry instead.
+  # Canonical facade: client.Registry.list / client.Registry.load({ "id" => ... })
   def Registry(data = nil)
     require_relative 'entity/registry_entity'
     RegistryEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.species.list / client.species.load({ "id" => ... })
-  def species
-    require_relative 'entity/species_entity'
-    @species ||= SpeciesEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.species instead.
+  # Canonical facade: client.Species.list / client.Species.load({ "id" => ... })
   def Species(data = nil)
     require_relative 'entity/species_entity'
     SpeciesEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.vocabulary.list / client.vocabulary.load({ "id" => ... })
-  def vocabulary
-    require_relative 'entity/vocabulary_entity'
-    @vocabulary ||= VocabularyEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.vocabulary instead.
+  # Canonical facade: client.Vocabulary.list / client.Vocabulary.load({ "id" => ... })
   def Vocabulary(data = nil)
     require_relative 'entity/vocabulary_entity'
     VocabularyEntity.new(self, data)

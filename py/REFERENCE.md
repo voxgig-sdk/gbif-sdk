@@ -101,7 +101,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## EnumerationEntity
 
 ```python
-enumeration = client.enumeration
+enumeration = client.Enumeration()
 ```
 
 ### Fields
@@ -120,7 +120,9 @@ enumeration = client.enumeration
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.enumeration.list({})
+results = client.Enumeration().list({})
+for enumeration in results:
+    print(enumeration)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -128,7 +130,7 @@ results = client.enumeration.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.enumeration.load({"id": "enumeration_id"})
+result = client.Enumeration().load({"id": "enumeration_id"})
 ```
 
 ### Common Methods
@@ -163,7 +165,7 @@ Return the entity name.
 ## LiteratureEntity
 
 ```python
-literature = client.literature
+literature = client.Literature()
 ```
 
 ### Fields
@@ -182,7 +184,9 @@ literature = client.literature
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.literature.list({})
+results = client.Literature().list({})
+for literature in results:
+    print(literature)
 ```
 
 ### Common Methods
@@ -217,7 +221,7 @@ Return the entity name.
 ## OccurrenceEntity
 
 ```python
-occurrence = client.occurrence
+occurrence = client.Occurrence()
 ```
 
 ### Fields
@@ -242,7 +246,7 @@ occurrence = client.occurrence
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.occurrence.create({
+result = client.Occurrence().create({
 })
 ```
 
@@ -251,7 +255,9 @@ result = client.occurrence.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.occurrence.list({})
+results = client.Occurrence().list({})
+for occurrence in results:
+    print(occurrence)
 ```
 
 ### Common Methods
@@ -286,7 +292,7 @@ Return the entity name.
 ## RegistryEntity
 
 ```python
-registry = client.registry
+registry = client.Registry()
 ```
 
 ### Fields
@@ -306,7 +312,9 @@ registry = client.registry
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.registry.list({})
+results = client.Registry().list({})
+for registry in results:
+    print(registry)
 ```
 
 ### Common Methods
@@ -341,7 +349,7 @@ Return the entity name.
 ## SpeciesEntity
 
 ```python
-species = client.species
+species = client.Species()
 ```
 
 ### Fields
@@ -363,7 +371,9 @@ species = client.species
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.species.list({})
+results = client.Species().list({})
+for species in results:
+    print(species)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -371,7 +381,7 @@ results = client.species.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.species.load({"id": "species_id"})
+result = client.Species().load({"id": "species_id"})
 ```
 
 ### Common Methods
@@ -406,7 +416,7 @@ Return the entity name.
 ## VocabularyEntity
 
 ```python
-vocabulary = client.vocabulary
+vocabulary = client.Vocabulary()
 ```
 
 ### Fields
@@ -423,7 +433,9 @@ vocabulary = client.vocabulary
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.vocabulary.list({})
+results = client.Vocabulary().list({})
+for vocabulary in results:
+    print(vocabulary)
 ```
 
 ### Common Methods

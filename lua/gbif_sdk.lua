@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:enumeration():list() / client:enumeration():load({ id = ... })
-function GbifSDK:enumeration(data)
+-- Idiomatic facade: client:Enumeration():list() / client:Enumeration():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GbifSDK:Enumeration(data)
   local EntityMod = require("entity.enumeration_entity")
   if data == nil then
     if self._enumeration == nil then
@@ -256,15 +257,10 @@ function GbifSDK:enumeration(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:enumeration() instead.
-function GbifSDK:Enumeration(data)
-  local EntityMod = require("entity.enumeration_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:literature():list() / client:literature():load({ id = ... })
-function GbifSDK:literature(data)
+-- Idiomatic facade: client:Literature():list() / client:Literature():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GbifSDK:Literature(data)
   local EntityMod = require("entity.literature_entity")
   if data == nil then
     if self._literature == nil then
@@ -275,15 +271,10 @@ function GbifSDK:literature(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:literature() instead.
-function GbifSDK:Literature(data)
-  local EntityMod = require("entity.literature_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:occurrence():list() / client:occurrence():load({ id = ... })
-function GbifSDK:occurrence(data)
+-- Idiomatic facade: client:Occurrence():list() / client:Occurrence():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GbifSDK:Occurrence(data)
   local EntityMod = require("entity.occurrence_entity")
   if data == nil then
     if self._occurrence == nil then
@@ -294,15 +285,10 @@ function GbifSDK:occurrence(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:occurrence() instead.
-function GbifSDK:Occurrence(data)
-  local EntityMod = require("entity.occurrence_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:registry():list() / client:registry():load({ id = ... })
-function GbifSDK:registry(data)
+-- Idiomatic facade: client:Registry():list() / client:Registry():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GbifSDK:Registry(data)
   local EntityMod = require("entity.registry_entity")
   if data == nil then
     if self._registry == nil then
@@ -313,15 +299,10 @@ function GbifSDK:registry(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:registry() instead.
-function GbifSDK:Registry(data)
-  local EntityMod = require("entity.registry_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:species():list() / client:species():load({ id = ... })
-function GbifSDK:species(data)
+-- Idiomatic facade: client:Species():list() / client:Species():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GbifSDK:Species(data)
   local EntityMod = require("entity.species_entity")
   if data == nil then
     if self._species == nil then
@@ -332,15 +313,10 @@ function GbifSDK:species(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:species() instead.
-function GbifSDK:Species(data)
-  local EntityMod = require("entity.species_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:vocabulary():list() / client:vocabulary():load({ id = ... })
-function GbifSDK:vocabulary(data)
+-- Idiomatic facade: client:Vocabulary():list() / client:Vocabulary():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GbifSDK:Vocabulary(data)
   local EntityMod = require("entity.vocabulary_entity")
   if data == nil then
     if self._vocabulary == nil then
@@ -348,12 +324,6 @@ function GbifSDK:vocabulary(data)
     end
     return self._vocabulary
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:vocabulary() instead.
-function GbifSDK:Vocabulary(data)
-  local EntityMod = require("entity.vocabulary_entity")
   return EntityMod.new(self, data)
 end
 

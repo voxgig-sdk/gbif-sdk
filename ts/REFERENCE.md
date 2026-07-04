@@ -170,7 +170,7 @@ Alias for `GbifSDK.test()`.
 ## EnumerationEntity
 
 ```ts
-const enumeration = client.enumeration
+const enumeration = client.Enumeration()
 ```
 
 ### Fields
@@ -189,7 +189,7 @@ const enumeration = client.enumeration
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.enumeration.list()
+const results = await client.Enumeration().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -197,7 +197,7 @@ const results = await client.enumeration.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.enumeration.load({ id: 'enumeration_id' })
+const result = await client.Enumeration().load({ id: 'enumeration_id' })
 ```
 
 ### Common Methods
@@ -231,7 +231,7 @@ Return a copy of the entity options.
 ## LiteratureEntity
 
 ```ts
-const literature = client.literature
+const literature = client.Literature()
 ```
 
 ### Fields
@@ -250,7 +250,7 @@ const literature = client.literature
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.literature.list()
+const results = await client.Literature().list()
 ```
 
 ### Common Methods
@@ -284,7 +284,7 @@ Return a copy of the entity options.
 ## OccurrenceEntity
 
 ```ts
-const occurrence = client.occurrence
+const occurrence = client.Occurrence()
 ```
 
 ### Fields
@@ -309,7 +309,7 @@ const occurrence = client.occurrence
 Create a new entity with the given data.
 
 ```ts
-const result = await client.occurrence.create({
+const result = await client.Occurrence().create({
 })
 ```
 
@@ -318,7 +318,7 @@ const result = await client.occurrence.create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.occurrence.list()
+const results = await client.Occurrence().list()
 ```
 
 ### Common Methods
@@ -352,7 +352,7 @@ Return a copy of the entity options.
 ## RegistryEntity
 
 ```ts
-const registry = client.registry
+const registry = client.Registry()
 ```
 
 ### Fields
@@ -372,7 +372,7 @@ const registry = client.registry
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.registry.list()
+const results = await client.Registry().list()
 ```
 
 ### Common Methods
@@ -406,7 +406,7 @@ Return a copy of the entity options.
 ## SpeciesEntity
 
 ```ts
-const species = client.species
+const species = client.Species()
 ```
 
 ### Fields
@@ -428,7 +428,7 @@ const species = client.species
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.species.list()
+const results = await client.Species().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -436,7 +436,7 @@ const results = await client.species.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.species.load({ id: 'species_id' })
+const result = await client.Species().load({ id: 'species_id' })
 ```
 
 ### Common Methods
@@ -470,7 +470,7 @@ Return a copy of the entity options.
 ## VocabularyEntity
 
 ```ts
-const vocabulary = client.vocabulary
+const vocabulary = client.Vocabulary()
 ```
 
 ### Fields
@@ -487,7 +487,7 @@ const vocabulary = client.vocabulary
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.vocabulary.list()
+const results = await client.Vocabulary().list()
 ```
 
 ### Common Methods

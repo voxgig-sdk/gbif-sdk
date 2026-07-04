@@ -31,18 +31,16 @@ $client = new GbifSDK([
 ]);
 ```
 
-### 2. List enumerations
+### 2. List enumeration records
 
 ```php
 try {
-    $result = $client->enumeration()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Enumeration records — iterate directly.
+    $enumerations = $client->Enumeration()->list();
+    foreach ($enumerations as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -51,9 +49,10 @@ try {
 
 ```php
 try {
-    $result = $client->enumeration()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Enumeration record (throws on error).
+    $enumeration = $client->Enumeration()->load(["id" => "example_id"]);
+    print_r($enumeration);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -99,13 +98,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = GbifSDK::test();
+$client = GbifSDK::test([
+    "entity" => ["enumeration" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->enumeration()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$enumeration = $client->Enumeration()->load(["id" => "test01"]);
+print_r($enumeration);
 ```
 
 ### Use a custom fetch function
@@ -186,9 +189,9 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Enumeration` | `($data): EnumerationEntity` | Create a Enumeration entity instance. |
+| `Enumeration` | `($data): EnumerationEntity` | Create an Enumeration entity instance. |
 | `Literature` | `($data): LiteratureEntity` | Create a Literature entity instance. |
-| `Occurrence` | `($data): OccurrenceEntity` | Create a Occurrence entity instance. |
+| `Occurrence` | `($data): OccurrenceEntity` | Create an Occurrence entity instance. |
 | `Registry` | `($data): RegistryEntity` | Create a Registry entity instance. |
 | `Species` | `($data): SpeciesEntity` | Create a Species entity instance. |
 | `Vocabulary` | `($data): VocabularyEntity` | Create a Vocabulary entity instance. |
@@ -324,7 +327,7 @@ API path: `/vocabulary`
 
 ### Enumeration
 
-Create an instance: `const enumeration = client.enumeration`
+Create an instance: `$enumeration = $client->Enumeration();`
 
 #### Operations
 
@@ -344,20 +347,22 @@ Create an instance: `const enumeration = client.enumeration`
 
 #### Example: Load
 
-```ts
-const enumeration = await client.enumeration.load({ id: 'enumeration_id' })
+```php
+// load() returns the bare Enumeration record (throws on error).
+$enumeration = $client->Enumeration()->load(["id" => "enumeration_id"]);
 ```
 
 #### Example: List
 
-```ts
-const enumerations = await client.enumeration.list()
+```php
+// list() returns an array of Enumeration records (throws on error).
+$enumerations = $client->Enumeration()->list();
 ```
 
 
 ### Literature
 
-Create an instance: `const literature = client.literature`
+Create an instance: `$literature = $client->Literature();`
 
 #### Operations
 
@@ -376,14 +381,15 @@ Create an instance: `const literature = client.literature`
 
 #### Example: List
 
-```ts
-const literatures = await client.literature.list()
+```php
+// list() returns an array of Literature records (throws on error).
+$literatures = $client->Literature()->list();
 ```
 
 
 ### Occurrence
 
-Create an instance: `const occurrence = client.occurrence`
+Create an instance: `$occurrence = $client->Occurrence();`
 
 #### Operations
 
@@ -409,21 +415,22 @@ Create an instance: `const occurrence = client.occurrence`
 
 #### Example: List
 
-```ts
-const occurrences = await client.occurrence.list()
+```php
+// list() returns an array of Occurrence records (throws on error).
+$occurrences = $client->Occurrence()->list();
 ```
 
 #### Example: Create
 
-```ts
-const occurrence = await client.occurrence.create({
-})
+```php
+$occurrence = $client->Occurrence()->create([
+]);
 ```
 
 
 ### Registry
 
-Create an instance: `const registry = client.registry`
+Create an instance: `$registry = $client->Registry();`
 
 #### Operations
 
@@ -443,14 +450,15 @@ Create an instance: `const registry = client.registry`
 
 #### Example: List
 
-```ts
-const registrys = await client.registry.list()
+```php
+// list() returns an array of Registry records (throws on error).
+$registrys = $client->Registry()->list();
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.species`
+Create an instance: `$species = $client->Species();`
 
 #### Operations
 
@@ -473,20 +481,22 @@ Create an instance: `const species = client.species`
 
 #### Example: Load
 
-```ts
-const species = await client.species.load({ id: 'species_id' })
+```php
+// load() returns the bare Species record (throws on error).
+$species = $client->Species()->load(["id" => "species_id"]);
 ```
 
 #### Example: List
 
-```ts
-const speciess = await client.species.list()
+```php
+// list() returns an array of Species records (throws on error).
+$speciess = $client->Species()->list();
 ```
 
 
 ### Vocabulary
 
-Create an instance: `const vocabulary = client.vocabulary`
+Create an instance: `$vocabulary = $client->Vocabulary();`
 
 #### Operations
 
@@ -503,8 +513,9 @@ Create an instance: `const vocabulary = client.vocabulary`
 
 #### Example: List
 
-```ts
-const vocabularys = await client.vocabulary.list()
+```php
+// list() returns an array of Vocabulary records (throws on error).
+$vocabularys = $client->Vocabulary()->list();
 ```
 
 
@@ -579,7 +590,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$enumeration = $client->enumeration();
+$enumeration = $client->Enumeration();
 $enumeration->load(["id" => "example_id"]);
 
 // $enumeration->dataGet() now returns the loaded enumeration data

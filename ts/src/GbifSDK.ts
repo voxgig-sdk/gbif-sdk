@@ -209,84 +209,42 @@ class GbifSDK {
 
 
 
-  _enumeration?: EnumerationEntity
-
-  // Idiomatic facade: `client.enumeration.list()` / `client.enumeration.load({ id })`.
-  get enumeration(): EnumerationEntity {
-    return (this._enumeration ??= new EnumerationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.enumeration` instead. */
+  // Entity access: `client.Enumeration().list()` / `client.Enumeration().load({ id })`.
   Enumeration(data?: any) {
     const self = this
     return new EnumerationEntity(self,data)
   }
 
 
-  _literature?: LiteratureEntity
-
-  // Idiomatic facade: `client.literature.list()` / `client.literature.load({ id })`.
-  get literature(): LiteratureEntity {
-    return (this._literature ??= new LiteratureEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.literature` instead. */
+  // Entity access: `client.Literature().list()` / `client.Literature().load({ id })`.
   Literature(data?: any) {
     const self = this
     return new LiteratureEntity(self,data)
   }
 
 
-  _occurrence?: OccurrenceEntity
-
-  // Idiomatic facade: `client.occurrence.list()` / `client.occurrence.load({ id })`.
-  get occurrence(): OccurrenceEntity {
-    return (this._occurrence ??= new OccurrenceEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.occurrence` instead. */
+  // Entity access: `client.Occurrence().list()` / `client.Occurrence().load({ id })`.
   Occurrence(data?: any) {
     const self = this
     return new OccurrenceEntity(self,data)
   }
 
 
-  _registry?: RegistryEntity
-
-  // Idiomatic facade: `client.registry.list()` / `client.registry.load({ id })`.
-  get registry(): RegistryEntity {
-    return (this._registry ??= new RegistryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.registry` instead. */
+  // Entity access: `client.Registry().list()` / `client.Registry().load({ id })`.
   Registry(data?: any) {
     const self = this
     return new RegistryEntity(self,data)
   }
 
 
-  _species?: SpeciesEntity
-
-  // Idiomatic facade: `client.species.list()` / `client.species.load({ id })`.
-  get species(): SpeciesEntity {
-    return (this._species ??= new SpeciesEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.species` instead. */
+  // Entity access: `client.Species().list()` / `client.Species().load({ id })`.
   Species(data?: any) {
     const self = this
     return new SpeciesEntity(self,data)
   }
 
 
-  _vocabulary?: VocabularyEntity
-
-  // Idiomatic facade: `client.vocabulary.list()` / `client.vocabulary.load({ id })`.
-  get vocabulary(): VocabularyEntity {
-    return (this._vocabulary ??= new VocabularyEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.vocabulary` instead. */
+  // Entity access: `client.Vocabulary().list()` / `client.Vocabulary().load({ id })`.
   Vocabulary(data?: any) {
     const self = this
     return new VocabularyEntity(self,data)

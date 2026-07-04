@@ -4,151 +4,140 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Enumeration:
-    iso2: Optional[str] = None
-    name: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+class Enumeration(TypedDict, total=False):
+    iso2: str
+    name: str
+    title: str
+    url: str
 
 
-@dataclass
-class EnumerationLoadMatch:
+class EnumerationLoadMatch(TypedDict):
     enumeration: str
 
 
-@dataclass
-class EnumerationListMatch:
-    iso2: Optional[str] = None
-    name: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+class EnumerationListMatch(TypedDict, total=False):
+    iso2: str
+    name: str
+    title: str
+    url: str
 
 
-@dataclass
-class Literature:
-    author: Optional[list] = None
-    id: Optional[str] = None
-    title: Optional[str] = None
-    year: Optional[int] = None
+class Literature(TypedDict, total=False):
+    author: list
+    id: str
+    title: str
+    year: int
 
 
-@dataclass
-class LiteratureListMatch:
-    author: Optional[list] = None
-    id: Optional[str] = None
-    title: Optional[str] = None
-    year: Optional[int] = None
+class LiteratureListMatch(TypedDict, total=False):
+    author: list
+    id: str
+    title: str
+    year: int
 
 
-@dataclass
-class Occurrence:
-    country: Optional[str] = None
-    creator: Optional[str] = None
-    decimal_latitude: Optional[float] = None
-    decimal_longitude: Optional[float] = None
-    format: Optional[str] = None
-    key: Optional[int] = None
-    notification_address: Optional[list] = None
-    predicate: Optional[dict] = None
-    scientific_name: Optional[str] = None
-    year: Optional[int] = None
+class Occurrence(TypedDict, total=False):
+    country: str
+    creator: str
+    decimal_latitude: float
+    decimal_longitude: float
+    format: str
+    key: int
+    notification_address: list
+    predicate: dict
+    scientific_name: str
+    year: int
 
 
-@dataclass
-class OccurrenceListMatch:
-    country: Optional[str] = None
-    creator: Optional[str] = None
-    decimal_latitude: Optional[float] = None
-    decimal_longitude: Optional[float] = None
-    format: Optional[str] = None
-    key: Optional[int] = None
-    notification_address: Optional[list] = None
-    predicate: Optional[dict] = None
-    scientific_name: Optional[str] = None
-    year: Optional[int] = None
+class OccurrenceListMatch(TypedDict, total=False):
+    country: str
+    creator: str
+    decimal_latitude: float
+    decimal_longitude: float
+    format: str
+    key: int
+    notification_address: list
+    predicate: dict
+    scientific_name: str
+    year: int
 
 
-@dataclass
-class OccurrenceCreateData:
-    country: Optional[str] = None
-    creator: Optional[str] = None
-    decimal_latitude: Optional[float] = None
-    decimal_longitude: Optional[float] = None
-    format: Optional[str] = None
-    key: Optional[int] = None
-    notification_address: Optional[list] = None
-    predicate: Optional[dict] = None
-    scientific_name: Optional[str] = None
-    year: Optional[int] = None
+class OccurrenceCreateData(TypedDict, total=False):
+    country: str
+    creator: str
+    decimal_latitude: float
+    decimal_longitude: float
+    format: str
+    key: int
+    notification_address: list
+    predicate: dict
+    scientific_name: str
+    year: int
 
 
-@dataclass
-class Registry:
-    country: Optional[str] = None
-    key: Optional[str] = None
-    publishing_organization_key: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+class Registry(TypedDict, total=False):
+    country: str
+    key: str
+    publishing_organization_key: str
+    title: str
+    type: str
 
 
-@dataclass
-class RegistryListMatch:
-    country: Optional[str] = None
-    key: Optional[str] = None
-    publishing_organization_key: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+class RegistryListMatch(TypedDict, total=False):
+    country: str
+    key: str
+    publishing_organization_key: str
+    title: str
+    type: str
 
 
-@dataclass
-class Species:
-    canonical_name: Optional[str] = None
-    confidence: Optional[int] = None
-    key: Optional[int] = None
-    match_type: Optional[str] = None
-    rank: Optional[str] = None
-    scientific_name: Optional[str] = None
-    usage_key: Optional[int] = None
+class Species(TypedDict, total=False):
+    canonical_name: str
+    confidence: int
+    key: int
+    match_type: str
+    rank: str
+    scientific_name: str
+    usage_key: int
 
 
-@dataclass
-class SpeciesLoadMatch:
-    canonical_name: Optional[str] = None
-    confidence: Optional[int] = None
-    key: Optional[int] = None
-    match_type: Optional[str] = None
-    rank: Optional[str] = None
-    scientific_name: Optional[str] = None
-    usage_key: Optional[int] = None
+class SpeciesLoadMatch(TypedDict, total=False):
+    canonical_name: str
+    confidence: int
+    key: int
+    match_type: str
+    rank: str
+    scientific_name: str
+    usage_key: int
 
 
-@dataclass
-class SpeciesListMatch:
-    canonical_name: Optional[str] = None
-    confidence: Optional[int] = None
-    key: Optional[int] = None
-    match_type: Optional[str] = None
-    rank: Optional[str] = None
-    scientific_name: Optional[str] = None
-    usage_key: Optional[int] = None
+class SpeciesListMatch(TypedDict, total=False):
+    canonical_name: str
+    confidence: int
+    key: int
+    match_type: str
+    rank: str
+    scientific_name: str
+    usage_key: int
 
 
-@dataclass
-class Vocabulary:
-    description: Optional[str] = None
-    name: Optional[str] = None
+class Vocabulary(TypedDict, total=False):
+    description: str
+    name: str
 
 
-@dataclass
-class VocabularyListMatch:
-    description: Optional[str] = None
-    name: Optional[str] = None
-
+class VocabularyListMatch(TypedDict, total=False):
+    description: str
+    name: str

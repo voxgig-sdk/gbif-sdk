@@ -34,24 +34,28 @@ client = GbifSDK({
 })
 ```
 
-### 2. List enumerations
+### 2. List enumeration records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.enumeration.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    enumerations = client.Enumeration().list({})
+    for enumeration in enumerations:
+        print(enumeration)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load an enumeration
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.enumeration.load({"id": "example_id"})
-    print(result)
+    enumeration = client.Enumeration().load({"id": "example_id"})
+    print(enumeration)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -99,8 +103,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GbifSDK.test()
 
-result = client.enumeration.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+enumeration = client.Enumeration().load({"id": "test01"})
+# enumeration contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -178,9 +183,9 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Enumeration` | `(data) -> EnumerationEntity` | Create a Enumeration entity instance. |
+| `Enumeration` | `(data) -> EnumerationEntity` | Create an Enumeration entity instance. |
 | `Literature` | `(data) -> LiteratureEntity` | Create a Literature entity instance. |
-| `Occurrence` | `(data) -> OccurrenceEntity` | Create a Occurrence entity instance. |
+| `Occurrence` | `(data) -> OccurrenceEntity` | Create an Occurrence entity instance. |
 | `Registry` | `(data) -> RegistryEntity` | Create a Registry entity instance. |
 | `Species` | `(data) -> SpeciesEntity` | Create a Species entity instance. |
 | `Vocabulary` | `(data) -> VocabularyEntity` | Create a Vocabulary entity instance. |
@@ -316,7 +321,7 @@ API path: `/vocabulary`
 
 ### Enumeration
 
-Create an instance: `const enumeration = client.enumeration`
+Create an instance: `enumeration = client.Enumeration()`
 
 #### Operations
 
@@ -336,20 +341,20 @@ Create an instance: `const enumeration = client.enumeration`
 
 #### Example: Load
 
-```ts
-const enumeration = await client.enumeration.load({ id: 'enumeration_id' })
+```python
+enumeration = client.Enumeration().load({"id": "enumeration_id"})
 ```
 
 #### Example: List
 
-```ts
-const enumerations = await client.enumeration.list()
+```python
+enumerations = client.Enumeration().list({})
 ```
 
 
 ### Literature
 
-Create an instance: `const literature = client.literature`
+Create an instance: `literature = client.Literature()`
 
 #### Operations
 
@@ -368,14 +373,14 @@ Create an instance: `const literature = client.literature`
 
 #### Example: List
 
-```ts
-const literatures = await client.literature.list()
+```python
+literatures = client.Literature().list({})
 ```
 
 
 ### Occurrence
 
-Create an instance: `const occurrence = client.occurrence`
+Create an instance: `occurrence = client.Occurrence()`
 
 #### Operations
 
@@ -401,21 +406,21 @@ Create an instance: `const occurrence = client.occurrence`
 
 #### Example: List
 
-```ts
-const occurrences = await client.occurrence.list()
+```python
+occurrences = client.Occurrence().list({})
 ```
 
 #### Example: Create
 
-```ts
-const occurrence = await client.occurrence.create({
+```python
+occurrence = client.Occurrence().create({
 })
 ```
 
 
 ### Registry
 
-Create an instance: `const registry = client.registry`
+Create an instance: `registry = client.Registry()`
 
 #### Operations
 
@@ -435,14 +440,14 @@ Create an instance: `const registry = client.registry`
 
 #### Example: List
 
-```ts
-const registrys = await client.registry.list()
+```python
+registrys = client.Registry().list({})
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.species`
+Create an instance: `species = client.Species()`
 
 #### Operations
 
@@ -465,20 +470,20 @@ Create an instance: `const species = client.species`
 
 #### Example: Load
 
-```ts
-const species = await client.species.load({ id: 'species_id' })
+```python
+species = client.Species().load({"id": "species_id"})
 ```
 
 #### Example: List
 
-```ts
-const speciess = await client.species.list()
+```python
+speciess = client.Species().list({})
 ```
 
 
 ### Vocabulary
 
-Create an instance: `const vocabulary = client.vocabulary`
+Create an instance: `vocabulary = client.Vocabulary()`
 
 #### Operations
 
@@ -495,8 +500,8 @@ Create an instance: `const vocabulary = client.vocabulary`
 
 #### Example: List
 
-```ts
-const vocabularys = await client.vocabulary.list()
+```python
+vocabularys = client.Vocabulary().list({})
 ```
 
 
@@ -570,7 +575,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-enumeration = client.enumeration
+enumeration = client.Enumeration()
 enumeration.load({"id": "example_id"})
 
 # enumeration.data_get() now returns the loaded enumeration data

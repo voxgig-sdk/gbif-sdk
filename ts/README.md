@@ -30,25 +30,28 @@ const client = new GbifSDK({
 })
 ```
 
-### 2. List enumerations
+### 2. List enumeration records
+
+`list()` resolves to an array of Enumeration objects — iterate it directly:
 
 ```ts
-const result = await client.enumeration.list()
+const enumerations = await client.Enumeration().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const enumeration of enumerations) {
+  console.log(enumeration)
 }
 ```
 
 ### 3. Load an enumeration
 
-```ts
-const result = await client.enumeration.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const enumeration = await client.Enumeration().load({ id: 'example_id' })
+  console.log(enumeration)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -66,6 +69,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -94,9 +100,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GbifSDK.test()
 
-const result = await client.enumeration.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const enumeration = await client.Enumeration().load({ id: 'test01' })
+// enumeration is a bare entity populated with mock response data
+console.log(enumeration)
 ```
 
 You can also use the instance method:
@@ -111,7 +117,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.enumeration
+const entity = client.Enumeration()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -193,9 +199,9 @@ new GbifSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Enumeration(data?)` | `EnumerationEntity` | Create a Enumeration entity instance. |
+| `Enumeration(data?)` | `EnumerationEntity` | Create an Enumeration entity instance. |
 | `Literature(data?)` | `LiteratureEntity` | Create a Literature entity instance. |
-| `Occurrence(data?)` | `OccurrenceEntity` | Create a Occurrence entity instance. |
+| `Occurrence(data?)` | `OccurrenceEntity` | Create an Occurrence entity instance. |
 | `Registry(data?)` | `RegistryEntity` | Create a Registry entity instance. |
 | `Species(data?)` | `SpeciesEntity` | Create a Species entity instance. |
 | `Vocabulary(data?)` | `VocabularyEntity` | Create a Vocabulary entity instance. |
@@ -215,29 +221,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): GbifSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -362,7 +369,7 @@ API path: `/vocabulary`
 
 ### Enumeration
 
-Create an instance: `const enumeration = client.enumeration`
+Create an instance: `const enumeration = client.Enumeration()`
 
 #### Operations
 
@@ -383,19 +390,19 @@ Create an instance: `const enumeration = client.enumeration`
 #### Example: Load
 
 ```ts
-const enumeration = await client.enumeration.load({ id: 'enumeration_id' })
+const enumeration = await client.Enumeration().load({ id: 'enumeration_id' })
 ```
 
 #### Example: List
 
 ```ts
-const enumerations = await client.enumeration.list()
+const enumerations = await client.Enumeration().list()
 ```
 
 
 ### Literature
 
-Create an instance: `const literature = client.literature`
+Create an instance: `const literature = client.Literature()`
 
 #### Operations
 
@@ -415,13 +422,13 @@ Create an instance: `const literature = client.literature`
 #### Example: List
 
 ```ts
-const literatures = await client.literature.list()
+const literatures = await client.Literature().list()
 ```
 
 
 ### Occurrence
 
-Create an instance: `const occurrence = client.occurrence`
+Create an instance: `const occurrence = client.Occurrence()`
 
 #### Operations
 
@@ -448,20 +455,20 @@ Create an instance: `const occurrence = client.occurrence`
 #### Example: List
 
 ```ts
-const occurrences = await client.occurrence.list()
+const occurrences = await client.Occurrence().list()
 ```
 
 #### Example: Create
 
 ```ts
-const occurrence = await client.occurrence.create({
+const occurrence = await client.Occurrence().create({
 })
 ```
 
 
 ### Registry
 
-Create an instance: `const registry = client.registry`
+Create an instance: `const registry = client.Registry()`
 
 #### Operations
 
@@ -482,13 +489,13 @@ Create an instance: `const registry = client.registry`
 #### Example: List
 
 ```ts
-const registrys = await client.registry.list()
+const registrys = await client.Registry().list()
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.species`
+Create an instance: `const species = client.Species()`
 
 #### Operations
 
@@ -512,19 +519,19 @@ Create an instance: `const species = client.species`
 #### Example: Load
 
 ```ts
-const species = await client.species.load({ id: 'species_id' })
+const species = await client.Species().load({ id: 'species_id' })
 ```
 
 #### Example: List
 
 ```ts
-const speciess = await client.species.list()
+const speciess = await client.Species().list()
 ```
 
 
 ### Vocabulary
 
-Create an instance: `const vocabulary = client.vocabulary`
+Create an instance: `const vocabulary = client.Vocabulary()`
 
 #### Operations
 
@@ -542,7 +549,7 @@ Create an instance: `const vocabulary = client.vocabulary`
 #### Example: List
 
 ```ts
-const vocabularys = await client.vocabulary.list()
+const vocabularys = await client.Vocabulary().list()
 ```
 
 
@@ -613,7 +620,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const enumeration = client.enumeration
+const enumeration = client.Enumeration()
 await enumeration.load({ id: "example_id" })
 
 // enumeration.data() now returns the loaded enumeration data

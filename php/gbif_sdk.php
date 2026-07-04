@@ -233,10 +233,10 @@ class GbifSDK
 
     private $_enumeration = null;
 
-    // Idiomatic facade: $client->enumeration()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Enumeration() (PHP method
-    // names are case-insensitive).
-    public function enumeration($data = null)
+    // Canonical facade: $client->Enumeration()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->enumeration()
+    // resolves here too.
+    public function Enumeration($data = null)
     {
         require_once __DIR__ . '/entity/enumeration_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class GbifSDK
 
     private $_literature = null;
 
-    // Idiomatic facade: $client->literature()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Literature() (PHP method
-    // names are case-insensitive).
-    public function literature($data = null)
+    // Canonical facade: $client->Literature()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->literature()
+    // resolves here too.
+    public function Literature($data = null)
     {
         require_once __DIR__ . '/entity/literature_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class GbifSDK
 
     private $_occurrence = null;
 
-    // Idiomatic facade: $client->occurrence()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Occurrence() (PHP method
-    // names are case-insensitive).
-    public function occurrence($data = null)
+    // Canonical facade: $client->Occurrence()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->occurrence()
+    // resolves here too.
+    public function Occurrence($data = null)
     {
         require_once __DIR__ . '/entity/occurrence_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class GbifSDK
 
     private $_registry = null;
 
-    // Idiomatic facade: $client->registry()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Registry() (PHP method
-    // names are case-insensitive).
-    public function registry($data = null)
+    // Canonical facade: $client->Registry()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->registry()
+    // resolves here too.
+    public function Registry($data = null)
     {
         require_once __DIR__ . '/entity/registry_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class GbifSDK
 
     private $_species = null;
 
-    // Idiomatic facade: $client->species()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Species() (PHP method
-    // names are case-insensitive).
-    public function species($data = null)
+    // Canonical facade: $client->Species()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->species()
+    // resolves here too.
+    public function Species($data = null)
     {
         require_once __DIR__ . '/entity/species_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class GbifSDK
 
     private $_vocabulary = null;
 
-    // Idiomatic facade: $client->vocabulary()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Vocabulary() (PHP method
-    // names are case-insensitive).
-    public function vocabulary($data = null)
+    // Canonical facade: $client->Vocabulary()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->vocabulary()
+    // resolves here too.
+    public function Vocabulary($data = null)
     {
         require_once __DIR__ . '/entity/vocabulary_entity.php';
         if ($data === null) {

@@ -106,7 +106,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## EnumerationEntity
 
 ```php
-$enumeration = $client->enumeration();
+$enumeration = $client->Enumeration();
 ```
 
 ### Fields
@@ -125,7 +125,7 @@ $enumeration = $client->enumeration();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->enumeration()->list([]);
+$results = $client->Enumeration()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -133,7 +133,7 @@ $results = $client->enumeration()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->enumeration()->load(["id" => "enumeration_id"]);
+$result = $client->Enumeration()->load(["id" => "enumeration_id"]);
 ```
 
 ### Common Methods
@@ -169,7 +169,7 @@ Return the entity name.
 ## LiteratureEntity
 
 ```php
-$literature = $client->literature();
+$literature = $client->Literature();
 ```
 
 ### Fields
@@ -188,7 +188,7 @@ $literature = $client->literature();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->literature()->list([]);
+$results = $client->Literature()->list([]);
 ```
 
 ### Common Methods
@@ -224,7 +224,7 @@ Return the entity name.
 ## OccurrenceEntity
 
 ```php
-$occurrence = $client->occurrence();
+$occurrence = $client->Occurrence();
 ```
 
 ### Fields
@@ -249,7 +249,7 @@ $occurrence = $client->occurrence();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->occurrence()->create([
+$result = $client->Occurrence()->create([
 ]);
 ```
 
@@ -258,7 +258,7 @@ $result = $client->occurrence()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->occurrence()->list([]);
+$results = $client->Occurrence()->list([]);
 ```
 
 ### Common Methods
@@ -294,7 +294,7 @@ Return the entity name.
 ## RegistryEntity
 
 ```php
-$registry = $client->registry();
+$registry = $client->Registry();
 ```
 
 ### Fields
@@ -314,7 +314,7 @@ $registry = $client->registry();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->registry()->list([]);
+$results = $client->Registry()->list([]);
 ```
 
 ### Common Methods
@@ -350,7 +350,7 @@ Return the entity name.
 ## SpeciesEntity
 
 ```php
-$species = $client->species();
+$species = $client->Species();
 ```
 
 ### Fields
@@ -372,7 +372,7 @@ $species = $client->species();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->species()->list([]);
+$results = $client->Species()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -380,7 +380,7 @@ $results = $client->species()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->species()->load(["id" => "species_id"]);
+$result = $client->Species()->load(["id" => "species_id"]);
 ```
 
 ### Common Methods
@@ -416,7 +416,7 @@ Return the entity name.
 ## VocabularyEntity
 
 ```php
-$vocabulary = $client->vocabulary();
+$vocabulary = $client->Vocabulary();
 ```
 
 ### Fields
@@ -433,7 +433,7 @@ $vocabulary = $client->vocabulary();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->vocabulary()->list([]);
+$results = $client->Vocabulary()->list([]);
 ```
 
 ### Common Methods

@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/gbif-sdk/go=../gbif-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,48 +43,29 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/gbif-sdk/go"
-    "github.com/voxgig-sdk/gbif-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewGbifSDK(map[string]any{
         "apikey": os.Getenv("GBIF_APIKEY"),
     })
-```
 
-### 2. List enumerations
-
-```go
-    result, err := client.Enumeration(nil).List(nil, nil)
+    // List enumeration records — the value is the array of records itself.
+    enumerations, err := client.Enumeration(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range enumerations.([]any) {
+        fmt.Println(item)
     }
-```
 
-### 3. Load an enumeration
-
-```go
-    result, err = client.Enumeration(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single enumeration — the value is the loaded record.
+    enumeration, err := client.Enumeration(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(enumeration)
 }
 ```
 
@@ -130,10 +116,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Enumeration(nil).Load(
+enumeration, err := client.Enumeration(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(enumeration) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -212,9 +201,9 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Enumeration` | `(data map[string]any) GbifEntity` | Create a Enumeration entity instance. |
+| `Enumeration` | `(data map[string]any) GbifEntity` | Create an Enumeration entity instance. |
 | `Literature` | `(data map[string]any) GbifEntity` | Create a Literature entity instance. |
-| `Occurrence` | `(data map[string]any) GbifEntity` | Create a Occurrence entity instance. |
+| `Occurrence` | `(data map[string]any) GbifEntity` | Create an Occurrence entity instance. |
 | `Registry` | `(data map[string]any) GbifEntity` | Create a Registry entity instance. |
 | `Species` | `(data map[string]any) GbifEntity` | Create a Species entity instance. |
 | `Vocabulary` | `(data map[string]any) GbifEntity` | Create a Vocabulary entity instance. |
@@ -237,17 +226,24 @@ All entities implement the `GbifEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    enumeration, err := client.Enumeration(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // enumeration is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -365,13 +361,21 @@ Create an instance: `enumeration := client.Enumeration(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Enumeration(nil).Load(map[string]any{"id": "enumeration_id"}, nil)
+enumeration, err := client.Enumeration(nil).Load(map[string]any{"id": "enumeration_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(enumeration) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Enumeration(nil).List(nil, nil)
+enumerations, err := client.Enumeration(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(enumerations) // the array of records
 ```
 
 
@@ -397,7 +401,11 @@ Create an instance: `literature := client.Literature(nil)`
 #### Example: List
 
 ```go
-results, err := client.Literature(nil).List(nil, nil)
+literatures, err := client.Literature(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(literatures) // the array of records
 ```
 
 
@@ -430,7 +438,11 @@ Create an instance: `occurrence := client.Occurrence(nil)`
 #### Example: List
 
 ```go
-results, err := client.Occurrence(nil).List(nil, nil)
+occurrences, err := client.Occurrence(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(occurrences) // the array of records
 ```
 
 #### Example: Create
@@ -464,7 +476,11 @@ Create an instance: `registry := client.Registry(nil)`
 #### Example: List
 
 ```go
-results, err := client.Registry(nil).List(nil, nil)
+registrys, err := client.Registry(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(registrys) // the array of records
 ```
 
 
@@ -494,13 +510,21 @@ Create an instance: `species := client.Species(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Species(nil).Load(map[string]any{"id": "species_id"}, nil)
+species, err := client.Species(nil).Load(map[string]any{"id": "species_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(species) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Species(nil).List(nil, nil)
+speciess, err := client.Species(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(speciess) // the array of records
 ```
 
 
@@ -524,7 +548,11 @@ Create an instance: `vocabulary := client.Vocabulary(nil)`
 #### Example: List
 
 ```go
-results, err := client.Vocabulary(nil).List(nil, nil)
+vocabularys, err := client.Vocabulary(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(vocabularys) // the array of records
 ```
 
 

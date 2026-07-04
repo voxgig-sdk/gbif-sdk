@@ -220,105 +220,45 @@ class GbifSDK:
         }
 
 
-    @property
-    def enumeration(self):
-        """Idiomatic facade: client.enumeration.list() / client.enumeration.load({"id": ...})."""
-        from entity.enumeration_entity import EnumerationEntity
-        cached = getattr(self, "_enumeration", None)
-        if cached is None:
-            cached = EnumerationEntity(self, None)
-            self._enumeration = cached
-        return cached
-
-    def Enumeration(self, data=None):
-        # Deprecated: use client.enumeration instead.
+    def Enumeration(self, data=None) -> "EnumerationEntity":
+        """Entity factory: client.Enumeration().list({}) / client.Enumeration().load({"id": ...})."""
         from entity.enumeration_entity import EnumerationEntity
         return EnumerationEntity(self, data)
 
 
-    @property
-    def literature(self):
-        """Idiomatic facade: client.literature.list() / client.literature.load({"id": ...})."""
-        from entity.literature_entity import LiteratureEntity
-        cached = getattr(self, "_literature", None)
-        if cached is None:
-            cached = LiteratureEntity(self, None)
-            self._literature = cached
-        return cached
-
-    def Literature(self, data=None):
-        # Deprecated: use client.literature instead.
+    def Literature(self, data=None) -> "LiteratureEntity":
+        """Entity factory: client.Literature().list({}) / client.Literature().load({"id": ...})."""
         from entity.literature_entity import LiteratureEntity
         return LiteratureEntity(self, data)
 
 
-    @property
-    def occurrence(self):
-        """Idiomatic facade: client.occurrence.list() / client.occurrence.load({"id": ...})."""
-        from entity.occurrence_entity import OccurrenceEntity
-        cached = getattr(self, "_occurrence", None)
-        if cached is None:
-            cached = OccurrenceEntity(self, None)
-            self._occurrence = cached
-        return cached
-
-    def Occurrence(self, data=None):
-        # Deprecated: use client.occurrence instead.
+    def Occurrence(self, data=None) -> "OccurrenceEntity":
+        """Entity factory: client.Occurrence().list({}) / client.Occurrence().load({"id": ...})."""
         from entity.occurrence_entity import OccurrenceEntity
         return OccurrenceEntity(self, data)
 
 
-    @property
-    def registry(self):
-        """Idiomatic facade: client.registry.list() / client.registry.load({"id": ...})."""
-        from entity.registry_entity import RegistryEntity
-        cached = getattr(self, "_registry", None)
-        if cached is None:
-            cached = RegistryEntity(self, None)
-            self._registry = cached
-        return cached
-
-    def Registry(self, data=None):
-        # Deprecated: use client.registry instead.
+    def Registry(self, data=None) -> "RegistryEntity":
+        """Entity factory: client.Registry().list({}) / client.Registry().load({"id": ...})."""
         from entity.registry_entity import RegistryEntity
         return RegistryEntity(self, data)
 
 
-    @property
-    def species(self):
-        """Idiomatic facade: client.species.list() / client.species.load({"id": ...})."""
-        from entity.species_entity import SpeciesEntity
-        cached = getattr(self, "_species", None)
-        if cached is None:
-            cached = SpeciesEntity(self, None)
-            self._species = cached
-        return cached
-
-    def Species(self, data=None):
-        # Deprecated: use client.species instead.
+    def Species(self, data=None) -> "SpeciesEntity":
+        """Entity factory: client.Species().list({}) / client.Species().load({"id": ...})."""
         from entity.species_entity import SpeciesEntity
         return SpeciesEntity(self, data)
 
 
-    @property
-    def vocabulary(self):
-        """Idiomatic facade: client.vocabulary.list() / client.vocabulary.load({"id": ...})."""
-        from entity.vocabulary_entity import VocabularyEntity
-        cached = getattr(self, "_vocabulary", None)
-        if cached is None:
-            cached = VocabularyEntity(self, None)
-            self._vocabulary = cached
-        return cached
-
-    def Vocabulary(self, data=None):
-        # Deprecated: use client.vocabulary instead.
+    def Vocabulary(self, data=None) -> "VocabularyEntity":
+        """Entity factory: client.Vocabulary().list({}) / client.Vocabulary().load({"id": ...})."""
         from entity.vocabulary_entity import VocabularyEntity
         return VocabularyEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "GbifSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -338,3 +278,14 @@ class GbifSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.enumeration_entity import EnumerationEntity
+    from entity.literature_entity import LiteratureEntity
+    from entity.occurrence_entity import OccurrenceEntity
+    from entity.registry_entity import RegistryEntity
+    from entity.species_entity import SpeciesEntity
+    from entity.vocabulary_entity import VocabularyEntity

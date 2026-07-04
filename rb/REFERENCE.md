@@ -107,7 +107,7 @@ same parameters as `direct()`. Raises on error.
 ## EnumerationEntity
 
 ```ruby
-enumeration = client.enumeration
+enumeration = client.Enumeration
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ enumeration = client.enumeration
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.enumeration.list(nil)
+results = client.Enumeration.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -134,7 +134,7 @@ results = client.enumeration.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.enumeration.load({ "id" => "enumeration_id" })
+result = client.Enumeration.load({ "id" => "enumeration_id" })
 ```
 
 ### Common Methods
@@ -170,7 +170,7 @@ Return the entity name.
 ## LiteratureEntity
 
 ```ruby
-literature = client.literature
+literature = client.Literature
 ```
 
 ### Fields
@@ -189,7 +189,7 @@ literature = client.literature
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.literature.list(nil)
+results = client.Literature.list(nil)
 ```
 
 ### Common Methods
@@ -225,7 +225,7 @@ Return the entity name.
 ## OccurrenceEntity
 
 ```ruby
-occurrence = client.occurrence
+occurrence = client.Occurrence
 ```
 
 ### Fields
@@ -250,7 +250,7 @@ occurrence = client.occurrence
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.occurrence.create({
+result = client.Occurrence.create({
 })
 ```
 
@@ -259,7 +259,7 @@ result = client.occurrence.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.occurrence.list(nil)
+results = client.Occurrence.list(nil)
 ```
 
 ### Common Methods
@@ -295,7 +295,7 @@ Return the entity name.
 ## RegistryEntity
 
 ```ruby
-registry = client.registry
+registry = client.Registry
 ```
 
 ### Fields
@@ -315,7 +315,7 @@ registry = client.registry
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.registry.list(nil)
+results = client.Registry.list(nil)
 ```
 
 ### Common Methods
@@ -351,7 +351,7 @@ Return the entity name.
 ## SpeciesEntity
 
 ```ruby
-species = client.species
+species = client.Species
 ```
 
 ### Fields
@@ -373,7 +373,7 @@ species = client.species
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.species.list(nil)
+results = client.Species.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -381,7 +381,7 @@ results = client.species.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.species.load({ "id" => "species_id" })
+result = client.Species.load({ "id" => "species_id" })
 ```
 
 ### Common Methods
@@ -417,7 +417,7 @@ Return the entity name.
 ## VocabularyEntity
 
 ```ruby
-vocabulary = client.vocabulary
+vocabulary = client.Vocabulary
 ```
 
 ### Fields
@@ -434,7 +434,7 @@ vocabulary = client.vocabulary
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.vocabulary.list(nil)
+results = client.Vocabulary.list(nil)
 ```
 
 ### Common Methods

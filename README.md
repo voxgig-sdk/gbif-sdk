@@ -28,9 +28,11 @@ const client = new GbifSDK({
   apikey: process.env.GBIF_APIKEY,
 })
 
-// List all enumerations
-const enumerations = await client.enumeration.list()
-console.log(enumerations.data)
+// List all enumerations (returns Enumeration[])
+const enumerations = await client.Enumeration().list()
+for (const enumeration of enumerations) {
+  console.log(enumeration)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -93,12 +95,13 @@ client = GbifSDK({
     "apikey": os.environ.get("GBIF_APIKEY"),
 })
 
-# List all enumerations
-enumerations = client.enumeration.list()
-print(enumerations)
+# List all enumerations (returns a list, raises on error)
+enumerations = client.Enumeration().list({})
+for enumeration in enumerations:
+    print(enumeration)
 
-# Load a specific enumeration
-enumeration = client.enumeration.load({"id": "example_id"})
+# Load a specific enumeration (returns the record, raises on error)
+enumeration = client.Enumeration().load({"id": "example_id"})
 print(enumeration)
 ```
 
@@ -112,12 +115,12 @@ $client = new GbifSDK([
     "apikey" => getenv("GBIF_APIKEY"),
 ]);
 
-// List all enumerations (throws on error)
-$enumerations = $client->enumeration()->list();
+// List all enumerations (returns an array; throws on error)
+$enumerations = $client->Enumeration()->list();
 print_r($enumerations);
 
-// Load a specific enumeration
-$enumeration = $client->enumeration()->load(["id" => "example_id"]);
+// Load a specific enumeration (returns the bare record; throws on error)
+$enumeration = $client->Enumeration()->load(["id" => "example_id"]);
 print_r($enumeration);
 ```
 
@@ -144,12 +147,12 @@ client = GbifSDK.new({
   "apikey" => ENV["GBIF_APIKEY"],
 })
 
-# List all enumerations
-enumerations = client.enumeration.list
+# List all enumerations (returns an Array; raises on error)
+enumerations = client.Enumeration.list
 puts enumerations
 
-# Load a specific enumeration
-enumeration = client.enumeration.load({ "id" => "example_id" })
+# Load a specific enumeration (returns the bare record; raises on error)
+enumeration = client.Enumeration.load({ "id" => "example_id" })
 puts enumeration
 ```
 
@@ -163,11 +166,11 @@ local client = sdk.new({
 })
 
 -- List all enumerations
-local enumerations, err = client:enumeration():list()
+local enumerations, err = client:Enumeration():list()
 print(enumerations)
 
 -- Load a specific enumeration
-local enumeration, err = client:enumeration():load({ id = "example_id" })
+local enumeration, err = client:Enumeration():load({ id = "example_id" })
 print(enumeration)
 ```
 
@@ -180,22 +183,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = GbifSDK.test()
-const result = await client.enumeration.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const enumeration = await client.Enumeration().load({ id: 'test01' })
+// enumeration is a bare Enumeration populated with mock data
+console.log(enumeration)
 ```
 
 ### Python
 
 ```python
 client = GbifSDK.test()
-result = client.enumeration.load({"id": "test01"})
+enumeration = client.Enumeration().load({"id": "test01"})
+print(enumeration)
 ```
 
 ### PHP
 
 ```php
-$client = GbifSDK::test();
-$result = $client->enumeration()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = GbifSDK::test([
+    "entity" => ["enumeration" => ["test01" => ["id" => "test01"]]],
+]);
+$enumeration = $client->Enumeration()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -210,15 +218,18 @@ result, err := client.Enumeration(nil).Load(
 ### Ruby
 
 ```ruby
-client = GbifSDK.test
-result = client.enumeration.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = GbifSDK.test({
+  "entity" => { "enumeration" => { "test01" => { "id" => "test01" } } },
+})
+enumeration = client.Enumeration.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:enumeration():load({ id = "test01" })
+local result, err = client:Enumeration():load({ id = "test01" })
 ```
 
 ## How it works
@@ -266,6 +277,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
