@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch SpeciesLoadMatch
+---@param ctrl? table
+---@return Species
+---@return string? err
 function SpeciesEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch SpeciesListMatch
+---@param ctrl? table
+---@return Species[]
+---@return string? err
 function SpeciesEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

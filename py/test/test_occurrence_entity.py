@@ -44,16 +44,13 @@ class TestOccurrenceEntity:
         occurrence_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.occurrence"), "occurrence_ref01"))
 
-        occurrence_ref01_data_result, err = occurrence_ref01_ent.create(occurrence_ref01_data, None)
-        assert err is None
-        occurrence_ref01_data = helpers.to_map(occurrence_ref01_data_result)
+        occurrence_ref01_data = helpers.to_map(occurrence_ref01_ent.create(occurrence_ref01_data, None))
         assert occurrence_ref01_data is not None
 
         # LIST
         occurrence_ref01_match = {}
 
-        occurrence_ref01_list_result, err = occurrence_ref01_ent.list(occurrence_ref01_match, None)
-        assert err is None
+        occurrence_ref01_list_result = occurrence_ref01_ent.list(occurrence_ref01_match, None)
         assert isinstance(occurrence_ref01_list_result, list)
 
         found_item = vs.select(

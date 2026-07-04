@@ -50,8 +50,7 @@ class TestRegistryEntity:
         registry_ref01_ent = client.Registry(None)
         registry_ref01_match = {}
 
-        registry_ref01_list_result, err = registry_ref01_ent.list(registry_ref01_match, None)
-        assert err is None
+        registry_ref01_list_result = registry_ref01_ent.list(registry_ref01_match, None)
         assert isinstance(registry_ref01_list_result, list)
 
 

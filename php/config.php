@@ -145,6 +145,7 @@ class GbifConfig
                         'orig' => 'enumeration',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Literature,
+  LiteratureListMatch,
+} from '../GbifTypes'
 
 // TODO: needs Entity superclass
-class LiteratureEntity extends GbifEntityBase {
+class LiteratureEntity extends GbifEntityBase<Literature> {
 
   constructor(client: GbifSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class LiteratureEntity extends GbifEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: LiteratureListMatch, ctrl?: Control): Promise<Literature[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class LiteratureEntity extends GbifEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Literature[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

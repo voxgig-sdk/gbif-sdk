@@ -245,31 +245,49 @@ func (sdk *GbifSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Enumeration returns a Enumeration entity bound to this client.
+// Idiomatic usage: client.Enumeration(nil).List(nil, nil) or
+// client.Enumeration(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GbifSDK) Enumeration(data map[string]any) GbifEntity {
 	return NewEnumerationEntityFunc(sdk, data)
 }
 
 
+// Literature returns a Literature entity bound to this client.
+// Idiomatic usage: client.Literature(nil).List(nil, nil) or
+// client.Literature(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GbifSDK) Literature(data map[string]any) GbifEntity {
 	return NewLiteratureEntityFunc(sdk, data)
 }
 
 
+// Occurrence returns a Occurrence entity bound to this client.
+// Idiomatic usage: client.Occurrence(nil).List(nil, nil) or
+// client.Occurrence(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GbifSDK) Occurrence(data map[string]any) GbifEntity {
 	return NewOccurrenceEntityFunc(sdk, data)
 }
 
 
+// Registry returns a Registry entity bound to this client.
+// Idiomatic usage: client.Registry(nil).List(nil, nil) or
+// client.Registry(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GbifSDK) Registry(data map[string]any) GbifEntity {
 	return NewRegistryEntityFunc(sdk, data)
 }
 
 
+// Species returns a Species entity bound to this client.
+// Idiomatic usage: client.Species(nil).List(nil, nil) or
+// client.Species(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GbifSDK) Species(data map[string]any) GbifEntity {
 	return NewSpeciesEntityFunc(sdk, data)
 }
 
 
+// Vocabulary returns a Vocabulary entity bound to this client.
+// Idiomatic usage: client.Vocabulary(nil).List(nil, nil) or
+// client.Vocabulary(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GbifSDK) Vocabulary(data map[string]any) GbifEntity {
 	return NewVocabularyEntityFunc(sdk, data)
 }

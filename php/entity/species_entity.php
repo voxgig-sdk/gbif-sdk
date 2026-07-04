@@ -55,6 +55,9 @@ class SpeciesEntity
         return new SpeciesEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Species|array $args Species data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class SpeciesEntity
         }
     }
 
+    /**
+     * @return Species|array The current Species data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Species fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class SpeciesEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Species fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class SpeciesEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Species.
+     *
+     * @param SpeciesLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed SpeciesLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Species|array The loaded Species as an assoc-array at the
+     *   SDK boundary; throws GbifError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class SpeciesEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Species items matching the given filter.
+     *
+     * @param SpeciesListMatch|array|null $reqmatch Match filter (any subset
+     *   of Species fields) as an assoc-array; SpeciesListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Species[]|array A list of Species items as assoc-arrays at
+     *   the SDK boundary; throws GbifError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class SpeciesEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

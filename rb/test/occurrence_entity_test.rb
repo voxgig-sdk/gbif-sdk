@@ -36,16 +36,14 @@ class OccurrenceEntityTest < Minitest::Test
     occurrence_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.occurrence"), "occurrence_ref01"))
 
-    occurrence_ref01_data_result, err = occurrence_ref01_ent.create(occurrence_ref01_data, nil)
-    assert_nil err
+    occurrence_ref01_data_result = occurrence_ref01_ent.create(occurrence_ref01_data, nil)
     occurrence_ref01_data = Helpers.to_map(occurrence_ref01_data_result)
     assert !occurrence_ref01_data.nil?
 
     # LIST
     occurrence_ref01_match = {}
 
-    occurrence_ref01_list_result, err = occurrence_ref01_ent.list(occurrence_ref01_match, nil)
-    assert_nil err
+    occurrence_ref01_list_result = occurrence_ref01_ent.list(occurrence_ref01_match, nil)
     assert occurrence_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(

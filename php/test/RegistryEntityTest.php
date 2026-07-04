@@ -50,8 +50,7 @@ class RegistryEntityTest extends TestCase
         $registry_ref01_ent = $client->Registry(null);
         $registry_ref01_match = [];
 
-        [$registry_ref01_list_result, $err] = $registry_ref01_ent->list($registry_ref01_match, null);
-        $this->assertNull($err);
+        $registry_ref01_list_result = $registry_ref01_ent->list($registry_ref01_match, null);
         $this->assertIsArray($registry_ref01_list_result);
 
     }

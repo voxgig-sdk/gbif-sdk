@@ -50,14 +50,12 @@ class TestEnumerationEntity:
         enumeration_ref01_ent = client.Enumeration(None)
         enumeration_ref01_match = {}
 
-        enumeration_ref01_list_result, err = enumeration_ref01_ent.list(enumeration_ref01_match, None)
-        assert err is None
+        enumeration_ref01_list_result = enumeration_ref01_ent.list(enumeration_ref01_match, None)
         assert isinstance(enumeration_ref01_list_result, list)
 
         # LOAD
         enumeration_ref01_match_dt0 = {}
-        enumeration_ref01_data_dt0_loaded, err = enumeration_ref01_ent.load(enumeration_ref01_match_dt0, None)
-        assert err is None
+        enumeration_ref01_data_dt0_loaded = enumeration_ref01_ent.load(enumeration_ref01_match_dt0, None)
         assert enumeration_ref01_data_dt0_loaded is not None
 
 

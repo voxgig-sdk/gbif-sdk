@@ -144,16 +144,23 @@ class GbifSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class GbifSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,40 +212,106 @@ class GbifSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def enumeration(self):
+        """Idiomatic facade: client.enumeration.list() / client.enumeration.load({"id": ...})."""
+        from entity.enumeration_entity import EnumerationEntity
+        cached = getattr(self, "_enumeration", None)
+        if cached is None:
+            cached = EnumerationEntity(self, None)
+            self._enumeration = cached
+        return cached
 
     def Enumeration(self, data=None):
+        # Deprecated: use client.enumeration instead.
         from entity.enumeration_entity import EnumerationEntity
         return EnumerationEntity(self, data)
 
 
+    @property
+    def literature(self):
+        """Idiomatic facade: client.literature.list() / client.literature.load({"id": ...})."""
+        from entity.literature_entity import LiteratureEntity
+        cached = getattr(self, "_literature", None)
+        if cached is None:
+            cached = LiteratureEntity(self, None)
+            self._literature = cached
+        return cached
+
     def Literature(self, data=None):
+        # Deprecated: use client.literature instead.
         from entity.literature_entity import LiteratureEntity
         return LiteratureEntity(self, data)
 
 
+    @property
+    def occurrence(self):
+        """Idiomatic facade: client.occurrence.list() / client.occurrence.load({"id": ...})."""
+        from entity.occurrence_entity import OccurrenceEntity
+        cached = getattr(self, "_occurrence", None)
+        if cached is None:
+            cached = OccurrenceEntity(self, None)
+            self._occurrence = cached
+        return cached
+
     def Occurrence(self, data=None):
+        # Deprecated: use client.occurrence instead.
         from entity.occurrence_entity import OccurrenceEntity
         return OccurrenceEntity(self, data)
 
 
+    @property
+    def registry(self):
+        """Idiomatic facade: client.registry.list() / client.registry.load({"id": ...})."""
+        from entity.registry_entity import RegistryEntity
+        cached = getattr(self, "_registry", None)
+        if cached is None:
+            cached = RegistryEntity(self, None)
+            self._registry = cached
+        return cached
+
     def Registry(self, data=None):
+        # Deprecated: use client.registry instead.
         from entity.registry_entity import RegistryEntity
         return RegistryEntity(self, data)
 
 
+    @property
+    def species(self):
+        """Idiomatic facade: client.species.list() / client.species.load({"id": ...})."""
+        from entity.species_entity import SpeciesEntity
+        cached = getattr(self, "_species", None)
+        if cached is None:
+            cached = SpeciesEntity(self, None)
+            self._species = cached
+        return cached
+
     def Species(self, data=None):
+        # Deprecated: use client.species instead.
         from entity.species_entity import SpeciesEntity
         return SpeciesEntity(self, data)
 
 
+    @property
+    def vocabulary(self):
+        """Idiomatic facade: client.vocabulary.list() / client.vocabulary.load({"id": ...})."""
+        from entity.vocabulary_entity import VocabularyEntity
+        cached = getattr(self, "_vocabulary", None)
+        if cached is None:
+            cached = VocabularyEntity(self, None)
+            self._vocabulary = cached
+        return cached
+
     def Vocabulary(self, data=None):
+        # Deprecated: use client.vocabulary instead.
         from entity.vocabulary_entity import VocabularyEntity
         return VocabularyEntity(self, data)
 

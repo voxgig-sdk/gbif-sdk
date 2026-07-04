@@ -45,6 +45,7 @@ class OccurrenceEntity
     end
   end
 
+  # @return [Occurrence, Hash] the current Occurrence data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class OccurrenceEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Occurrence fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class OccurrenceEntity
   
 
   
+  # List Occurrence items matching the given filter.
+  #
+  # @param reqmatch [OccurrenceListMatch, Hash, nil] match filter (any subset of Occurrence fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Occurrence>, Array] the matching Occurrence items; raises GbifError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -85,6 +92,11 @@ class OccurrenceEntity
 
 
   
+  # Create a new Occurrence.
+  #
+  # @param reqdata [OccurrenceCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Occurrence, Hash] the created Occurrence; raises GbifError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

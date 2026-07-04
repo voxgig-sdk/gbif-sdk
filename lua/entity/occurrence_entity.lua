@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch OccurrenceListMatch
+---@param ctrl? table
+---@return Occurrence[]
+---@return string? err
 function OccurrenceEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -103,6 +107,10 @@ end
 
 
 
+---@param reqdata OccurrenceCreateData
+---@param ctrl? table
+---@return Occurrence
+---@return string? err
 function OccurrenceEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

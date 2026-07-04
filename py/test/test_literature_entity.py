@@ -50,8 +50,7 @@ class TestLiteratureEntity:
         literature_ref01_ent = client.Literature(None)
         literature_ref01_match = {}
 
-        literature_ref01_list_result, err = literature_ref01_ent.list(literature_ref01_match, None)
-        assert err is None
+        literature_ref01_list_result = literature_ref01_ent.list(literature_ref01_match, None)
         assert isinstance(literature_ref01_list_result, list)
 
 

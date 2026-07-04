@@ -43,8 +43,7 @@ class RegistryEntityTest < Minitest::Test
     registry_ref01_ent = client.Registry(nil)
     registry_ref01_match = {}
 
-    registry_ref01_list_result, err = registry_ref01_ent.list(registry_ref01_match, nil)
-    assert_nil err
+    registry_ref01_list_result = registry_ref01_ent.list(registry_ref01_match, nil)
     assert registry_ref01_list_result.is_a?(Array)
 
   end

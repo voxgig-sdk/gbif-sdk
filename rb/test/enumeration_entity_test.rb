@@ -43,14 +43,12 @@ class EnumerationEntityTest < Minitest::Test
     enumeration_ref01_ent = client.Enumeration(nil)
     enumeration_ref01_match = {}
 
-    enumeration_ref01_list_result, err = enumeration_ref01_ent.list(enumeration_ref01_match, nil)
-    assert_nil err
+    enumeration_ref01_list_result = enumeration_ref01_ent.list(enumeration_ref01_match, nil)
     assert enumeration_ref01_list_result.is_a?(Array)
 
     # LOAD
     enumeration_ref01_match_dt0 = {}
-    enumeration_ref01_data_dt0_loaded, err = enumeration_ref01_ent.load(enumeration_ref01_match_dt0, nil)
-    assert_nil err
+    enumeration_ref01_data_dt0_loaded = enumeration_ref01_ent.load(enumeration_ref01_match_dt0, nil)
     assert !enumeration_ref01_data_dt0_loaded.nil?
 
   end

@@ -9,9 +9,10 @@ The PHP SDK for the Gbif API — an entity-oriented client using PHP conventions
 
 
 ## Install
-```bash
-composer require voxgig-sdk/gbif
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/gbif-sdk/releases](https://github.com/voxgig-sdk/gbif-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -33,23 +34,28 @@ $client = new GbifSDK([
 ### 2. List enumerations
 
 ```php
-[$result, $err] = $client->Enumeration()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->enumeration()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
-### 3. Load a enumeration
+### 3. Load an enumeration
 
 ```php
-[$result, $err] = $client->Enumeration()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->enumeration()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +66,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +104,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = GbifSDK::test();
 
-[$result, $err] = $client->Gbif()->load(["id" => "test01"]);
+$result = $client->enumeration()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -204,8 +213,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -311,7 +324,7 @@ API path: `/vocabulary`
 
 ### Enumeration
 
-Create an instance: `const enumeration = client.Enumeration()`
+Create an instance: `const enumeration = client.enumeration`
 
 #### Operations
 
@@ -332,19 +345,19 @@ Create an instance: `const enumeration = client.Enumeration()`
 #### Example: Load
 
 ```ts
-const enumeration = await client.Enumeration().load({ id: 'enumeration_id' })
+const enumeration = await client.enumeration.load({ id: 'enumeration_id' })
 ```
 
 #### Example: List
 
 ```ts
-const enumerations = await client.Enumeration().list()
+const enumerations = await client.enumeration.list()
 ```
 
 
 ### Literature
 
-Create an instance: `const literature = client.Literature()`
+Create an instance: `const literature = client.literature`
 
 #### Operations
 
@@ -364,13 +377,13 @@ Create an instance: `const literature = client.Literature()`
 #### Example: List
 
 ```ts
-const literatures = await client.Literature().list()
+const literatures = await client.literature.list()
 ```
 
 
 ### Occurrence
 
-Create an instance: `const occurrence = client.Occurrence()`
+Create an instance: `const occurrence = client.occurrence`
 
 #### Operations
 
@@ -397,20 +410,20 @@ Create an instance: `const occurrence = client.Occurrence()`
 #### Example: List
 
 ```ts
-const occurrences = await client.Occurrence().list()
+const occurrences = await client.occurrence.list()
 ```
 
 #### Example: Create
 
 ```ts
-const occurrence = await client.Occurrence().create({
+const occurrence = await client.occurrence.create({
 })
 ```
 
 
 ### Registry
 
-Create an instance: `const registry = client.Registry()`
+Create an instance: `const registry = client.registry`
 
 #### Operations
 
@@ -431,13 +444,13 @@ Create an instance: `const registry = client.Registry()`
 #### Example: List
 
 ```ts
-const registrys = await client.Registry().list()
+const registrys = await client.registry.list()
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.Species()`
+Create an instance: `const species = client.species`
 
 #### Operations
 
@@ -461,19 +474,19 @@ Create an instance: `const species = client.Species()`
 #### Example: Load
 
 ```ts
-const species = await client.Species().load({ id: 'species_id' })
+const species = await client.species.load({ id: 'species_id' })
 ```
 
 #### Example: List
 
 ```ts
-const speciess = await client.Species().list()
+const speciess = await client.species.list()
 ```
 
 
 ### Vocabulary
 
-Create an instance: `const vocabulary = client.Vocabulary()`
+Create an instance: `const vocabulary = client.vocabulary`
 
 #### Operations
 
@@ -491,7 +504,7 @@ Create an instance: `const vocabulary = client.Vocabulary()`
 #### Example: List
 
 ```ts
-const vocabularys = await client.Vocabulary().list()
+const vocabularys = await client.vocabulary.list()
 ```
 
 
@@ -566,11 +579,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$enumeration = $client->enumeration();
+$enumeration->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $enumeration->dataGet() now returns the loaded enumeration data
+// $enumeration->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

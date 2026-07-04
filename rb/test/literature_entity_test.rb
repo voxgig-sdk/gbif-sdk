@@ -43,8 +43,7 @@ class LiteratureEntityTest < Minitest::Test
     literature_ref01_ent = client.Literature(nil)
     literature_ref01_match = {}
 
-    literature_ref01_list_result, err = literature_ref01_ent.list(literature_ref01_match, nil)
-    assert_nil err
+    literature_ref01_list_result = literature_ref01_ent.list(literature_ref01_match, nil)
     assert literature_ref01_list_result.is_a?(Array)
 
   end

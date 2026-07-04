@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Vocabulary,
+  VocabularyListMatch,
+} from '../GbifTypes'
 
 // TODO: needs Entity superclass
-class VocabularyEntity extends GbifEntityBase {
+class VocabularyEntity extends GbifEntityBase<Vocabulary> {
 
   constructor(client: GbifSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class VocabularyEntity extends GbifEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: VocabularyListMatch, ctrl?: Control): Promise<Vocabulary[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class VocabularyEntity extends GbifEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Vocabulary[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

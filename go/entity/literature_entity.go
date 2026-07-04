@@ -85,6 +85,27 @@ func (e *LiteratureEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Literature; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *LiteratureEntity) DataTyped(data ...Literature) Literature {
+	if len(data) > 0 {
+		return typedFrom[Literature](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Literature](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Literature (all fields
+// optional at the wire level).
+func (e *LiteratureEntity) MatchTyped(match ...Literature) Literature {
+	if len(match) > 0 {
+		return typedFrom[Literature](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Literature](e.Match())
+}
+
 func (e *LiteratureEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *LiteratureEntity) List(reqmatch map[string]any, ctrl map[string]any) (a
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// LiteratureListMatch and returns []Literature. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *LiteratureEntity) ListTyped(reqmatch LiteratureListMatch, ctrl map[string]any) ([]Literature, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Literature](res), nil
 }
 
 

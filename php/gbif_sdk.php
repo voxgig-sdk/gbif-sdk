@@ -103,7 +103,7 @@ class GbifSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class GbifSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class GbifSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,59 +216,125 @@ class GbifSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Enumeration($data = null)
+    private $_enumeration = null;
+
+    // Idiomatic facade: $client->enumeration()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Enumeration() (PHP method
+    // names are case-insensitive).
+    public function enumeration($data = null)
     {
         require_once __DIR__ . '/entity/enumeration_entity.php';
+        if ($data === null) {
+            if ($this->_enumeration === null) {
+                $this->_enumeration = new EnumerationEntity($this, null);
+            }
+            return $this->_enumeration;
+        }
         return new EnumerationEntity($this, $data);
     }
 
 
-    public function Literature($data = null)
+    private $_literature = null;
+
+    // Idiomatic facade: $client->literature()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Literature() (PHP method
+    // names are case-insensitive).
+    public function literature($data = null)
     {
         require_once __DIR__ . '/entity/literature_entity.php';
+        if ($data === null) {
+            if ($this->_literature === null) {
+                $this->_literature = new LiteratureEntity($this, null);
+            }
+            return $this->_literature;
+        }
         return new LiteratureEntity($this, $data);
     }
 
 
-    public function Occurrence($data = null)
+    private $_occurrence = null;
+
+    // Idiomatic facade: $client->occurrence()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Occurrence() (PHP method
+    // names are case-insensitive).
+    public function occurrence($data = null)
     {
         require_once __DIR__ . '/entity/occurrence_entity.php';
+        if ($data === null) {
+            if ($this->_occurrence === null) {
+                $this->_occurrence = new OccurrenceEntity($this, null);
+            }
+            return $this->_occurrence;
+        }
         return new OccurrenceEntity($this, $data);
     }
 
 
-    public function Registry($data = null)
+    private $_registry = null;
+
+    // Idiomatic facade: $client->registry()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Registry() (PHP method
+    // names are case-insensitive).
+    public function registry($data = null)
     {
         require_once __DIR__ . '/entity/registry_entity.php';
+        if ($data === null) {
+            if ($this->_registry === null) {
+                $this->_registry = new RegistryEntity($this, null);
+            }
+            return $this->_registry;
+        }
         return new RegistryEntity($this, $data);
     }
 
 
-    public function Species($data = null)
+    private $_species = null;
+
+    // Idiomatic facade: $client->species()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Species() (PHP method
+    // names are case-insensitive).
+    public function species($data = null)
     {
         require_once __DIR__ . '/entity/species_entity.php';
+        if ($data === null) {
+            if ($this->_species === null) {
+                $this->_species = new SpeciesEntity($this, null);
+            }
+            return $this->_species;
+        }
         return new SpeciesEntity($this, $data);
     }
 
 
-    public function Vocabulary($data = null)
+    private $_vocabulary = null;
+
+    // Idiomatic facade: $client->vocabulary()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Vocabulary() (PHP method
+    // names are case-insensitive).
+    public function vocabulary($data = null)
     {
         require_once __DIR__ . '/entity/vocabulary_entity.php';
+        if ($data === null) {
+            if ($this->_vocabulary === null) {
+                $this->_vocabulary = new VocabularyEntity($this, null);
+            }
+            return $this->_vocabulary;
+        }
         return new VocabularyEntity($this, $data);
     }
 

@@ -244,36 +244,114 @@ end
 
 
 
+-- Idiomatic facade: client:enumeration():list() / client:enumeration():load({ id = ... })
+function GbifSDK:enumeration(data)
+  local EntityMod = require("entity.enumeration_entity")
+  if data == nil then
+    if self._enumeration == nil then
+      self._enumeration = EntityMod.new(self, nil)
+    end
+    return self._enumeration
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:enumeration() instead.
 function GbifSDK:Enumeration(data)
   local EntityMod = require("entity.enumeration_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:literature():list() / client:literature():load({ id = ... })
+function GbifSDK:literature(data)
+  local EntityMod = require("entity.literature_entity")
+  if data == nil then
+    if self._literature == nil then
+      self._literature = EntityMod.new(self, nil)
+    end
+    return self._literature
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:literature() instead.
 function GbifSDK:Literature(data)
   local EntityMod = require("entity.literature_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:occurrence():list() / client:occurrence():load({ id = ... })
+function GbifSDK:occurrence(data)
+  local EntityMod = require("entity.occurrence_entity")
+  if data == nil then
+    if self._occurrence == nil then
+      self._occurrence = EntityMod.new(self, nil)
+    end
+    return self._occurrence
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:occurrence() instead.
 function GbifSDK:Occurrence(data)
   local EntityMod = require("entity.occurrence_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:registry():list() / client:registry():load({ id = ... })
+function GbifSDK:registry(data)
+  local EntityMod = require("entity.registry_entity")
+  if data == nil then
+    if self._registry == nil then
+      self._registry = EntityMod.new(self, nil)
+    end
+    return self._registry
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:registry() instead.
 function GbifSDK:Registry(data)
   local EntityMod = require("entity.registry_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:species():list() / client:species():load({ id = ... })
+function GbifSDK:species(data)
+  local EntityMod = require("entity.species_entity")
+  if data == nil then
+    if self._species == nil then
+      self._species = EntityMod.new(self, nil)
+    end
+    return self._species
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:species() instead.
 function GbifSDK:Species(data)
   local EntityMod = require("entity.species_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:vocabulary():list() / client:vocabulary():load({ id = ... })
+function GbifSDK:vocabulary(data)
+  local EntityMod = require("entity.vocabulary_entity")
+  if data == nil then
+    if self._vocabulary == nil then
+      self._vocabulary = EntityMod.new(self, nil)
+    end
+    return self._vocabulary
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:vocabulary() instead.
 function GbifSDK:Vocabulary(data)
   local EntityMod = require("entity.vocabulary_entity")
   return EntityMod.new(self, data)

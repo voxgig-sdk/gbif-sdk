@@ -139,6 +139,7 @@ func MakeConfig() map[string]any {
 											"orig": "enumeration",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 								},

@@ -9,9 +9,12 @@ The TypeScript SDK for the Gbif API — a type-safe, entity-oriented client with
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/gbif
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/gbif-sdk/releases](https://github.com/voxgig-sdk/gbif-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GbifSDK } from 'gbif'
+import { GbifSDK } from '@voxgig-sdk/gbif'
 
 const client = new GbifSDK({
   apikey: process.env.GBIF_APIKEY,
@@ -30,7 +33,7 @@ const client = new GbifSDK({
 ### 2. List enumerations
 
 ```ts
-const result = await client.Enumeration().list()
+const result = await client.enumeration.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -39,10 +42,10 @@ if (result.ok) {
 }
 ```
 
-### 3. Load a enumeration
+### 3. Load an enumeration
 
 ```ts
-const result = await client.Enumeration().load({ id: 'example_id' })
+const result = await client.enumeration.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +94,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GbifSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.enumeration.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -108,7 +111,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.enumeration
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -359,7 +362,7 @@ API path: `/vocabulary`
 
 ### Enumeration
 
-Create an instance: `const enumeration = client.Enumeration()`
+Create an instance: `const enumeration = client.enumeration`
 
 #### Operations
 
@@ -380,19 +383,19 @@ Create an instance: `const enumeration = client.Enumeration()`
 #### Example: Load
 
 ```ts
-const enumeration = await client.Enumeration().load({ id: 'enumeration_id' })
+const enumeration = await client.enumeration.load({ id: 'enumeration_id' })
 ```
 
 #### Example: List
 
 ```ts
-const enumerations = await client.Enumeration().list()
+const enumerations = await client.enumeration.list()
 ```
 
 
 ### Literature
 
-Create an instance: `const literature = client.Literature()`
+Create an instance: `const literature = client.literature`
 
 #### Operations
 
@@ -412,13 +415,13 @@ Create an instance: `const literature = client.Literature()`
 #### Example: List
 
 ```ts
-const literatures = await client.Literature().list()
+const literatures = await client.literature.list()
 ```
 
 
 ### Occurrence
 
-Create an instance: `const occurrence = client.Occurrence()`
+Create an instance: `const occurrence = client.occurrence`
 
 #### Operations
 
@@ -445,20 +448,20 @@ Create an instance: `const occurrence = client.Occurrence()`
 #### Example: List
 
 ```ts
-const occurrences = await client.Occurrence().list()
+const occurrences = await client.occurrence.list()
 ```
 
 #### Example: Create
 
 ```ts
-const occurrence = await client.Occurrence().create({
+const occurrence = await client.occurrence.create({
 })
 ```
 
 
 ### Registry
 
-Create an instance: `const registry = client.Registry()`
+Create an instance: `const registry = client.registry`
 
 #### Operations
 
@@ -479,13 +482,13 @@ Create an instance: `const registry = client.Registry()`
 #### Example: List
 
 ```ts
-const registrys = await client.Registry().list()
+const registrys = await client.registry.list()
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.Species()`
+Create an instance: `const species = client.species`
 
 #### Operations
 
@@ -509,19 +512,19 @@ Create an instance: `const species = client.Species()`
 #### Example: Load
 
 ```ts
-const species = await client.Species().load({ id: 'species_id' })
+const species = await client.species.load({ id: 'species_id' })
 ```
 
 #### Example: List
 
 ```ts
-const speciess = await client.Species().list()
+const speciess = await client.species.list()
 ```
 
 
 ### Vocabulary
 
-Create an instance: `const vocabulary = client.Vocabulary()`
+Create an instance: `const vocabulary = client.vocabulary`
 
 #### Operations
 
@@ -539,7 +542,7 @@ Create an instance: `const vocabulary = client.Vocabulary()`
 #### Example: List
 
 ```ts
-const vocabularys = await client.Vocabulary().list()
+const vocabularys = await client.vocabulary.list()
 ```
 
 
@@ -600,7 +603,7 @@ gbif/
 Import the SDK from the package root:
 
 ```ts
-import { GbifSDK } from 'gbif'
+import { GbifSDK } from '@voxgig-sdk/gbif'
 ```
 
 ### Entity state
@@ -610,11 +613,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const enumeration = client.enumeration
+await enumeration.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// enumeration.data() now returns the loaded enumeration data
+// enumeration.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

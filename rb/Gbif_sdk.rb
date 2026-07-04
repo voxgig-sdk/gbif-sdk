@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Gbif_types'
+
 
 class GbifSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class GbifSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class GbifSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue GbifError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = GbifHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class GbifSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,46 +198,88 @@ class GbifSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.enumeration.list / client.enumeration.load({ "id" => ... })
+  def enumeration
+    require_relative 'entity/enumeration_entity'
+    @enumeration ||= EnumerationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.enumeration instead.
   def Enumeration(data = nil)
     require_relative 'entity/enumeration_entity'
     EnumerationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.literature.list / client.literature.load({ "id" => ... })
+  def literature
+    require_relative 'entity/literature_entity'
+    @literature ||= LiteratureEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.literature instead.
   def Literature(data = nil)
     require_relative 'entity/literature_entity'
     LiteratureEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.occurrence.list / client.occurrence.load({ "id" => ... })
+  def occurrence
+    require_relative 'entity/occurrence_entity'
+    @occurrence ||= OccurrenceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.occurrence instead.
   def Occurrence(data = nil)
     require_relative 'entity/occurrence_entity'
     OccurrenceEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.registry.list / client.registry.load({ "id" => ... })
+  def registry
+    require_relative 'entity/registry_entity'
+    @registry ||= RegistryEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.registry instead.
   def Registry(data = nil)
     require_relative 'entity/registry_entity'
     RegistryEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.species.list / client.species.load({ "id" => ... })
+  def species
+    require_relative 'entity/species_entity'
+    @species ||= SpeciesEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.species instead.
   def Species(data = nil)
     require_relative 'entity/species_entity'
     SpeciesEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.vocabulary.list / client.vocabulary.load({ "id" => ... })
+  def vocabulary
+    require_relative 'entity/vocabulary_entity'
+    @vocabulary ||= VocabularyEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.vocabulary instead.
   def Vocabulary(data = nil)
     require_relative 'entity/vocabulary_entity'
     VocabularyEntity.new(self, data)

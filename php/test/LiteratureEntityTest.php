@@ -50,8 +50,7 @@ class LiteratureEntityTest extends TestCase
         $literature_ref01_ent = $client->Literature(null);
         $literature_ref01_match = [];
 
-        [$literature_ref01_list_result, $err] = $literature_ref01_ent->list($literature_ref01_match, null);
-        $this->assertNull($err);
+        $literature_ref01_list_result = $literature_ref01_ent->list($literature_ref01_match, null);
         $this->assertIsArray($literature_ref01_list_result);
 
     }

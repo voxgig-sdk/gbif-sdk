@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch LiteratureListMatch
+---@param ctrl? table
+---@return Literature[]
+---@return string? err
 function LiteratureEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

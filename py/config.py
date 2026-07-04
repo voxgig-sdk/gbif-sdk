@@ -140,6 +140,7 @@ def make_config():
                       "orig": "enumeration",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

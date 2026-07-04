@@ -179,7 +179,8 @@ class Config {
                     "name": "enumeration",
                     "orig": "enumeration",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

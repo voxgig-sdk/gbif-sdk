@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Occurrence,
+  OccurrenceListMatch,
+  OccurrenceCreateData,
+} from '../GbifTypes'
 
 // TODO: needs Entity superclass
-class OccurrenceEntity extends GbifEntityBase {
+class OccurrenceEntity extends GbifEntityBase<Occurrence> {
 
   constructor(client: GbifSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +38,7 @@ class OccurrenceEntity extends GbifEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: OccurrenceListMatch, ctrl?: Control): Promise<Occurrence[]> {
 
     const utility = this._utility
 
@@ -133,14 +138,16 @@ class OccurrenceEntity extends GbifEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Occurrence[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: OccurrenceCreateData, ctrl?: Control): Promise<Occurrence> {
 
     const utility = this._utility
     const {
@@ -239,7 +246,9 @@ class OccurrenceEntity extends GbifEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Occurrence> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

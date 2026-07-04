@@ -43,8 +43,7 @@ class VocabularyEntityTest < Minitest::Test
     vocabulary_ref01_ent = client.Vocabulary(nil)
     vocabulary_ref01_match = {}
 
-    vocabulary_ref01_list_result, err = vocabulary_ref01_ent.list(vocabulary_ref01_match, nil)
-    assert_nil err
+    vocabulary_ref01_list_result = vocabulary_ref01_ent.list(vocabulary_ref01_match, nil)
     assert vocabulary_ref01_list_result.is_a?(Array)
 
   end

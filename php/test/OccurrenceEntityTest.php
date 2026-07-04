@@ -43,16 +43,14 @@ class OccurrenceEntityTest extends TestCase
         $occurrence_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.occurrence"), "occurrence_ref01"));
 
-        [$occurrence_ref01_data_result, $err] = $occurrence_ref01_ent->create($occurrence_ref01_data, null);
-        $this->assertNull($err);
+        $occurrence_ref01_data_result = $occurrence_ref01_ent->create($occurrence_ref01_data, null);
         $occurrence_ref01_data = Helpers::to_map($occurrence_ref01_data_result);
         $this->assertNotNull($occurrence_ref01_data);
 
         // LIST
         $occurrence_ref01_match = [];
 
-        [$occurrence_ref01_list_result, $err] = $occurrence_ref01_ent->list($occurrence_ref01_match, null);
-        $this->assertNull($err);
+        $occurrence_ref01_list_result = $occurrence_ref01_ent->list($occurrence_ref01_match, null);
         $this->assertIsArray($occurrence_ref01_list_result);
 
         $found_item = sdk_select(

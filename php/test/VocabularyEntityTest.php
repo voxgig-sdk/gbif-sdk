@@ -50,8 +50,7 @@ class VocabularyEntityTest extends TestCase
         $vocabulary_ref01_ent = $client->Vocabulary(null);
         $vocabulary_ref01_match = [];
 
-        [$vocabulary_ref01_list_result, $err] = $vocabulary_ref01_ent->list($vocabulary_ref01_match, null);
-        $this->assertNull($err);
+        $vocabulary_ref01_list_result = $vocabulary_ref01_ent->list($vocabulary_ref01_match, null);
         $this->assertIsArray($vocabulary_ref01_list_result);
 
     }

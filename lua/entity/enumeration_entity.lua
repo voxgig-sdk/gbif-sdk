@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch EnumerationLoadMatch
+---@param ctrl? table
+---@return Enumeration
+---@return string? err
 function EnumerationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch EnumerationListMatch
+---@param ctrl? table
+---@return Enumeration[]
+---@return string? err
 function EnumerationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Registry,
+  RegistryListMatch,
+} from '../GbifTypes'
 
 // TODO: needs Entity superclass
-class RegistryEntity extends GbifEntityBase {
+class RegistryEntity extends GbifEntityBase<Registry> {
 
   constructor(client: GbifSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class RegistryEntity extends GbifEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: RegistryListMatch, ctrl?: Control): Promise<Registry[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class RegistryEntity extends GbifEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Registry[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

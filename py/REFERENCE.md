@@ -74,9 +74,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -89,11 +89,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -101,7 +101,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## EnumerationEntity
 
 ```python
-enumeration = client.Enumeration()
+enumeration = client.enumeration
 ```
 
 ### Fields
@@ -115,20 +115,20 @@ enumeration = client.Enumeration()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Enumeration().list({})
+results = client.enumeration.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Enumeration().load({"id": "enumeration_id"})
+result = client.enumeration.load({"id": "enumeration_id"})
 ```
 
 ### Common Methods
@@ -163,7 +163,7 @@ Return the entity name.
 ## LiteratureEntity
 
 ```python
-literature = client.Literature()
+literature = client.literature
 ```
 
 ### Fields
@@ -177,12 +177,12 @@ literature = client.Literature()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Literature().list({})
+results = client.literature.list({})
 ```
 
 ### Common Methods
@@ -217,7 +217,7 @@ Return the entity name.
 ## OccurrenceEntity
 
 ```python
-occurrence = client.Occurrence()
+occurrence = client.occurrence
 ```
 
 ### Fields
@@ -237,21 +237,21 @@ occurrence = client.Occurrence()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.Occurrence().create({
+result = client.occurrence.create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Occurrence().list({})
+results = client.occurrence.list({})
 ```
 
 ### Common Methods
@@ -286,7 +286,7 @@ Return the entity name.
 ## RegistryEntity
 
 ```python
-registry = client.Registry()
+registry = client.registry
 ```
 
 ### Fields
@@ -301,12 +301,12 @@ registry = client.Registry()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Registry().list({})
+results = client.registry.list({})
 ```
 
 ### Common Methods
@@ -341,7 +341,7 @@ Return the entity name.
 ## SpeciesEntity
 
 ```python
-species = client.Species()
+species = client.species
 ```
 
 ### Fields
@@ -358,20 +358,20 @@ species = client.Species()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Species().list({})
+results = client.species.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Species().load({"id": "species_id"})
+result = client.species.load({"id": "species_id"})
 ```
 
 ### Common Methods
@@ -406,7 +406,7 @@ Return the entity name.
 ## VocabularyEntity
 
 ```python
-vocabulary = client.Vocabulary()
+vocabulary = client.vocabulary
 ```
 
 ### Fields
@@ -418,12 +418,12 @@ vocabulary = client.Vocabulary()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Vocabulary().list({})
+results = client.vocabulary.list({})
 ```
 
 ### Common Methods

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch VocabularyListMatch
+---@param ctrl? table
+---@return Vocabulary[]
+---@return string? err
 function VocabularyEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

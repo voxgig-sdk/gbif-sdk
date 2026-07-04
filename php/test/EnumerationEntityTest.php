@@ -50,14 +50,12 @@ class EnumerationEntityTest extends TestCase
         $enumeration_ref01_ent = $client->Enumeration(null);
         $enumeration_ref01_match = [];
 
-        [$enumeration_ref01_list_result, $err] = $enumeration_ref01_ent->list($enumeration_ref01_match, null);
-        $this->assertNull($err);
+        $enumeration_ref01_list_result = $enumeration_ref01_ent->list($enumeration_ref01_match, null);
         $this->assertIsArray($enumeration_ref01_list_result);
 
         // LOAD
         $enumeration_ref01_match_dt0 = [];
-        [$enumeration_ref01_data_dt0_loaded, $err] = $enumeration_ref01_ent->load($enumeration_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $enumeration_ref01_data_dt0_loaded = $enumeration_ref01_ent->load($enumeration_ref01_match_dt0, null);
         $this->assertNotNull($enumeration_ref01_data_dt0_loaded);
 
     }

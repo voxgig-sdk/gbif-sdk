@@ -50,8 +50,7 @@ class TestVocabularyEntity:
         vocabulary_ref01_ent = client.Vocabulary(None)
         vocabulary_ref01_match = {}
 
-        vocabulary_ref01_list_result, err = vocabulary_ref01_ent.list(vocabulary_ref01_match, None)
-        assert err is None
+        vocabulary_ref01_list_result = vocabulary_ref01_ent.list(vocabulary_ref01_match, None)
         assert isinstance(vocabulary_ref01_list_result, list)
 
 

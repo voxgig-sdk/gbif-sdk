@@ -50,14 +50,12 @@ class SpeciesEntityTest extends TestCase
         $species_ref01_ent = $client->Species(null);
         $species_ref01_match = [];
 
-        [$species_ref01_list_result, $err] = $species_ref01_ent->list($species_ref01_match, null);
-        $this->assertNull($err);
+        $species_ref01_list_result = $species_ref01_ent->list($species_ref01_match, null);
         $this->assertIsArray($species_ref01_list_result);
 
         // LOAD
         $species_ref01_match_dt0 = [];
-        [$species_ref01_data_dt0_loaded, $err] = $species_ref01_ent->load($species_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $species_ref01_data_dt0_loaded = $species_ref01_ent->load($species_ref01_match_dt0, null);
         $this->assertNotNull($species_ref01_data_dt0_loaded);
 
     }

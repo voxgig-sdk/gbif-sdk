@@ -104,7 +104,7 @@ same parameters as `direct()`.
 ## EnumerationEntity
 
 ```lua
-local enumeration = client:Enumeration(nil)
+local enumeration = client:enumeration(nil)
 ```
 
 ### Fields
@@ -123,7 +123,7 @@ local enumeration = client:Enumeration(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Enumeration():list()
+local results, err = client:enumeration():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -131,7 +131,7 @@ local results, err = client:Enumeration():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Enumeration():load({ id = "enumeration_id" })
+local result, err = client:enumeration():load({ id = "enumeration_id" })
 ```
 
 ### Common Methods
@@ -167,7 +167,7 @@ Return the entity name.
 ## LiteratureEntity
 
 ```lua
-local literature = client:Literature(nil)
+local literature = client:literature(nil)
 ```
 
 ### Fields
@@ -186,7 +186,7 @@ local literature = client:Literature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Literature():list()
+local results, err = client:literature():list()
 ```
 
 ### Common Methods
@@ -222,7 +222,7 @@ Return the entity name.
 ## OccurrenceEntity
 
 ```lua
-local occurrence = client:Occurrence(nil)
+local occurrence = client:occurrence(nil)
 ```
 
 ### Fields
@@ -247,7 +247,7 @@ local occurrence = client:Occurrence(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Occurrence():create({
+local result, err = client:occurrence():create({
 })
 ```
 
@@ -256,7 +256,7 @@ local result, err = client:Occurrence():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Occurrence():list()
+local results, err = client:occurrence():list()
 ```
 
 ### Common Methods
@@ -292,7 +292,7 @@ Return the entity name.
 ## RegistryEntity
 
 ```lua
-local registry = client:Registry(nil)
+local registry = client:registry(nil)
 ```
 
 ### Fields
@@ -312,7 +312,7 @@ local registry = client:Registry(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Registry():list()
+local results, err = client:registry():list()
 ```
 
 ### Common Methods
@@ -348,7 +348,7 @@ Return the entity name.
 ## SpeciesEntity
 
 ```lua
-local species = client:Species(nil)
+local species = client:species(nil)
 ```
 
 ### Fields
@@ -370,7 +370,7 @@ local species = client:Species(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Species():list()
+local results, err = client:species():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -378,7 +378,7 @@ local results, err = client:Species():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Species():load({ id = "species_id" })
+local result, err = client:species():load({ id = "species_id" })
 ```
 
 ### Common Methods
@@ -414,7 +414,7 @@ Return the entity name.
 ## VocabularyEntity
 
 ```lua
-local vocabulary = client:Vocabulary(nil)
+local vocabulary = client:vocabulary(nil)
 ```
 
 ### Fields
@@ -431,7 +431,7 @@ local vocabulary = client:Vocabulary(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Vocabulary():list()
+local results, err = client:vocabulary():list()
 ```
 
 ### Common Methods

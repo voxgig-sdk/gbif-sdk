@@ -9,12 +9,9 @@ The Lua SDK for the Gbif API — an entity-oriented client using Lua conventions
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-gbif
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/gbif-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -39,7 +36,7 @@ local client = sdk.new({
 ### 2. List enumerations
 
 ```lua
-local result, err = client:Enumeration():list()
+local result, err = client:enumeration():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -50,10 +47,10 @@ if type(result) == "table" then
 end
 ```
 
-### 3. Load a enumeration
+### 3. Load an enumeration
 
 ```lua
-local result, err = client:Enumeration():load({ id = "example_id" })
+local result, err = client:enumeration():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +98,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Gbif():load({ id = "test01" })
+local result, err = client:enumeration():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -316,7 +313,7 @@ API path: `/vocabulary`
 
 ### Enumeration
 
-Create an instance: `const enumeration = client.Enumeration()`
+Create an instance: `const enumeration = client.enumeration`
 
 #### Operations
 
@@ -337,19 +334,19 @@ Create an instance: `const enumeration = client.Enumeration()`
 #### Example: Load
 
 ```ts
-const enumeration = await client.Enumeration().load({ id: 'enumeration_id' })
+const enumeration = await client.enumeration.load({ id: 'enumeration_id' })
 ```
 
 #### Example: List
 
 ```ts
-const enumerations = await client.Enumeration().list()
+const enumerations = await client.enumeration.list()
 ```
 
 
 ### Literature
 
-Create an instance: `const literature = client.Literature()`
+Create an instance: `const literature = client.literature`
 
 #### Operations
 
@@ -369,13 +366,13 @@ Create an instance: `const literature = client.Literature()`
 #### Example: List
 
 ```ts
-const literatures = await client.Literature().list()
+const literatures = await client.literature.list()
 ```
 
 
 ### Occurrence
 
-Create an instance: `const occurrence = client.Occurrence()`
+Create an instance: `const occurrence = client.occurrence`
 
 #### Operations
 
@@ -402,20 +399,20 @@ Create an instance: `const occurrence = client.Occurrence()`
 #### Example: List
 
 ```ts
-const occurrences = await client.Occurrence().list()
+const occurrences = await client.occurrence.list()
 ```
 
 #### Example: Create
 
 ```ts
-const occurrence = await client.Occurrence().create({
+const occurrence = await client.occurrence.create({
 })
 ```
 
 
 ### Registry
 
-Create an instance: `const registry = client.Registry()`
+Create an instance: `const registry = client.registry`
 
 #### Operations
 
@@ -436,13 +433,13 @@ Create an instance: `const registry = client.Registry()`
 #### Example: List
 
 ```ts
-const registrys = await client.Registry().list()
+const registrys = await client.registry.list()
 ```
 
 
 ### Species
 
-Create an instance: `const species = client.Species()`
+Create an instance: `const species = client.species`
 
 #### Operations
 
@@ -466,19 +463,19 @@ Create an instance: `const species = client.Species()`
 #### Example: Load
 
 ```ts
-const species = await client.Species().load({ id: 'species_id' })
+const species = await client.species.load({ id: 'species_id' })
 ```
 
 #### Example: List
 
 ```ts
-const speciess = await client.Species().list()
+const speciess = await client.species.list()
 ```
 
 
 ### Vocabulary
 
-Create an instance: `const vocabulary = client.Vocabulary()`
+Create an instance: `const vocabulary = client.vocabulary`
 
 #### Operations
 
@@ -496,7 +493,7 @@ Create an instance: `const vocabulary = client.Vocabulary()`
 #### Example: List
 
 ```ts
-const vocabularys = await client.Vocabulary().list()
+const vocabularys = await client.vocabulary.list()
 ```
 
 
@@ -571,11 +568,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local enumeration = client:enumeration()
+enumeration:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- enumeration:data_get() now returns the loaded enumeration data
+-- enumeration:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

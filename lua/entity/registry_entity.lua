@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RegistryListMatch
+---@param ctrl? table
+---@return Registry[]
+---@return string? err
 function RegistryEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
