@@ -8,7 +8,7 @@ Complete API reference for the Gbif Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'gbif_sdk'
+require_relative 'Gbif_sdk'
 
 client = GbifSDK.new(options)
 ```
@@ -114,19 +114,19 @@ enumeration = client.Enumeration
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `iso2` | `String` | No |  |
+| `name` | `String` | No |  |
+| `title` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Enumeration.list(nil)
+results = client.Enumeration.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -134,7 +134,7 @@ results = client.Enumeration.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Enumeration.load({ "id" => "enumeration_id" })
+result = client.Enumeration.load()
 ```
 
 ### Common Methods
@@ -177,19 +177,19 @@ literature = client.Literature
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `author` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `title` | `String` | No |  |
+| `year` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Literature.list(nil)
+results = client.Literature.list
 ```
 
 ### Common Methods
@@ -232,16 +232,16 @@ occurrence = client.Occurrence
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `decimal_latitude` | ``$NUMBER`` | No |  |
-| `decimal_longitude` | ``$NUMBER`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `notification_address` | ``$ARRAY`` | No |  |
-| `predicate` | ``$OBJECT`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `country` | `String` | No |  |
+| `creator` | `String` | No |  |
+| `decimal_latitude` | `Float` | No |  |
+| `decimal_longitude` | `Float` | No |  |
+| `format` | `String` | No |  |
+| `key` | `Integer` | No |  |
+| `notification_address` | `Array` | No |  |
+| `predicate` | `Hash` | No |  |
+| `scientific_name` | `String` | No |  |
+| `year` | `Integer` | No |  |
 
 ### Operations
 
@@ -254,12 +254,12 @@ result = client.Occurrence.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Occurrence.list(nil)
+results = client.Occurrence.list
 ```
 
 ### Common Methods
@@ -302,20 +302,20 @@ registry = client.Registry
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `publishing_organization_key` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `String` | No |  |
+| `key` | `String` | No |  |
+| `publishing_organization_key` | `String` | No |  |
+| `title` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Registry.list(nil)
+results = client.Registry.list
 ```
 
 ### Common Methods
@@ -358,22 +358,22 @@ species = client.Species
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | ``$STRING`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `match_type` | ``$STRING`` | No |  |
-| `rank` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `usage_key` | ``$INTEGER`` | No |  |
+| `canonical_name` | `String` | No |  |
+| `confidence` | `Integer` | No |  |
+| `key` | `Integer` | No |  |
+| `match_type` | `String` | No |  |
+| `rank` | `String` | No |  |
+| `scientific_name` | `String` | No |  |
+| `usage_key` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Species.list(nil)
+results = client.Species.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -381,7 +381,7 @@ results = client.Species.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Species.load({ "id" => "species_id" })
+result = client.Species.load()
 ```
 
 ### Common Methods
@@ -424,17 +424,17 @@ vocabulary = client.Vocabulary
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `description` | `String` | No |  |
+| `name` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Vocabulary.list(nil)
+results = client.Vocabulary.list
 ```
 
 ### Common Methods

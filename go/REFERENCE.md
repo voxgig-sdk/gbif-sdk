@@ -118,10 +118,10 @@ enumeration := client.Enumeration(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `iso2` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -138,7 +138,7 @@ results, err := client.Enumeration(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Enumeration(nil).Load(map[string]any{"id": "enumeration_id"}, nil)
+result, err := client.Enumeration(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -175,10 +175,10 @@ literature := client.Literature(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `author` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `title` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
@@ -224,16 +224,16 @@ occurrence := client.Occurrence(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `decimal_latitude` | ``$NUMBER`` | No |  |
-| `decimal_longitude` | ``$NUMBER`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `notification_address` | ``$ARRAY`` | No |  |
-| `predicate` | ``$OBJECT`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `country` | `string` | No |  |
+| `creator` | `string` | No |  |
+| `decimal_latitude` | `float64` | No |  |
+| `decimal_longitude` | `float64` | No |  |
+| `format` | `string` | No |  |
+| `key` | `int` | No |  |
+| `notification_address` | `[]any` | No |  |
+| `predicate` | `map[string]any` | No |  |
+| `scientific_name` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
@@ -288,11 +288,11 @@ registry := client.Registry(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `publishing_organization_key` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `key` | `string` | No |  |
+| `publishing_organization_key` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -338,13 +338,13 @@ species := client.Species(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | ``$STRING`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `match_type` | ``$STRING`` | No |  |
-| `rank` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `usage_key` | ``$INTEGER`` | No |  |
+| `canonical_name` | `string` | No |  |
+| `confidence` | `int` | No |  |
+| `key` | `int` | No |  |
+| `match_type` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `scientific_name` | `string` | No |  |
+| `usage_key` | `int` | No |  |
 
 ### Operations
 
@@ -361,7 +361,7 @@ results, err := client.Species(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Species(nil).Load(map[string]any{"id": "species_id"}, nil)
+result, err := client.Species(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -398,8 +398,8 @@ vocabulary := client.Vocabulary(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 

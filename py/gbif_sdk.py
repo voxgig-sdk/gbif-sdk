@@ -221,37 +221,37 @@ class GbifSDK:
 
 
     def Enumeration(self, data=None) -> "EnumerationEntity":
-        """Entity factory: client.Enumeration().list({}) / client.Enumeration().load({"id": ...})."""
+        """Entity factory: client.Enumeration().list() / client.Enumeration().load({"id": ...})."""
         from entity.enumeration_entity import EnumerationEntity
         return EnumerationEntity(self, data)
 
 
     def Literature(self, data=None) -> "LiteratureEntity":
-        """Entity factory: client.Literature().list({}) / client.Literature().load({"id": ...})."""
+        """Entity factory: client.Literature().list() / client.Literature().load({"id": ...})."""
         from entity.literature_entity import LiteratureEntity
         return LiteratureEntity(self, data)
 
 
     def Occurrence(self, data=None) -> "OccurrenceEntity":
-        """Entity factory: client.Occurrence().list({}) / client.Occurrence().load({"id": ...})."""
+        """Entity factory: client.Occurrence().list() / client.Occurrence().load({"id": ...})."""
         from entity.occurrence_entity import OccurrenceEntity
         return OccurrenceEntity(self, data)
 
 
     def Registry(self, data=None) -> "RegistryEntity":
-        """Entity factory: client.Registry().list({}) / client.Registry().load({"id": ...})."""
+        """Entity factory: client.Registry().list() / client.Registry().load({"id": ...})."""
         from entity.registry_entity import RegistryEntity
         return RegistryEntity(self, data)
 
 
     def Species(self, data=None) -> "SpeciesEntity":
-        """Entity factory: client.Species().list({}) / client.Species().load({"id": ...})."""
+        """Entity factory: client.Species().list() / client.Species().load({"id": ...})."""
         from entity.species_entity import SpeciesEntity
         return SpeciesEntity(self, data)
 
 
     def Vocabulary(self, data=None) -> "VocabularyEntity":
-        """Entity factory: client.Vocabulary().list({}) / client.Vocabulary().load({"id": ...})."""
+        """Entity factory: client.Vocabulary().list() / client.Vocabulary().load({"id": ...})."""
         from entity.vocabulary_entity import VocabularyEntity
         return VocabularyEntity(self, data)
 

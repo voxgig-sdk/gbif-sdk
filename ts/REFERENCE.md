@@ -177,10 +177,10 @@ const enumeration = client.Enumeration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `iso2` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -197,7 +197,7 @@ const results = await client.Enumeration().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Enumeration().load({ id: 'enumeration_id' })
+const result = await client.Enumeration().load()
 ```
 
 ### Common Methods
@@ -238,10 +238,10 @@ const literature = client.Literature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `author` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `title` | `string` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
@@ -291,16 +291,16 @@ const occurrence = client.Occurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `decimal_latitude` | ``$NUMBER`` | No |  |
-| `decimal_longitude` | ``$NUMBER`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `notification_address` | ``$ARRAY`` | No |  |
-| `predicate` | ``$OBJECT`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `country` | `string` | No |  |
+| `creator` | `string` | No |  |
+| `decimal_latitude` | `number` | No |  |
+| `decimal_longitude` | `number` | No |  |
+| `format` | `string` | No |  |
+| `key` | `number` | No |  |
+| `notification_address` | `any[]` | No |  |
+| `predicate` | `Record<string, any>` | No |  |
+| `scientific_name` | `string` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
@@ -359,11 +359,11 @@ const registry = client.Registry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `publishing_organization_key` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `key` | `string` | No |  |
+| `publishing_organization_key` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -413,13 +413,13 @@ const species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | ``$STRING`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `match_type` | ``$STRING`` | No |  |
-| `rank` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `usage_key` | ``$INTEGER`` | No |  |
+| `canonical_name` | `string` | No |  |
+| `confidence` | `number` | No |  |
+| `key` | `number` | No |  |
+| `match_type` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `scientific_name` | `string` | No |  |
+| `usage_key` | `number` | No |  |
 
 ### Operations
 
@@ -436,7 +436,7 @@ const results = await client.Species().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Species().load({ id: 'species_id' })
+const result = await client.Species().load()
 ```
 
 ### Common Methods
@@ -477,8 +477,8 @@ const vocabulary = client.Vocabulary()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 

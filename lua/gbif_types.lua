@@ -16,6 +16,10 @@
 ---@field enumeration string
 
 ---@class EnumerationListMatch
+---@field iso2? string
+---@field name? string
+---@field title? string
+---@field url? string
 
 ---@class Literature
 ---@field author? table
@@ -24,6 +28,10 @@
 ---@field year? number
 
 ---@class LiteratureListMatch
+---@field author? table
+---@field id? string
+---@field title? string
+---@field year? number
 
 ---@class Occurrence
 ---@field country? string
@@ -38,8 +46,28 @@
 ---@field year? number
 
 ---@class OccurrenceListMatch
+---@field country? string
+---@field creator? string
+---@field decimal_latitude? number
+---@field decimal_longitude? number
+---@field format? string
+---@field key? number
+---@field notification_address? table
+---@field predicate? table
+---@field scientific_name? string
+---@field year? number
 
 ---@class OccurrenceCreateData
+---@field country? string
+---@field creator? string
+---@field decimal_latitude? number
+---@field decimal_longitude? number
+---@field format? string
+---@field key? number
+---@field notification_address? table
+---@field predicate? table
+---@field scientific_name? string
+---@field year? number
 
 ---@class Registry
 ---@field country? string
@@ -49,6 +77,11 @@
 ---@field type? string
 
 ---@class RegistryListMatch
+---@field country? string
+---@field key? string
+---@field publishing_organization_key? string
+---@field title? string
+---@field type? string
 
 ---@class Species
 ---@field canonical_name? string
@@ -60,14 +93,30 @@
 ---@field usage_key? number
 
 ---@class SpeciesLoadMatch
+---@field canonical_name? string
+---@field confidence? number
+---@field key? number
+---@field match_type? string
+---@field rank? string
+---@field scientific_name? string
+---@field usage_key? number
 
 ---@class SpeciesListMatch
+---@field canonical_name? string
+---@field confidence? number
+---@field key? number
+---@field match_type? string
+---@field rank? string
+---@field scientific_name? string
+---@field usage_key? number
 
 ---@class Vocabulary
 ---@field description? string
 ---@field name? string
 
 ---@class VocabularyListMatch
+---@field description? string
+---@field name? string
 
 local M = {}
 

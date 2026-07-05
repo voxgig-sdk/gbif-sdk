@@ -16,7 +16,12 @@ export interface EnumerationLoadMatch {
   enumeration: string
 }
 
-export type EnumerationListMatch = Partial<Enumeration>
+export interface EnumerationListMatch {
+  iso2?: string
+  name?: string
+  title?: string
+  url?: string
+}
 
 export interface Literature {
   author?: any[]
@@ -25,7 +30,12 @@ export interface Literature {
   year?: number
 }
 
-export type LiteratureListMatch = Partial<Literature>
+export interface LiteratureListMatch {
+  author?: any[]
+  id?: string
+  title?: string
+  year?: number
+}
 
 export interface Occurrence {
   country?: string
@@ -40,9 +50,31 @@ export interface Occurrence {
   year?: number
 }
 
-export type OccurrenceListMatch = Partial<Occurrence>
+export interface OccurrenceListMatch {
+  country?: string
+  creator?: string
+  decimal_latitude?: number
+  decimal_longitude?: number
+  format?: string
+  key?: number
+  notification_address?: any[]
+  predicate?: Record<string, any>
+  scientific_name?: string
+  year?: number
+}
 
-export type OccurrenceCreateData = Partial<Occurrence>
+export interface OccurrenceCreateData {
+  country?: string
+  creator?: string
+  decimal_latitude?: number
+  decimal_longitude?: number
+  format?: string
+  key?: number
+  notification_address?: any[]
+  predicate?: Record<string, any>
+  scientific_name?: string
+  year?: number
+}
 
 export interface Registry {
   country?: string
@@ -52,7 +84,13 @@ export interface Registry {
   type?: string
 }
 
-export type RegistryListMatch = Partial<Registry>
+export interface RegistryListMatch {
+  country?: string
+  key?: string
+  publishing_organization_key?: string
+  title?: string
+  type?: string
+}
 
 export interface Species {
   canonical_name?: string
@@ -64,14 +102,33 @@ export interface Species {
   usage_key?: number
 }
 
-export type SpeciesLoadMatch = Partial<Species>
+export interface SpeciesLoadMatch {
+  canonical_name?: string
+  confidence?: number
+  key?: number
+  match_type?: string
+  rank?: string
+  scientific_name?: string
+  usage_key?: number
+}
 
-export type SpeciesListMatch = Partial<Species>
+export interface SpeciesListMatch {
+  canonical_name?: string
+  confidence?: number
+  key?: number
+  match_type?: string
+  rank?: string
+  scientific_name?: string
+  usage_key?: number
+}
 
 export interface Vocabulary {
   description?: string
   name?: string
 }
 
-export type VocabularyListMatch = Partial<Vocabulary>
+export interface VocabularyListMatch {
+  description?: string
+  name?: string
+}
 

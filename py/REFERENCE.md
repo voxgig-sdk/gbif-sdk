@@ -108,19 +108,19 @@ enumeration = client.Enumeration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `iso2` | `str` | No |  |
+| `name` | `str` | No |  |
+| `title` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Enumeration().list({})
+results = client.Enumeration().list()
 for enumeration in results:
     print(enumeration)
 ```
@@ -130,7 +130,7 @@ for enumeration in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Enumeration().load({"id": "enumeration_id"})
+result = client.Enumeration().load()
 ```
 
 ### Common Methods
@@ -172,19 +172,19 @@ literature = client.Literature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `author` | `list` | No |  |
+| `id` | `str` | No |  |
+| `title` | `str` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Literature().list({})
+results = client.Literature().list()
 for literature in results:
     print(literature)
 ```
@@ -228,16 +228,16 @@ occurrence = client.Occurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `decimal_latitude` | ``$NUMBER`` | No |  |
-| `decimal_longitude` | ``$NUMBER`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `notification_address` | ``$ARRAY`` | No |  |
-| `predicate` | ``$OBJECT`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `country` | `str` | No |  |
+| `creator` | `str` | No |  |
+| `decimal_latitude` | `float` | No |  |
+| `decimal_longitude` | `float` | No |  |
+| `format` | `str` | No |  |
+| `key` | `int` | No |  |
+| `notification_address` | `list` | No |  |
+| `predicate` | `dict` | No |  |
+| `scientific_name` | `str` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
@@ -250,12 +250,12 @@ result = client.Occurrence().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Occurrence().list({})
+results = client.Occurrence().list()
 for occurrence in results:
     print(occurrence)
 ```
@@ -299,20 +299,20 @@ registry = client.Registry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `publishing_organization_key` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `str` | No |  |
+| `key` | `str` | No |  |
+| `publishing_organization_key` | `str` | No |  |
+| `title` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Registry().list({})
+results = client.Registry().list()
 for registry in results:
     print(registry)
 ```
@@ -356,22 +356,22 @@ species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | ``$STRING`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `match_type` | ``$STRING`` | No |  |
-| `rank` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `usage_key` | ``$INTEGER`` | No |  |
+| `canonical_name` | `str` | No |  |
+| `confidence` | `int` | No |  |
+| `key` | `int` | No |  |
+| `match_type` | `str` | No |  |
+| `rank` | `str` | No |  |
+| `scientific_name` | `str` | No |  |
+| `usage_key` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Species().list({})
+results = client.Species().list()
 for species in results:
     print(species)
 ```
@@ -381,7 +381,7 @@ for species in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Species().load({"id": "species_id"})
+result = client.Species().load()
 ```
 
 ### Common Methods
@@ -423,17 +423,17 @@ vocabulary = client.Vocabulary()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `description` | `str` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Vocabulary().list({})
+results = client.Vocabulary().list()
 for vocabulary in results:
     print(vocabulary)
 ```

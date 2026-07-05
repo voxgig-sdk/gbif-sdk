@@ -21,8 +21,7 @@ type EnumerationLoadMatch struct {
 	Enumeration string `json:"enumeration"`
 }
 
-// EnumerationListMatch mirrors the enumeration fields as an all-optional match
-// filter (Go analog of Partial<Enumeration>).
+// EnumerationListMatch is the typed request payload for Enumeration.ListTyped.
 type EnumerationListMatch struct {
 	Iso2 *string `json:"iso2,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -38,8 +37,7 @@ type Literature struct {
 	Year *int `json:"year,omitempty"`
 }
 
-// LiteratureListMatch mirrors the literature fields as an all-optional match
-// filter (Go analog of Partial<Literature>).
+// LiteratureListMatch is the typed request payload for Literature.ListTyped.
 type LiteratureListMatch struct {
 	Author *[]any `json:"author,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -61,8 +59,7 @@ type Occurrence struct {
 	Year *int `json:"year,omitempty"`
 }
 
-// OccurrenceListMatch mirrors the occurrence fields as an all-optional match
-// filter (Go analog of Partial<Occurrence>).
+// OccurrenceListMatch is the typed request payload for Occurrence.ListTyped.
 type OccurrenceListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
@@ -76,8 +73,7 @@ type OccurrenceListMatch struct {
 	Year *int `json:"year,omitempty"`
 }
 
-// OccurrenceCreateData mirrors the occurrence fields as an all-optional match
-// filter (Go analog of Partial<Occurrence>).
+// OccurrenceCreateData is the typed request payload for Occurrence.CreateTyped.
 type OccurrenceCreateData struct {
 	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
@@ -100,8 +96,7 @@ type Registry struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// RegistryListMatch mirrors the registry fields as an all-optional match
-// filter (Go analog of Partial<Registry>).
+// RegistryListMatch is the typed request payload for Registry.ListTyped.
 type RegistryListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Key *string `json:"key,omitempty"`
@@ -121,8 +116,7 @@ type Species struct {
 	UsageKey *int `json:"usage_key,omitempty"`
 }
 
-// SpeciesLoadMatch mirrors the species fields as an all-optional match
-// filter (Go analog of Partial<Species>).
+// SpeciesLoadMatch is the typed request payload for Species.LoadTyped.
 type SpeciesLoadMatch struct {
 	CanonicalName *string `json:"canonical_name,omitempty"`
 	Confidence *int `json:"confidence,omitempty"`
@@ -133,8 +127,7 @@ type SpeciesLoadMatch struct {
 	UsageKey *int `json:"usage_key,omitempty"`
 }
 
-// SpeciesListMatch mirrors the species fields as an all-optional match
-// filter (Go analog of Partial<Species>).
+// SpeciesListMatch is the typed request payload for Species.ListTyped.
 type SpeciesListMatch struct {
 	CanonicalName *string `json:"canonical_name,omitempty"`
 	Confidence *int `json:"confidence,omitempty"`
@@ -151,8 +144,7 @@ type Vocabulary struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// VocabularyListMatch mirrors the vocabulary fields as an all-optional match
-// filter (Go analog of Partial<Vocabulary>).
+// VocabularyListMatch is the typed request payload for Vocabulary.ListTyped.
 type VocabularyListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Name *string `json:"name,omitempty"`

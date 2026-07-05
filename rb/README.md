@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Gbif API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Enumeration` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,7 +39,7 @@ begin
   # list returns an Array of Enumeration records — iterate directly.
   enumerations = client.Enumeration.list
   enumerations.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["iso2"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -49,11 +51,38 @@ end
 ```ruby
 begin
   # load returns the bare Enumeration record (raises on error).
-  enumeration = client.Enumeration.load({ "id" => "example_id" })
+  enumeration = client.Enumeration.load()
   puts enumeration
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  enumerations = client.Enumeration.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -74,7 +103,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -97,16 +128,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = GbifSDK.test({
-  "entity" => { "enumeration" => { "test01" => { "id" => "test01" } } },
-})
+client = GbifSDK.test
 
-# load returns the bare mock record (raises on error).
-enumeration = client.Enumeration.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+enumeration = client.Enumeration.list()
 puts enumeration
 ```
 
@@ -199,10 +227,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -335,16 +361,16 @@ Create an instance: `enumeration = client.Enumeration`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `iso2` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `iso2` | `String` |  |
+| `name` | `String` |  |
+| `title` | `String` |  |
+| `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Enumeration record (raises on error).
-enumeration = client.Enumeration.load({ "id" => "enumeration_id" })
+enumeration = client.Enumeration.load()
 ```
 
 #### Example: List
@@ -369,10 +395,10 @@ Create an instance: `literature = client.Literature`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `author` | `Array` |  |
+| `id` | `String` |  |
+| `title` | `String` |  |
+| `year` | `Integer` |  |
 
 #### Example: List
 
@@ -397,16 +423,16 @@ Create an instance: `occurrence = client.Occurrence`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `decimal_latitude` | ``$NUMBER`` |  |
-| `decimal_longitude` | ``$NUMBER`` |  |
-| `format` | ``$STRING`` |  |
-| `key` | ``$INTEGER`` |  |
-| `notification_address` | ``$ARRAY`` |  |
-| `predicate` | ``$OBJECT`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `country` | `String` |  |
+| `creator` | `String` |  |
+| `decimal_latitude` | `Float` |  |
+| `decimal_longitude` | `Float` |  |
+| `format` | `String` |  |
+| `key` | `Integer` |  |
+| `notification_address` | `Array` |  |
+| `predicate` | `Hash` |  |
+| `scientific_name` | `String` |  |
+| `year` | `Integer` |  |
 
 #### Example: List
 
@@ -437,11 +463,11 @@ Create an instance: `registry = client.Registry`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `publishing_organization_key` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `String` |  |
+| `key` | `String` |  |
+| `publishing_organization_key` | `String` |  |
+| `title` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: List
 
@@ -466,19 +492,19 @@ Create an instance: `species = client.Species`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | ``$STRING`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `key` | ``$INTEGER`` |  |
-| `match_type` | ``$STRING`` |  |
-| `rank` | ``$STRING`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `usage_key` | ``$INTEGER`` |  |
+| `canonical_name` | `String` |  |
+| `confidence` | `Integer` |  |
+| `key` | `Integer` |  |
+| `match_type` | `String` |  |
+| `rank` | `String` |  |
+| `scientific_name` | `String` |  |
+| `usage_key` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Species record (raises on error).
-species = client.Species.load({ "id" => "species_id" })
+species = client.Species.load()
 ```
 
 #### Example: List
@@ -503,8 +529,8 @@ Create an instance: `vocabulary = client.Vocabulary`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `String` |  |
+| `name` | `String` |  |
 
 #### Example: List
 
@@ -514,12 +540,16 @@ vocabularys = client.Vocabulary.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -536,8 +566,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -581,14 +612,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 enumeration = client.Enumeration
-enumeration.load({ "id" => "example_id" })
+enumeration.list()
 
-# enumeration.data_get now returns the loaded enumeration data
+# enumeration.data_get now returns the enumeration data from the last list
 # enumeration.match_get returns the last match criteria
 ```
 

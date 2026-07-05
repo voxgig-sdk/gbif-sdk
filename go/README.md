@@ -4,6 +4,8 @@
 
 The Golang SDK for the Gbif API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Enumeration(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -61,12 +63,41 @@ func main() {
     }
 
     // Load a single enumeration — the value is the loaded record.
-    enumeration, err := client.Enumeration(nil).Load(map[string]any{"id": "example_id"}, nil)
+    enumeration, err := client.Enumeration(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(enumeration)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+enumerations, err := client.Enumeration(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = enumerations
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -116,13 +147,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-enumeration, err := client.Enumeration(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+enumeration, err := client.Enumeration(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(enumeration) // the loaded mock data
+fmt.Println(enumeration) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -217,8 +248,6 @@ All entities implement the `GbifEntity` interface.
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -231,16 +260,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` / `Create` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    enumeration, err := client.Enumeration(nil).Load(map[string]any{"id": "example_id"}, nil)
+    enumeration, err := client.Enumeration(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // enumeration is the loaded record
+    // enumeration is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -353,15 +382,15 @@ Create an instance: `enumeration := client.Enumeration(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `iso2` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `iso2` | `string` |  |
+| `name` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```go
-enumeration, err := client.Enumeration(nil).Load(map[string]any{"id": "enumeration_id"}, nil)
+enumeration, err := client.Enumeration(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -393,10 +422,10 @@ Create an instance: `literature := client.Literature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `author` | `[]any` |  |
+| `id` | `string` |  |
+| `title` | `string` |  |
+| `year` | `int` |  |
 
 #### Example: List
 
@@ -424,16 +453,16 @@ Create an instance: `occurrence := client.Occurrence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `decimal_latitude` | ``$NUMBER`` |  |
-| `decimal_longitude` | ``$NUMBER`` |  |
-| `format` | ``$STRING`` |  |
-| `key` | ``$INTEGER`` |  |
-| `notification_address` | ``$ARRAY`` |  |
-| `predicate` | ``$OBJECT`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `country` | `string` |  |
+| `creator` | `string` |  |
+| `decimal_latitude` | `float64` |  |
+| `decimal_longitude` | `float64` |  |
+| `format` | `string` |  |
+| `key` | `int` |  |
+| `notification_address` | `[]any` |  |
+| `predicate` | `map[string]any` |  |
+| `scientific_name` | `string` |  |
+| `year` | `int` |  |
 
 #### Example: List
 
@@ -467,11 +496,11 @@ Create an instance: `registry := client.Registry(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `publishing_organization_key` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `key` | `string` |  |
+| `publishing_organization_key` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -499,18 +528,18 @@ Create an instance: `species := client.Species(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | ``$STRING`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `key` | ``$INTEGER`` |  |
-| `match_type` | ``$STRING`` |  |
-| `rank` | ``$STRING`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `usage_key` | ``$INTEGER`` |  |
+| `canonical_name` | `string` |  |
+| `confidence` | `int` |  |
+| `key` | `int` |  |
+| `match_type` | `string` |  |
+| `rank` | `string` |  |
+| `scientific_name` | `string` |  |
+| `usage_key` | `int` |  |
 
 #### Example: Load
 
 ```go
-species, err := client.Species(nil).Load(map[string]any{"id": "species_id"}, nil)
+species, err := client.Species(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -542,8 +571,8 @@ Create an instance: `vocabulary := client.Vocabulary(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -556,12 +585,16 @@ fmt.Println(vocabularys) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -578,9 +611,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -621,14 +654,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 enumeration := client.Enumeration(nil)
-enumeration.Load(map[string]any{"id": "example_id"}, nil)
+enumeration.List(nil, nil)
 
-// enumeration.Data() now returns the loaded enumeration data
+// enumeration.Data() now returns the enumeration data from the last list
 // enumeration.Match() returns the last match criteria
 ```
 

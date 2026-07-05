@@ -66,11 +66,11 @@ Create a new `SpeciesEntity` instance. Pass `null` for no initial data.
 
 Create a new `VocabularyEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): GbifUtility`
 
 Return a copy of the SDK utility object.
 
@@ -113,19 +113,19 @@ $enumeration = $client->Enumeration();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `iso2` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Enumeration()->list([]);
+$results = $client->Enumeration()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -133,24 +133,24 @@ $results = $client->Enumeration()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Enumeration()->load(["id" => "enumeration_id"]);
+$result = $client->Enumeration()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -159,7 +159,7 @@ Set the entity match criteria.
 Create a new `EnumerationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -176,36 +176,36 @@ $literature = $client->Literature();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `author` | `array` | No |  |
+| `id` | `string` | No |  |
+| `title` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Literature()->list([]);
+$results = $client->Literature()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -214,7 +214,7 @@ Set the entity match criteria.
 Create a new `LiteratureEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -231,16 +231,16 @@ $occurrence = $client->Occurrence();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `decimal_latitude` | ``$NUMBER`` | No |  |
-| `decimal_longitude` | ``$NUMBER`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `notification_address` | ``$ARRAY`` | No |  |
-| `predicate` | ``$OBJECT`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `country` | `string` | No |  |
+| `creator` | `string` | No |  |
+| `decimal_latitude` | `float` | No |  |
+| `decimal_longitude` | `float` | No |  |
+| `format` | `string` | No |  |
+| `key` | `int` | No |  |
+| `notification_address` | `array` | No |  |
+| `predicate` | `array` | No |  |
+| `scientific_name` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
@@ -253,29 +253,29 @@ $result = $client->Occurrence()->create([
 ]);
 ```
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Occurrence()->list([]);
+$results = $client->Occurrence()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -284,7 +284,7 @@ Set the entity match criteria.
 Create a new `OccurrenceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -301,37 +301,37 @@ $registry = $client->Registry();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `publishing_organization_key` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `key` | `string` | No |  |
+| `publishing_organization_key` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Registry()->list([]);
+$results = $client->Registry()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -340,7 +340,7 @@ Set the entity match criteria.
 Create a new `RegistryEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -357,22 +357,22 @@ $species = $client->Species();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | ``$STRING`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `match_type` | ``$STRING`` | No |  |
-| `rank` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `usage_key` | ``$INTEGER`` | No |  |
+| `canonical_name` | `string` | No |  |
+| `confidence` | `int` | No |  |
+| `key` | `int` | No |  |
+| `match_type` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `scientific_name` | `string` | No |  |
+| `usage_key` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Species()->list([]);
+$results = $client->Species()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -380,24 +380,24 @@ $results = $client->Species()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Species()->load(["id" => "species_id"]);
+$result = $client->Species()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -406,7 +406,7 @@ Set the entity match criteria.
 Create a new `SpeciesEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -423,34 +423,34 @@ $vocabulary = $client->Vocabulary();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Vocabulary()->list([]);
+$results = $client->Vocabulary()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -459,7 +459,7 @@ Set the entity match criteria.
 Create a new `VocabularyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

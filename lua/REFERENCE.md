@@ -111,10 +111,10 @@ local enumeration = client:Enumeration(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `iso2` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -131,7 +131,7 @@ local results, err = client:Enumeration():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Enumeration():load({ id = "enumeration_id" })
+local result, err = client:Enumeration():load()
 ```
 
 ### Common Methods
@@ -174,10 +174,10 @@ local literature = client:Literature(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `author` | `table` | No |  |
+| `id` | `string` | No |  |
+| `title` | `string` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
@@ -229,16 +229,16 @@ local occurrence = client:Occurrence(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `creator` | ``$STRING`` | No |  |
-| `decimal_latitude` | ``$NUMBER`` | No |  |
-| `decimal_longitude` | ``$NUMBER`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `notification_address` | ``$ARRAY`` | No |  |
-| `predicate` | ``$OBJECT`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `country` | `string` | No |  |
+| `creator` | `string` | No |  |
+| `decimal_latitude` | `number` | No |  |
+| `decimal_longitude` | `number` | No |  |
+| `format` | `string` | No |  |
+| `key` | `number` | No |  |
+| `notification_address` | `table` | No |  |
+| `predicate` | `table` | No |  |
+| `scientific_name` | `string` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
@@ -299,11 +299,11 @@ local registry = client:Registry(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `key` | ``$STRING`` | No |  |
-| `publishing_organization_key` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `key` | `string` | No |  |
+| `publishing_organization_key` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -355,13 +355,13 @@ local species = client:Species(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | ``$STRING`` | No |  |
-| `confidence` | ``$INTEGER`` | No |  |
-| `key` | ``$INTEGER`` | No |  |
-| `match_type` | ``$STRING`` | No |  |
-| `rank` | ``$STRING`` | No |  |
-| `scientific_name` | ``$STRING`` | No |  |
-| `usage_key` | ``$INTEGER`` | No |  |
+| `canonical_name` | `string` | No |  |
+| `confidence` | `number` | No |  |
+| `key` | `number` | No |  |
+| `match_type` | `string` | No |  |
+| `rank` | `string` | No |  |
+| `scientific_name` | `string` | No |  |
+| `usage_key` | `number` | No |  |
 
 ### Operations
 
@@ -378,7 +378,7 @@ local results, err = client:Species():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Species():load({ id = "species_id" })
+local result, err = client:Species():load()
 ```
 
 ### Common Methods
@@ -421,8 +421,8 @@ local vocabulary = client:Vocabulary(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 

@@ -38,7 +38,7 @@ EnumerationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Enumeration#list (any subset of Enumeration fields).
+# Request payload for Enumeration#list.
 #
 # @!attribute [rw] iso2
 #   @return [String, nil]
@@ -80,7 +80,7 @@ Literature = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Literature#list (any subset of Literature fields).
+# Request payload for Literature#list.
 #
 # @!attribute [rw] author
 #   @return [Array, nil]
@@ -146,7 +146,7 @@ Occurrence = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Occurrence#list (any subset of Occurrence fields).
+# Request payload for Occurrence#list.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -191,7 +191,7 @@ OccurrenceListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Occurrence#create (any subset of Occurrence fields).
+# Request payload for Occurrence#create.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -261,7 +261,7 @@ Registry = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Registry#list (any subset of Registry fields).
+# Request payload for Registry#list.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -319,7 +319,7 @@ Species = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Species#load (any subset of Species fields).
+# Request payload for Species#load.
 #
 # @!attribute [rw] canonical_name
 #   @return [String, nil]
@@ -352,7 +352,7 @@ SpeciesLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Species#list (any subset of Species fields).
+# Request payload for Species#list.
 #
 # @!attribute [rw] canonical_name
 #   @return [String, nil]
@@ -398,7 +398,7 @@ Vocabulary = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Vocabulary#list (any subset of Vocabulary fields).
+# Request payload for Vocabulary#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]

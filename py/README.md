@@ -4,6 +4,11 @@
 
 The Python SDK for the Gbif API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Enumeration()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +46,7 @@ error — iterate it directly.
 
 ```python
 try:
-    enumerations = client.Enumeration().list({})
+    enumerations = client.Enumeration().list()
     for enumeration in enumerations:
         print(enumeration)
 except Exception as err:
@@ -54,10 +59,38 @@ except Exception as err:
 
 ```python
 try:
-    enumeration = client.Enumeration().load({"id": "example_id"})
+    enumeration = client.Enumeration().load()
     print(enumeration)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    enumerations = client.Enumeration().list()
+    print(enumerations)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -78,7 +111,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -104,7 +140,7 @@ Create a mock client for unit testing — no server required:
 client = GbifSDK.test()
 
 # Entity ops return the bare record and raise on error.
-enumeration = client.Enumeration().load({"id": "test01"})
+enumeration = client.Enumeration().list()
 # enumeration contains the mock response record
 ```
 
@@ -199,8 +235,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -327,28 +361,28 @@ Create an instance: `enumeration = client.Enumeration()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `iso2` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `iso2` | `str` |  |
+| `name` | `str` |  |
+| `title` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: Load
 
 ```python
-enumeration = client.Enumeration().load({"id": "enumeration_id"})
+enumeration = client.Enumeration().load()
 ```
 
 #### Example: List
 
 ```python
-enumerations = client.Enumeration().list({})
+enumerations = client.Enumeration().list()
 ```
 
 
@@ -360,21 +394,21 @@ Create an instance: `literature = client.Literature()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `author` | `list` |  |
+| `id` | `str` |  |
+| `title` | `str` |  |
+| `year` | `int` |  |
 
 #### Example: List
 
 ```python
-literatures = client.Literature().list({})
+literatures = client.Literature().list()
 ```
 
 
@@ -387,27 +421,27 @@ Create an instance: `occurrence = client.Occurrence()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `decimal_latitude` | ``$NUMBER`` |  |
-| `decimal_longitude` | ``$NUMBER`` |  |
-| `format` | ``$STRING`` |  |
-| `key` | ``$INTEGER`` |  |
-| `notification_address` | ``$ARRAY`` |  |
-| `predicate` | ``$OBJECT`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `country` | `str` |  |
+| `creator` | `str` |  |
+| `decimal_latitude` | `float` |  |
+| `decimal_longitude` | `float` |  |
+| `format` | `str` |  |
+| `key` | `int` |  |
+| `notification_address` | `list` |  |
+| `predicate` | `dict` |  |
+| `scientific_name` | `str` |  |
+| `year` | `int` |  |
 
 #### Example: List
 
 ```python
-occurrences = client.Occurrence().list({})
+occurrences = client.Occurrence().list()
 ```
 
 #### Example: Create
@@ -426,22 +460,22 @@ Create an instance: `registry = client.Registry()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `publishing_organization_key` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `str` |  |
+| `key` | `str` |  |
+| `publishing_organization_key` | `str` |  |
+| `title` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-registrys = client.Registry().list({})
+registrys = client.Registry().list()
 ```
 
 
@@ -453,31 +487,31 @@ Create an instance: `species = client.Species()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | ``$STRING`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `key` | ``$INTEGER`` |  |
-| `match_type` | ``$STRING`` |  |
-| `rank` | ``$STRING`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `usage_key` | ``$INTEGER`` |  |
+| `canonical_name` | `str` |  |
+| `confidence` | `int` |  |
+| `key` | `int` |  |
+| `match_type` | `str` |  |
+| `rank` | `str` |  |
+| `scientific_name` | `str` |  |
+| `usage_key` | `int` |  |
 
 #### Example: Load
 
 ```python
-species = client.Species().load({"id": "species_id"})
+species = client.Species().load()
 ```
 
 #### Example: List
 
 ```python
-speciess = client.Species().list({})
+speciess = client.Species().list()
 ```
 
 
@@ -489,28 +523,32 @@ Create an instance: `vocabulary = client.Vocabulary()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `str` |  |
+| `name` | `str` |  |
 
 #### Example: List
 
 ```python
-vocabularys = client.Vocabulary().list({})
+vocabularys = client.Vocabulary().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -527,8 +565,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -571,14 +610,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 enumeration = client.Enumeration()
-enumeration.load({"id": "example_id"})
+enumeration.list()
 
-# enumeration.data_get() now returns the loaded enumeration data
+# enumeration.data_get() now returns the enumeration data from the last list
 # enumeration.match_get() returns the last match criteria
 ```
 

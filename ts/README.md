@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Gbif API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Enumeration()` — each with a small set of operations (`list`, `load`, `create`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -48,10 +53,39 @@ for (const enumeration of enumerations) {
 
 ```ts
 try {
-  const enumeration = await client.Enumeration().load({ id: 'example_id' })
+  const enumeration = await client.Enumeration().load()
   console.log(enumeration)
 } catch (err) {
   console.error('load failed:', err)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const enumerations = await client.Enumeration().list()
+  console.log(enumerations)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -100,7 +134,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GbifSDK.test()
 
-const enumeration = await client.Enumeration().load({ id: 'test01' })
+const enumeration = await client.Enumeration().list()
 // enumeration is a bare entity populated with mock response data
 console.log(enumeration)
 ```
@@ -119,12 +153,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Enumeration()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -224,10 +258,8 @@ All entities share the same interface.
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
 | `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): GbifSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -237,10 +269,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` and `create` resolve to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -382,15 +413,15 @@ Create an instance: `const enumeration = client.Enumeration()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `iso2` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `iso2` | `string` |  |
+| `name` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const enumeration = await client.Enumeration().load({ id: 'enumeration_id' })
+const enumeration = await client.Enumeration().load()
 ```
 
 #### Example: List
@@ -414,10 +445,10 @@ Create an instance: `const literature = client.Literature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `author` | `any[]` |  |
+| `id` | `string` |  |
+| `title` | `string` |  |
+| `year` | `number` |  |
 
 #### Example: List
 
@@ -441,16 +472,16 @@ Create an instance: `const occurrence = client.Occurrence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `creator` | ``$STRING`` |  |
-| `decimal_latitude` | ``$NUMBER`` |  |
-| `decimal_longitude` | ``$NUMBER`` |  |
-| `format` | ``$STRING`` |  |
-| `key` | ``$INTEGER`` |  |
-| `notification_address` | ``$ARRAY`` |  |
-| `predicate` | ``$OBJECT`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `year` | ``$INTEGER`` |  |
+| `country` | `string` |  |
+| `creator` | `string` |  |
+| `decimal_latitude` | `number` |  |
+| `decimal_longitude` | `number` |  |
+| `format` | `string` |  |
+| `key` | `number` |  |
+| `notification_address` | `any[]` |  |
+| `predicate` | `Record<string, any>` |  |
+| `scientific_name` | `string` |  |
+| `year` | `number` |  |
 
 #### Example: List
 
@@ -480,11 +511,11 @@ Create an instance: `const registry = client.Registry()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `key` | ``$STRING`` |  |
-| `publishing_organization_key` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `key` | `string` |  |
+| `publishing_organization_key` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -508,18 +539,18 @@ Create an instance: `const species = client.Species()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | ``$STRING`` |  |
-| `confidence` | ``$INTEGER`` |  |
-| `key` | ``$INTEGER`` |  |
-| `match_type` | ``$STRING`` |  |
-| `rank` | ``$STRING`` |  |
-| `scientific_name` | ``$STRING`` |  |
-| `usage_key` | ``$INTEGER`` |  |
+| `canonical_name` | `string` |  |
+| `confidence` | `number` |  |
+| `key` | `number` |  |
+| `match_type` | `string` |  |
+| `rank` | `string` |  |
+| `scientific_name` | `string` |  |
+| `usage_key` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const species = await client.Species().load({ id: 'species_id' })
+const species = await client.Species().load()
 ```
 
 #### Example: List
@@ -543,8 +574,8 @@ Create an instance: `const vocabulary = client.Vocabulary()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `name` | `string` |  |
 
 #### Example: List
 
@@ -553,12 +584,16 @@ const vocabularys = await client.Vocabulary().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -575,11 +610,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -615,16 +648,16 @@ import { GbifSDK } from '@voxgig-sdk/gbif'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const enumeration = client.Enumeration()
-await enumeration.load({ id: "example_id" })
+await enumeration.list()
 
-// enumeration.data() now returns the loaded enumeration data
-// enumeration.match() returns { id: "example_id" }
+// enumeration.data() now returns the enumeration data from the last `list`
+// enumeration.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -27,7 +27,7 @@ class EnumerationLoadMatch
     public string $enumeration;
 }
 
-/** Match filter for Enumeration#list (any subset of Enumeration fields). */
+/** Request payload for Enumeration#list. */
 class EnumerationListMatch
 {
     public ?string $iso2 = null;
@@ -45,7 +45,7 @@ class Literature
     public ?int $year = null;
 }
 
-/** Match filter for Literature#list (any subset of Literature fields). */
+/** Request payload for Literature#list. */
 class LiteratureListMatch
 {
     public ?array $author = null;
@@ -69,7 +69,7 @@ class Occurrence
     public ?int $year = null;
 }
 
-/** Match filter for Occurrence#list (any subset of Occurrence fields). */
+/** Request payload for Occurrence#list. */
 class OccurrenceListMatch
 {
     public ?string $country = null;
@@ -84,7 +84,7 @@ class OccurrenceListMatch
     public ?int $year = null;
 }
 
-/** Match filter for Occurrence#create (any subset of Occurrence fields). */
+/** Request payload for Occurrence#create. */
 class OccurrenceCreateData
 {
     public ?string $country = null;
@@ -109,7 +109,7 @@ class Registry
     public ?string $type = null;
 }
 
-/** Match filter for Registry#list (any subset of Registry fields). */
+/** Request payload for Registry#list. */
 class RegistryListMatch
 {
     public ?string $country = null;
@@ -131,7 +131,7 @@ class Species
     public ?int $usage_key = null;
 }
 
-/** Match filter for Species#load (any subset of Species fields). */
+/** Request payload for Species#load. */
 class SpeciesLoadMatch
 {
     public ?string $canonical_name = null;
@@ -143,7 +143,7 @@ class SpeciesLoadMatch
     public ?int $usage_key = null;
 }
 
-/** Match filter for Species#list (any subset of Species fields). */
+/** Request payload for Species#list. */
 class SpeciesListMatch
 {
     public ?string $canonical_name = null;
@@ -162,7 +162,7 @@ class Vocabulary
     public ?string $name = null;
 }
 
-/** Match filter for Vocabulary#list (any subset of Vocabulary fields). */
+/** Request payload for Vocabulary#list. */
 class VocabularyListMatch
 {
     public ?string $description = null;
