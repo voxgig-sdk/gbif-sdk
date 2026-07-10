@@ -130,7 +130,7 @@ for enumeration in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Enumeration().load()
+result = client.Enumeration().load({"enumeration": "enumeration"})
 ```
 
 ### Common Methods

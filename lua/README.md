@@ -51,8 +51,10 @@ end
 
 ### 3. Load an enumeration
 
+Enumeration is nested under enumeration, so provide the `enumeration`.
+
 ```lua
-local enumeration, err = client:Enumeration():load()
+local enumeration, err = client:Enumeration():load({ enumeration = "example_enumeration" })
 if err then error(err) end
 print(enumeration)
 ```
@@ -361,7 +363,7 @@ Create an instance: `local enumeration = client:Enumeration(nil)`
 #### Example: Load
 
 ```lua
-local enumeration, err = client:Enumeration():load()
+local enumeration, err = client:Enumeration():load({ enumeration = "enumeration" })
 ```
 
 #### Example: List

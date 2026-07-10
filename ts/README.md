@@ -49,11 +49,14 @@ for (const enumeration of enumerations) {
 
 ### 3. Load an enumeration
 
+Enumeration is nested under enumeration, so provide the `enumeration`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const enumeration = await client.Enumeration().load()
+  const enumeration = await client.Enumeration().load({
+    enumeration: 'example_enumeration',
+  })
   console.log(enumeration)
 } catch (err) {
   console.error('load failed:', err)
@@ -421,7 +424,7 @@ Create an instance: `const enumeration = client.Enumeration()`
 #### Example: Load
 
 ```ts
-const enumeration = await client.Enumeration().load()
+const enumeration = await client.Enumeration().load({ enumeration: 'enumeration' })
 ```
 
 #### Example: List

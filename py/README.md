@@ -55,11 +55,12 @@ except Exception as err:
 
 ### 3. Load an enumeration
 
+Enumeration is nested under enumeration, so provide the `enumeration`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    enumeration = client.Enumeration().load()
+    enumeration = client.Enumeration().load({"enumeration": "example_enumeration"})
     print(enumeration)
 except Exception as err:
     print(f"load failed: {err}")
@@ -376,7 +377,7 @@ Create an instance: `enumeration = client.Enumeration()`
 #### Example: Load
 
 ```python
-enumeration = client.Enumeration().load()
+enumeration = client.Enumeration().load({"enumeration": "enumeration"})
 ```
 
 #### Example: List

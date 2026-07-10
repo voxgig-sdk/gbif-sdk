@@ -49,10 +49,12 @@ try {
 
 ### 3. Load an enumeration
 
+Enumeration is nested under enumeration, so provide the `enumeration`.
+
 ```php
 try {
     // load() returns the bare Enumeration record (throws on error).
-    $enumeration = $client->Enumeration()->load();
+    $enumeration = $client->Enumeration()->load(["enumeration" => "example_enumeration"]);
     print_r($enumeration);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -380,7 +382,7 @@ Create an instance: `$enumeration = $client->Enumeration();`
 
 ```php
 // load() returns the bare Enumeration record (throws on error).
-$enumeration = $client->Enumeration()->load();
+$enumeration = $client->Enumeration()->load(["enumeration" => "enumeration"]);
 ```
 
 #### Example: List

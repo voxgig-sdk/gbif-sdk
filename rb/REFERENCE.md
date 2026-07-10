@@ -134,7 +134,7 @@ results = client.Enumeration.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Enumeration.load()
+result = client.Enumeration.load({ "enumeration" => "enumeration" })
 ```
 
 ### Common Methods

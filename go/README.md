@@ -63,7 +63,7 @@ func main() {
     }
 
     // Load a single enumeration — the value is the loaded record.
-    enumeration, err := client.Enumeration(nil).Load(nil, nil)
+    enumeration, err := client.Enumeration(nil).Load(map[string]any{"enumeration": "example_enumeration"}, nil)
     if err != nil {
         panic(err)
     }
@@ -390,7 +390,7 @@ Create an instance: `enumeration := client.Enumeration(nil)`
 #### Example: Load
 
 ```go
-enumeration, err := client.Enumeration(nil).Load(nil, nil)
+enumeration, err := client.Enumeration(nil).Load(map[string]any{"enumeration": "enumeration"}, nil)
 if err != nil {
     panic(err)
 }
@@ -446,8 +446,8 @@ Create an instance: `occurrence := client.Occurrence(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -479,6 +479,10 @@ fmt.Println(occurrences) // the array of records
 ```go
 result, err := client.Occurrence(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

@@ -48,10 +48,12 @@ end
 
 ### 3. Load an enumeration
 
+Enumeration is nested under enumeration, so provide the `enumeration`.
+
 ```ruby
 begin
   # load returns the bare Enumeration record (raises on error).
-  enumeration = client.Enumeration.load()
+  enumeration = client.Enumeration.load({ "enumeration" => "example_enumeration" })
   puts enumeration
 rescue => err
   warn "load failed: #{err}"
@@ -370,7 +372,7 @@ Create an instance: `enumeration = client.Enumeration`
 
 ```ruby
 # load returns the bare Enumeration record (raises on error).
-enumeration = client.Enumeration.load()
+enumeration = client.Enumeration.load({ "enumeration" => "enumeration" })
 ```
 
 #### Example: List

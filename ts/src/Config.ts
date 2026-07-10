@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.gbif.org/v1',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: 'Basic',
     },
 
     headers: {

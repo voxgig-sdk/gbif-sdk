@@ -1,0 +1,8 @@
+# Entity Models
+
+@"enumeration.aontu"
+@"literature.aontu"
+@"occurrence.aontu"
+@"registry.aontu"
+@"species.aontu"
+@"vocabulary.aontu"

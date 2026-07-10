@@ -131,7 +131,7 @@ local results, err = client:Enumeration():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Enumeration():load()
+local result, err = client:Enumeration():load({ enumeration = "enumeration" })
 ```
 
 ### Common Methods

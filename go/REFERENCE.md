@@ -112,6 +112,7 @@ same parameters as `Direct()`.
 
 ```go
 enumeration := client.Enumeration(nil)
+fmt.Println(enumeration.GetName()) // "enumeration"
 ```
 
 ### Fields
@@ -131,6 +132,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Enumeration(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -138,7 +143,11 @@ results, err := client.Enumeration(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Enumeration(nil).Load(nil, nil)
+result, err := client.Enumeration(nil).Load(map[string]any{"enumeration": "enumeration"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -169,6 +178,7 @@ Return the entity name.
 
 ```go
 literature := client.Literature(nil)
+fmt.Println(literature.GetName()) // "literature"
 ```
 
 ### Fields
@@ -188,6 +198,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Literature(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -218,6 +232,7 @@ Return the entity name.
 
 ```go
 occurrence := client.Occurrence(nil)
+fmt.Println(occurrence.GetName()) // "occurrence"
 ```
 
 ### Fields
@@ -237,6 +252,18 @@ occurrence := client.Occurrence(nil)
 
 ### Operations
 
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Occurrence(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
 Create a new entity with the given data.
@@ -244,14 +271,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Occurrence(nil).Create(map[string]any{
 }, nil)
-```
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.Occurrence(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -282,6 +305,7 @@ Return the entity name.
 
 ```go
 registry := client.Registry(nil)
+fmt.Println(registry.GetName()) // "registry"
 ```
 
 ### Fields
@@ -302,6 +326,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Registry(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -332,6 +360,7 @@ Return the entity name.
 
 ```go
 species := client.Species(nil)
+fmt.Println(species.GetName()) // "species"
 ```
 
 ### Fields
@@ -354,6 +383,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Species(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -362,6 +395,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Species(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -392,6 +429,7 @@ Return the entity name.
 
 ```go
 vocabulary := client.Vocabulary(nil)
+fmt.Println(vocabulary.GetName()) // "vocabulary"
 ```
 
 ### Fields
@@ -409,6 +447,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Vocabulary(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

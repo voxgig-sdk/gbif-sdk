@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1119,15 +1116,25 @@
           "name": "Apache 2.0",
           "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Basic",
+          "scheme": "basicAuth",
+          "type": "http"
+        },
         "servers": [
           {
             "description": "GBIF API Production Server",
             "url": "https://api.gbif.org/v1"
           }
         ],
+        "summary": "The GBIF API provides a programmatic interface to query and publish biodiversity data on GBIF.org, enabling advanced queries not supported by the website.",
         "termsOfService": "https://www.gbif.org/terms",
         "title": "GBIF API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://techdocs.gbif.org/en/openapi/"
       },
       "option": {},
       "target": {
@@ -1180,6 +1187,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1230,6 +1240,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

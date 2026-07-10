@@ -197,7 +197,7 @@ const results = await client.Enumeration().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Enumeration().load()
+const result = await client.Enumeration().load({ enumeration: 'enumeration' })
 ```
 
 ### Common Methods

@@ -21,7 +21,7 @@ class GbifConfig
             "options" => [
                 "base" => "https://api.gbif.org/v1",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "Basic",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

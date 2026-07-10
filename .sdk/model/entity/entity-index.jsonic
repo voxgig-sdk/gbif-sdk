@@ -1,8 +1,0 @@
-# Entity Models
-
-@"enumeration.jsonic"
-@"literature.jsonic"
-@"occurrence.jsonic"
-@"registry.jsonic"
-@"species.jsonic"
-@"vocabulary.jsonic"
