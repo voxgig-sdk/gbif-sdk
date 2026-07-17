@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- Gbif SDK configuration
 
 local function make_config()
   return {

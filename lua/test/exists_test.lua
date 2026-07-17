@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Gbif SDK exists test
 
 local sdk = require("gbif_sdk")
 
