@@ -177,7 +177,7 @@ literature = client.Literature
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `Array` | No |  |
+| `authors` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `title` | `String` | No |  |
 | `year` | `Integer` | No |  |
@@ -234,13 +234,13 @@ occurrence = client.Occurrence
 | --- | --- | --- | --- |
 | `country` | `String` | No |  |
 | `creator` | `String` | No |  |
-| `decimal_latitude` | `Float` | No |  |
-| `decimal_longitude` | `Float` | No |  |
+| `decimalLatitude` | `Float` | No |  |
+| `decimalLongitude` | `Float` | No |  |
 | `format` | `String` | No |  |
 | `key` | `Integer` | No |  |
-| `notification_address` | `Array` | No |  |
+| `notificationAddresses` | `Array` | No |  |
 | `predicate` | `Hash` | No |  |
-| `scientific_name` | `String` | No |  |
+| `scientificName` | `String` | No |  |
 | `year` | `Integer` | No |  |
 
 ### Operations
@@ -304,7 +304,7 @@ registry = client.Registry
 | --- | --- | --- | --- |
 | `country` | `String` | No |  |
 | `key` | `String` | No |  |
-| `publishing_organization_key` | `String` | No |  |
+| `publishingOrganizationKey` | `String` | No |  |
 | `title` | `String` | No |  |
 | `type` | `String` | No |  |
 
@@ -358,13 +358,13 @@ species = client.Species
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | `String` | No |  |
+| `canonicalName` | `String` | No |  |
 | `confidence` | `Integer` | No |  |
 | `key` | `Integer` | No |  |
-| `match_type` | `String` | No |  |
+| `matchType` | `String` | No |  |
 | `rank` | `String` | No |  |
-| `scientific_name` | `String` | No |  |
-| `usage_key` | `Integer` | No |  |
+| `scientificName` | `String` | No |  |
+| `usageKey` | `Integer` | No |  |
 
 ### Operations
 

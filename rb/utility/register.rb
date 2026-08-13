@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ GbifUtility.registrar = ->(u) {
   u.prepare_params = GbifUtilities::PrepareParams
   u.prepare_path = GbifUtilities::PreparePath
   u.prepare_query = GbifUtilities::PrepareQuery
+  u.graphql_body = GbifUtilities::GraphqlBody
+  u.graphql_errors = GbifUtilities::GraphqlErrors
   u.result_basic = GbifUtilities::ResultBasic
   u.result_body = GbifUtilities::ResultBody
   u.result_headers = GbifUtilities::ResultHeaders

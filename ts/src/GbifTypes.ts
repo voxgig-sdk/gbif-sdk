@@ -21,65 +21,83 @@ export interface EnumerationListMatch {
   name?: string
   title?: string
   url?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'basic' | 'country' | 'license'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Literature {
-  author?: any[]
+  authors?: any[]
   id?: string
   title?: string
   year?: number
 }
 
 export interface LiteratureListMatch {
-  author?: any[]
+  authors?: any[]
   id?: string
   title?: string
   year?: number
+
+  // Selects a custom action instead of the plain list:
+  //   'search'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Occurrence {
   country?: string
   creator?: string
-  decimal_latitude?: number
-  decimal_longitude?: number
+  decimalLatitude?: number
+  decimalLongitude?: number
   format?: string
   key?: number
-  notification_address?: any[]
+  notificationAddresses?: any[]
   predicate?: Record<string, any>
-  scientific_name?: string
+  scientificName?: string
   year?: number
 }
 
 export interface OccurrenceListMatch {
   country?: string
   creator?: string
-  decimal_latitude?: number
-  decimal_longitude?: number
+  decimalLatitude?: number
+  decimalLongitude?: number
   format?: string
   key?: number
-  notification_address?: any[]
+  notificationAddresses?: any[]
   predicate?: Record<string, any>
-  scientific_name?: string
+  scientificName?: string
   year?: number
+
+  // Selects a custom action instead of the plain list:
+  //   'search'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface OccurrenceCreateData {
   country?: string
   creator?: string
-  decimal_latitude?: number
-  decimal_longitude?: number
+  decimalLatitude?: number
+  decimalLongitude?: number
   format?: string
   key?: number
-  notification_address?: any[]
+  notificationAddresses?: any[]
   predicate?: Record<string, any>
-  scientific_name?: string
+  scientificName?: string
   year?: number
 }
 
 export interface Registry {
   country?: string
   key?: string
-  publishing_organization_key?: string
+  publishingOrganizationKey?: string
   title?: string
   type?: string
 }
@@ -87,39 +105,51 @@ export interface Registry {
 export interface RegistryListMatch {
   country?: string
   key?: string
-  publishing_organization_key?: string
+  publishingOrganizationKey?: string
   title?: string
   type?: string
 }
 
 export interface Species {
-  canonical_name?: string
+  canonicalName?: string
   confidence?: number
   key?: number
-  match_type?: string
+  matchType?: string
   rank?: string
-  scientific_name?: string
-  usage_key?: number
+  scientificName?: string
+  usageKey?: number
 }
 
 export interface SpeciesLoadMatch {
-  canonical_name?: string
+  canonicalName?: string
   confidence?: number
   key?: number
-  match_type?: string
+  matchType?: string
   rank?: string
-  scientific_name?: string
-  usage_key?: number
+  scientificName?: string
+  usageKey?: number
+
+  // Selects a custom action instead of the plain load:
+  //   'match'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface SpeciesListMatch {
-  canonical_name?: string
+  canonicalName?: string
   confidence?: number
   key?: number
-  match_type?: string
+  matchType?: string
   rank?: string
-  scientific_name?: string
-  usage_key?: number
+  scientificName?: string
+  usageKey?: number
+
+  // Selects a custom action instead of the plain list:
+  //   'search'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Vocabulary {

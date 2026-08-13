@@ -63,7 +63,7 @@ describe('EnumerationEntity', async () => {
     const enumeration_ref01_ent = client.Enumeration()
     const enumeration_ref01_match: any = {}
 
-    const enumeration_ref01_list = await enumeration_ref01_ent.list(enumeration_ref01_match)
+    const enumeration_ref01_list = (await enumeration_ref01_ent.list(enumeration_ref01_match)).map((e: any) => e.data())
 
 
 

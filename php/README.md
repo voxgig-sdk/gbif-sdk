@@ -53,7 +53,7 @@ Enumeration is nested under enumeration, so provide the `enumeration`.
 
 ```php
 try {
-    // load() returns the bare Enumeration record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Enumeration record (throws on error).
     $enumeration = $client->Enumeration()->load(["enumeration" => "example_enumeration"]);
     print_r($enumeration);
 } catch (\Throwable $err) {
@@ -69,7 +69,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $enumerations = $client->Enumeration()->list();
+    $literatures = $client->Literature()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -141,9 +141,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = GbifSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$enumeration = $client->Enumeration()->list();
-print_r($enumeration);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$literature = $client->Literature()->list();
+print_r($literature);
 ```
 
 ### Use a custom fetch function
@@ -249,7 +250,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -284,7 +285,7 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `id` |  |
 | `title` |  |
 | `year` |  |
@@ -299,13 +300,13 @@ API path: `/literature/search`
 | --- | --- |
 | `country` |  |
 | `creator` |  |
-| `decimal_latitude` |  |
-| `decimal_longitude` |  |
+| `decimalLatitude` |  |
+| `decimalLongitude` |  |
 | `format` |  |
 | `key` |  |
-| `notification_address` |  |
+| `notificationAddresses` |  |
 | `predicate` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `year` |  |
 
 Operations: Create, List.
@@ -318,7 +319,7 @@ API path: `/occurrence/download/request`
 | --- | --- |
 | `country` |  |
 | `key` |  |
-| `publishing_organization_key` |  |
+| `publishingOrganizationKey` |  |
 | `title` |  |
 | `type` |  |
 
@@ -330,13 +331,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonical_name` |  |
+| `canonicalName` |  |
 | `confidence` |  |
 | `key` |  |
-| `match_type` |  |
+| `matchType` |  |
 | `rank` |  |
-| `scientific_name` |  |
-| `usage_key` |  |
+| `scientificName` |  |
+| `usageKey` |  |
 
 Operations: List, Load.
 
@@ -381,7 +382,7 @@ Create an instance: `$enumeration = $client->Enumeration();`
 #### Example: Load
 
 ```php
-// load() returns the bare Enumeration record (throws on error).
+// load() returns the ENTITY — call data_get() for the Enumeration record (throws on error).
 $enumeration = $client->Enumeration()->load(["enumeration" => "enumeration"]);
 ```
 
@@ -407,7 +408,7 @@ Create an instance: `$literature = $client->Literature();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `array` |  |
+| `authors` | `array` |  |
 | `id` | `string` |  |
 | `title` | `string` |  |
 | `year` | `int` |  |
@@ -437,13 +438,13 @@ Create an instance: `$occurrence = $client->Occurrence();`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `creator` | `string` |  |
-| `decimal_latitude` | `float` |  |
-| `decimal_longitude` | `float` |  |
+| `decimalLatitude` | `float` |  |
+| `decimalLongitude` | `float` |  |
 | `format` | `string` |  |
 | `key` | `int` |  |
-| `notification_address` | `array` |  |
+| `notificationAddresses` | `array` |  |
 | `predicate` | `array` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `year` | `int` |  |
 
 #### Example: List
@@ -477,7 +478,7 @@ Create an instance: `$registry = $client->Registry();`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `key` | `string` |  |
-| `publishing_organization_key` | `string` |  |
+| `publishingOrganizationKey` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
 
@@ -504,18 +505,18 @@ Create an instance: `$species = $client->Species();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | `string` |  |
+| `canonicalName` | `string` |  |
 | `confidence` | `int` |  |
 | `key` | `int` |  |
-| `match_type` | `string` |  |
+| `matchType` | `string` |  |
 | `rank` | `string` |  |
-| `scientific_name` | `string` |  |
-| `usage_key` | `int` |  |
+| `scientificName` | `string` |  |
+| `usageKey` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Species record (throws on error).
+// load() returns the ENTITY — call data_get() for the Species record (throws on error).
 $species = $client->Species()->load();
 ```
 
@@ -628,11 +629,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$enumeration = $client->Enumeration();
-$enumeration->list();
+$literature = $client->Literature();
+$literature->list();
 
-// $enumeration->data_get() now returns the enumeration data from the last list
-// $enumeration->match_get() returns the last match criteria
+// $literature->data_get() now returns the literature data from the last list
+// $literature->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

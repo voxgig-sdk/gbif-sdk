@@ -63,12 +63,12 @@ describe('SpeciesEntity', async () => {
     const species_ref01_ent = client.Species()
     const species_ref01_match: any = {}
 
-    const species_ref01_list = await species_ref01_ent.list(species_ref01_match)
+    const species_ref01_list = (await species_ref01_ent.list(species_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const species_ref01_match_dt0: any = {}
-    const species_ref01_data_dt0 = await species_ref01_ent.load(species_ref01_match_dt0)
+    const species_ref01_data_dt0 = (await species_ref01_ent.load(species_ref01_match_dt0)).data()
     assert(null != species_ref01_data_dt0)
 
 

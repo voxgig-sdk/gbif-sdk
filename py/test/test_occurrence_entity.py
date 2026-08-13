@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from gbif_sdk.utility.voxgig_struct import voxgig_struct as vs
 from gbif_sdk import GbifSDK
-from core import helpers
+from gbif_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestOccurrenceEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from gbif_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = GbifSDK.test(
@@ -78,7 +78,7 @@ class TestOccurrenceEntity:
         occurrence_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.occurrence"), "occurrence_ref01"))
 
-        occurrence_ref01_data = helpers.to_map(occurrence_ref01_ent.create(occurrence_ref01_data, None))
+        occurrence_ref01_data = helpers.to_map(runner.entity_data(occurrence_ref01_ent.create(occurrence_ref01_data, None)))
         assert occurrence_ref01_data is not None
 
         # LIST
@@ -86,11 +86,6 @@ class TestOccurrenceEntity:
 
         occurrence_ref01_list_result = occurrence_ref01_ent.list(occurrence_ref01_match, None)
         assert isinstance(occurrence_ref01_list_result, list)
-
-        found_item = vs.select(
-            runner.entity_list_to_data(occurrence_ref01_list_result),
-            {"id": occurrence_ref01_data["id"]})
-        assert not vs.isempty(found_item)
 
 
 

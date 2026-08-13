@@ -174,7 +174,7 @@ local literature = client:Literature(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `table` | No |  |
+| `authors` | `table` | No |  |
 | `id` | `string` | No |  |
 | `title` | `string` | No |  |
 | `year` | `number` | No |  |
@@ -231,13 +231,13 @@ local occurrence = client:Occurrence(nil)
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `creator` | `string` | No |  |
-| `decimal_latitude` | `number` | No |  |
-| `decimal_longitude` | `number` | No |  |
+| `decimalLatitude` | `number` | No |  |
+| `decimalLongitude` | `number` | No |  |
 | `format` | `string` | No |  |
 | `key` | `number` | No |  |
-| `notification_address` | `table` | No |  |
+| `notificationAddresses` | `table` | No |  |
 | `predicate` | `table` | No |  |
-| `scientific_name` | `string` | No |  |
+| `scientificName` | `string` | No |  |
 | `year` | `number` | No |  |
 
 ### Operations
@@ -301,7 +301,7 @@ local registry = client:Registry(nil)
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `key` | `string` | No |  |
-| `publishing_organization_key` | `string` | No |  |
+| `publishingOrganizationKey` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -355,13 +355,13 @@ local species = client:Species(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | `string` | No |  |
+| `canonicalName` | `string` | No |  |
 | `confidence` | `number` | No |  |
 | `key` | `number` | No |  |
-| `match_type` | `string` | No |  |
+| `matchType` | `string` | No |  |
 | `rank` | `string` | No |  |
-| `scientific_name` | `string` | No |  |
-| `usage_key` | `number` | No |  |
+| `scientificName` | `string` | No |  |
+| `usageKey` | `number` | No |  |
 
 ### Operations
 

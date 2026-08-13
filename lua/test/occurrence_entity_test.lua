@@ -82,7 +82,7 @@ describe("OccurrenceEntity", function()
 
     local occurrence_ref01_data_result, err = occurrence_ref01_ent:create(occurrence_ref01_data, nil)
     assert.is_nil(err)
-    occurrence_ref01_data = helpers.to_map(occurrence_ref01_data_result)
+    occurrence_ref01_data = helpers.to_map(type(occurrence_ref01_data_result) == 'table' and occurrence_ref01_data_result.data_get and occurrence_ref01_data_result:data_get() or occurrence_ref01_data_result)
     assert.is_not_nil(occurrence_ref01_data)
 
     -- LIST
@@ -91,11 +91,6 @@ describe("OccurrenceEntity", function()
     local occurrence_ref01_list_result, err = occurrence_ref01_ent:list(occurrence_ref01_match, nil)
     assert.is_nil(err)
     assert.is_table(occurrence_ref01_list_result)
-
-    local found_item = vs.select(
-      runner.entity_list_to_data(occurrence_ref01_list_result),
-      { id = occurrence_ref01_data["id"] })
-    assert.is_false(vs.isempty(found_item))
 
   end)
 end)

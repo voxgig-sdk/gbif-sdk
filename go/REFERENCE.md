@@ -185,7 +185,7 @@ fmt.Println(literature.GetName()) // "literature"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `[]any` | No |  |
+| `authors` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `title` | `string` | No |  |
 | `year` | `int` | No |  |
@@ -241,13 +241,13 @@ fmt.Println(occurrence.GetName()) // "occurrence"
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `creator` | `string` | No |  |
-| `decimal_latitude` | `float64` | No |  |
-| `decimal_longitude` | `float64` | No |  |
+| `decimalLatitude` | `float64` | No |  |
+| `decimalLongitude` | `float64` | No |  |
 | `format` | `string` | No |  |
 | `key` | `int` | No |  |
-| `notification_address` | `[]any` | No |  |
+| `notificationAddresses` | `[]any` | No |  |
 | `predicate` | `map[string]any` | No |  |
-| `scientific_name` | `string` | No |  |
+| `scientificName` | `string` | No |  |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -314,7 +314,7 @@ fmt.Println(registry.GetName()) // "registry"
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `key` | `string` | No |  |
-| `publishing_organization_key` | `string` | No |  |
+| `publishingOrganizationKey` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -367,13 +367,13 @@ fmt.Println(species.GetName()) // "species"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | `string` | No |  |
+| `canonicalName` | `string` | No |  |
 | `confidence` | `int` | No |  |
 | `key` | `int` | No |  |
-| `match_type` | `string` | No |  |
+| `matchType` | `string` | No |  |
 | `rank` | `string` | No |  |
-| `scientific_name` | `string` | No |  |
-| `usage_key` | `int` | No |  |
+| `scientificName` | `string` | No |  |
+| `usageKey` | `int` | No |  |
 
 ### Operations
 

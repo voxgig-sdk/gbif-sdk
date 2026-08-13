@@ -78,12 +78,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-enumerations, err := client.Enumeration(nil).List(nil, nil)
+literatures, err := client.Literature(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = enumerations
+_ = literatures
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -147,13 +147,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-enumeration, err := client.Enumeration(nil).List(
+literature, err := client.Literature(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(enumeration) // the returned mock data
+fmt.Println(literature) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -293,7 +293,7 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `"author"` |  |
+| `"authors"` |  |
 | `"id"` |  |
 | `"title"` |  |
 | `"year"` |  |
@@ -308,13 +308,13 @@ API path: `/literature/search`
 | --- | --- |
 | `"country"` |  |
 | `"creator"` |  |
-| `"decimal_latitude"` |  |
-| `"decimal_longitude"` |  |
+| `"decimalLatitude"` |  |
+| `"decimalLongitude"` |  |
 | `"format"` |  |
 | `"key"` |  |
-| `"notification_address"` |  |
+| `"notificationAddresses"` |  |
 | `"predicate"` |  |
-| `"scientific_name"` |  |
+| `"scientificName"` |  |
 | `"year"` |  |
 
 Operations: Create, List.
@@ -327,7 +327,7 @@ API path: `/occurrence/download/request`
 | --- | --- |
 | `"country"` |  |
 | `"key"` |  |
-| `"publishing_organization_key"` |  |
+| `"publishingOrganizationKey"` |  |
 | `"title"` |  |
 | `"type"` |  |
 
@@ -339,13 +339,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `"canonical_name"` |  |
+| `"canonicalName"` |  |
 | `"confidence"` |  |
 | `"key"` |  |
-| `"match_type"` |  |
+| `"matchType"` |  |
 | `"rank"` |  |
-| `"scientific_name"` |  |
-| `"usage_key"` |  |
+| `"scientificName"` |  |
+| `"usageKey"` |  |
 
 Operations: List, Load.
 
@@ -422,7 +422,7 @@ Create an instance: `literature := client.Literature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `[]any` |  |
+| `authors` | `[]any` |  |
 | `id` | `string` |  |
 | `title` | `string` |  |
 | `year` | `int` |  |
@@ -455,13 +455,13 @@ Create an instance: `occurrence := client.Occurrence(nil)`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `creator` | `string` |  |
-| `decimal_latitude` | `float64` |  |
-| `decimal_longitude` | `float64` |  |
+| `decimalLatitude` | `float64` |  |
+| `decimalLongitude` | `float64` |  |
 | `format` | `string` |  |
 | `key` | `int` |  |
-| `notification_address` | `[]any` |  |
+| `notificationAddresses` | `[]any` |  |
 | `predicate` | `map[string]any` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `year` | `int` |  |
 
 #### Example: List
@@ -502,7 +502,7 @@ Create an instance: `registry := client.Registry(nil)`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `key` | `string` |  |
-| `publishing_organization_key` | `string` |  |
+| `publishingOrganizationKey` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
 
@@ -532,13 +532,13 @@ Create an instance: `species := client.Species(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | `string` |  |
+| `canonicalName` | `string` |  |
 | `confidence` | `int` |  |
 | `key` | `int` |  |
-| `match_type` | `string` |  |
+| `matchType` | `string` |  |
 | `rank` | `string` |  |
-| `scientific_name` | `string` |  |
-| `usage_key` | `int` |  |
+| `scientificName` | `string` |  |
+| `usageKey` | `int` |  |
 
 #### Example: Load
 
@@ -662,11 +662,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-enumeration := client.Enumeration(nil)
-enumeration.List(nil, nil)
+literature := client.Literature(nil)
+literature.List(nil, nil)
 
-// enumeration.Data() now returns the enumeration data from the last list
-// enumeration.Match() returns the last match criteria
+// literature.Data() now returns the literature data from the last list
+// literature.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

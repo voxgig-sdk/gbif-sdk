@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from gbif_sdk.utility.voxgig_struct import voxgig_struct as vs
 from gbif_sdk import GbifSDK
-from core import helpers
+from gbif_sdk.core import helpers
 from test import runner
 
 

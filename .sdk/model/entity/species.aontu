@@ -6,7 +6,7 @@ main: kit: entity: species: {
 
   fields: [
     {
-      name: "canonical_name"
+      name: "canonicalName"
       req: false
       type: "`$STRING`"
     }
@@ -21,7 +21,7 @@ main: kit: entity: species: {
       type: "`$INTEGER`"
     }
     {
-      name: "match_type"
+      name: "matchType"
       req: false
       type: "`$STRING`"
     }
@@ -31,12 +31,12 @@ main: kit: entity: species: {
       type: "`$STRING`"
     }
     {
-      name: "scientific_name"
+      name: "scientificName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "usage_key"
+      name: "usageKey"
       req: false
       type: "`$INTEGER`"
     }
@@ -91,7 +91,7 @@ main: kit: entity: species: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

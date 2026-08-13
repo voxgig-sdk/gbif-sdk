@@ -52,7 +52,7 @@ Enumeration is nested under enumeration, so provide the `enumeration`.
 
 ```ruby
 begin
-  # load returns the bare Enumeration record (raises on error).
+  # load returns the ENTITY — call data_get for the Enumeration record (raises on error).
   enumeration = client.Enumeration.load({ "enumeration" => "example_enumeration" })
   puts enumeration
 rescue => err
@@ -67,7 +67,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  enumerations = client.Enumeration.list()
+  literatures = client.Literature.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -135,9 +135,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = GbifSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-enumeration = client.Enumeration.list()
-puts enumeration
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+literature = client.Literature.list()
+puts literature
 ```
 
 ### Use a custom fetch function
@@ -274,7 +275,7 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `id` |  |
 | `title` |  |
 | `year` |  |
@@ -289,13 +290,13 @@ API path: `/literature/search`
 | --- | --- |
 | `country` |  |
 | `creator` |  |
-| `decimal_latitude` |  |
-| `decimal_longitude` |  |
+| `decimalLatitude` |  |
+| `decimalLongitude` |  |
 | `format` |  |
 | `key` |  |
-| `notification_address` |  |
+| `notificationAddresses` |  |
 | `predicate` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `year` |  |
 
 Operations: Create, List.
@@ -308,7 +309,7 @@ API path: `/occurrence/download/request`
 | --- | --- |
 | `country` |  |
 | `key` |  |
-| `publishing_organization_key` |  |
+| `publishingOrganizationKey` |  |
 | `title` |  |
 | `type` |  |
 
@@ -320,13 +321,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonical_name` |  |
+| `canonicalName` |  |
 | `confidence` |  |
 | `key` |  |
-| `match_type` |  |
+| `matchType` |  |
 | `rank` |  |
-| `scientific_name` |  |
-| `usage_key` |  |
+| `scientificName` |  |
+| `usageKey` |  |
 
 Operations: List, Load.
 
@@ -371,7 +372,7 @@ Create an instance: `enumeration = client.Enumeration`
 #### Example: Load
 
 ```ruby
-# load returns the bare Enumeration record (raises on error).
+# load returns the ENTITY — call data_get for the Enumeration record (raises on error).
 enumeration = client.Enumeration.load({ "enumeration" => "enumeration" })
 ```
 
@@ -397,7 +398,7 @@ Create an instance: `literature = client.Literature`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `Array` |  |
+| `authors` | `Array` |  |
 | `id` | `String` |  |
 | `title` | `String` |  |
 | `year` | `Integer` |  |
@@ -427,13 +428,13 @@ Create an instance: `occurrence = client.Occurrence`
 | --- | --- | --- |
 | `country` | `String` |  |
 | `creator` | `String` |  |
-| `decimal_latitude` | `Float` |  |
-| `decimal_longitude` | `Float` |  |
+| `decimalLatitude` | `Float` |  |
+| `decimalLongitude` | `Float` |  |
 | `format` | `String` |  |
 | `key` | `Integer` |  |
-| `notification_address` | `Array` |  |
+| `notificationAddresses` | `Array` |  |
 | `predicate` | `Hash` |  |
-| `scientific_name` | `String` |  |
+| `scientificName` | `String` |  |
 | `year` | `Integer` |  |
 
 #### Example: List
@@ -467,7 +468,7 @@ Create an instance: `registry = client.Registry`
 | --- | --- | --- |
 | `country` | `String` |  |
 | `key` | `String` |  |
-| `publishing_organization_key` | `String` |  |
+| `publishingOrganizationKey` | `String` |  |
 | `title` | `String` |  |
 | `type` | `String` |  |
 
@@ -494,18 +495,18 @@ Create an instance: `species = client.Species`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | `String` |  |
+| `canonicalName` | `String` |  |
 | `confidence` | `Integer` |  |
 | `key` | `Integer` |  |
-| `match_type` | `String` |  |
+| `matchType` | `String` |  |
 | `rank` | `String` |  |
-| `scientific_name` | `String` |  |
-| `usage_key` | `Integer` |  |
+| `scientificName` | `String` |  |
+| `usageKey` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Species record (raises on error).
+# load returns the ENTITY — call data_get for the Species record (raises on error).
 species = client.Species.load()
 ```
 
@@ -618,11 +619,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-enumeration = client.Enumeration
-enumeration.list()
+literature = client.Literature
+literature.list()
 
-# enumeration.data_get now returns the enumeration data from the last list
-# enumeration.match_get returns the last match criteria
+# literature.data_get now returns the literature data from the last list
+# literature.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

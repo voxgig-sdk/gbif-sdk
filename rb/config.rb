@@ -71,6 +71,7 @@ module GbifConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/basic",
                   "parts" => [
@@ -89,6 +90,7 @@ module GbifConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/country",
                   "parts" => [
@@ -107,6 +109,7 @@ module GbifConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/license",
                   "parts" => [
@@ -144,6 +147,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/basic/{enumeration}",
                   "parts" => [
@@ -178,7 +182,7 @@ module GbifConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "author",
+              "name" => "authors",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -251,6 +255,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/literature/search",
                   "parts" => [
@@ -268,7 +273,7 @@ module GbifConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "index$" => 0,
                 },
@@ -298,14 +303,14 @@ module GbifConfig
             },
             {
               "active" => true,
-              "name" => "decimal_latitude",
+              "name" => "decimalLatitude",
               "req" => false,
               "type" => "`$NUMBER`",
               "index$" => 2,
             },
             {
               "active" => true,
-              "name" => "decimal_longitude",
+              "name" => "decimalLongitude",
               "req" => false,
               "type" => "`$NUMBER`",
               "index$" => 3,
@@ -326,7 +331,7 @@ module GbifConfig
             },
             {
               "active" => true,
-              "name" => "notification_address",
+              "name" => "notificationAddresses",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 6,
@@ -340,7 +345,7 @@ module GbifConfig
             },
             {
               "active" => true,
-              "name" => "scientific_name",
+              "name" => "scientificName",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 8,
@@ -362,6 +367,7 @@ module GbifConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/occurrence/download/request",
                   "parts" => [
@@ -425,6 +431,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/occurrence/search",
                   "parts" => [
@@ -442,7 +449,7 @@ module GbifConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "index$" => 0,
                 },
@@ -472,7 +479,7 @@ module GbifConfig
             },
             {
               "active" => true,
-              "name" => "publishing_organization_key",
+              "name" => "publishingOrganizationKey",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
@@ -538,6 +545,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/organization/search",
                   "parts" => [
@@ -554,7 +562,7 @@ module GbifConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "index$" => 0,
                 },
@@ -598,6 +606,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dataset/search",
                   "parts" => [
@@ -614,7 +623,7 @@ module GbifConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "index$" => 1,
                 },
@@ -630,7 +639,7 @@ module GbifConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "canonical_name",
+              "name" => "canonicalName",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -651,7 +660,7 @@ module GbifConfig
             },
             {
               "active" => true,
-              "name" => "match_type",
+              "name" => "matchType",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
@@ -665,14 +674,14 @@ module GbifConfig
             },
             {
               "active" => true,
-              "name" => "scientific_name",
+              "name" => "scientificName",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 5,
             },
             {
               "active" => true,
-              "name" => "usage_key",
+              "name" => "usageKey",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 6,
@@ -716,6 +725,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/species/search",
                   "parts" => [
@@ -732,7 +742,7 @@ module GbifConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "index$" => 0,
                 },
@@ -765,6 +775,7 @@ module GbifConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/species/match",
                   "parts" => [
@@ -818,6 +829,7 @@ module GbifConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/vocabulary",
                   "parts" => [

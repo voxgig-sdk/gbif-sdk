@@ -39,7 +39,7 @@ class EnumerationListMatch
 /** Literature entity data model. */
 class Literature
 {
-    public ?array $author = null;
+    public ?array $authors = null;
     public ?string $id = null;
     public ?string $title = null;
     public ?int $year = null;
@@ -48,7 +48,7 @@ class Literature
 /** Request payload for Literature#list. */
 class LiteratureListMatch
 {
-    public ?array $author = null;
+    public ?array $authors = null;
     public ?string $id = null;
     public ?string $title = null;
     public ?int $year = null;
@@ -59,13 +59,13 @@ class Occurrence
 {
     public ?string $country = null;
     public ?string $creator = null;
-    public ?float $decimal_latitude = null;
-    public ?float $decimal_longitude = null;
+    public ?float $decimalLatitude = null;
+    public ?float $decimalLongitude = null;
     public ?string $format = null;
     public ?int $key = null;
-    public ?array $notification_address = null;
+    public ?array $notificationAddresses = null;
     public ?array $predicate = null;
-    public ?string $scientific_name = null;
+    public ?string $scientificName = null;
     public ?int $year = null;
 }
 
@@ -74,13 +74,13 @@ class OccurrenceListMatch
 {
     public ?string $country = null;
     public ?string $creator = null;
-    public ?float $decimal_latitude = null;
-    public ?float $decimal_longitude = null;
+    public ?float $decimalLatitude = null;
+    public ?float $decimalLongitude = null;
     public ?string $format = null;
     public ?int $key = null;
-    public ?array $notification_address = null;
+    public ?array $notificationAddresses = null;
     public ?array $predicate = null;
-    public ?string $scientific_name = null;
+    public ?string $scientificName = null;
     public ?int $year = null;
 }
 
@@ -89,13 +89,13 @@ class OccurrenceCreateData
 {
     public ?string $country = null;
     public ?string $creator = null;
-    public ?float $decimal_latitude = null;
-    public ?float $decimal_longitude = null;
+    public ?float $decimalLatitude = null;
+    public ?float $decimalLongitude = null;
     public ?string $format = null;
     public ?int $key = null;
-    public ?array $notification_address = null;
+    public ?array $notificationAddresses = null;
     public ?array $predicate = null;
-    public ?string $scientific_name = null;
+    public ?string $scientificName = null;
     public ?int $year = null;
 }
 
@@ -104,7 +104,7 @@ class Registry
 {
     public ?string $country = null;
     public ?string $key = null;
-    public ?string $publishing_organization_key = null;
+    public ?string $publishingOrganizationKey = null;
     public ?string $title = null;
     public ?string $type = null;
 }
@@ -114,7 +114,7 @@ class RegistryListMatch
 {
     public ?string $country = null;
     public ?string $key = null;
-    public ?string $publishing_organization_key = null;
+    public ?string $publishingOrganizationKey = null;
     public ?string $title = null;
     public ?string $type = null;
 }
@@ -122,37 +122,37 @@ class RegistryListMatch
 /** Species entity data model. */
 class Species
 {
-    public ?string $canonical_name = null;
+    public ?string $canonicalName = null;
     public ?int $confidence = null;
     public ?int $key = null;
-    public ?string $match_type = null;
+    public ?string $matchType = null;
     public ?string $rank = null;
-    public ?string $scientific_name = null;
-    public ?int $usage_key = null;
+    public ?string $scientificName = null;
+    public ?int $usageKey = null;
 }
 
 /** Request payload for Species#load. */
 class SpeciesLoadMatch
 {
-    public ?string $canonical_name = null;
+    public ?string $canonicalName = null;
     public ?int $confidence = null;
     public ?int $key = null;
-    public ?string $match_type = null;
+    public ?string $matchType = null;
     public ?string $rank = null;
-    public ?string $scientific_name = null;
-    public ?int $usage_key = null;
+    public ?string $scientificName = null;
+    public ?int $usageKey = null;
 }
 
 /** Request payload for Species#list. */
 class SpeciesListMatch
 {
-    public ?string $canonical_name = null;
+    public ?string $canonicalName = null;
     public ?int $confidence = null;
     public ?int $key = null;
-    public ?string $match_type = null;
+    public ?string $matchType = null;
     public ?string $rank = null;
-    public ?string $scientific_name = null;
-    public ?int $usage_key = null;
+    public ?string $scientificName = null;
+    public ?int $usageKey = null;
 }
 
 /** Vocabulary entity data model. */

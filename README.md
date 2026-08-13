@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = GbifSDK.test()
-const enumerations = await client.Enumeration().list()
-// enumerations is an array of bare Enumeration records populated with mock data
-console.log(enumerations)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = GbifSDK.test({
+  entity: {
+    literature: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const literatures = await client.Literature().list()
+// literatures is an array of Literature entities, populated with mock data
+// — call literatures[0].data() for the record itself
+console.log(literatures)
 ```
 
 ### Python
 
 ```python
 client = GbifSDK.test()
-enumerations = client.Enumeration().list()
-print(enumerations)
+literatures = client.Literature().list()
+print(literatures)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(enumerations)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = GbifSDK::test([
-    "entity" => ["enumeration" => ["test01" => []]],
+    "entity" => ["literature" => ["test01" => []]],
 ]);
-$enumerations = $client->Enumeration()->list();
+$literatures = $client->Literature()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Enumeration(nil).List(
+result, err := client.Literature(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Enumeration(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = GbifSDK.test({
-  "entity" => { "enumeration" => { "test01" => {} } },
+  "entity" => { "literature" => { "test01" => {} } },
 })
-enumerations = client.Enumeration.list()
+literatures = client.Literature.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Enumeration():list()
+local results, err = client:Literature():list()
 ```
 
 ## Packages
@@ -112,7 +121,7 @@ const client = new GbifSDK({
   apikey: process.env.GBIF_APIKEY,
 })
 
-// List all enumerations (returns Enumeration[])
+// List all enumerations (returns EnumerationEntity[] — .data() for the record)
 const enumerations = await client.Enumeration().list()
 for (const enumeration of enumerations) {
   console.log(enumeration)
@@ -165,7 +174,7 @@ The API exposes 6 entities:
 | --- | --- | --- |
 | **Enumeration** | The Enumeration entity (list, load). | `/enumeration/basic` |
 | **Literature** | The Literature entity (list). | `/literature/search` |
-| **Occurrence** | The Occurrence entity (create, list). | `/occurrence/download/request` |
+| **Occurrence** | The Occurrence entity (create, list). | `/occurrence/search` |
 | **Registry** | The Registry entity (list). | `/organization/search` |
 | **Species** | The Species entity (list, load). | `/species/search` |
 | **Vocabulary** | The Vocabulary entity (list). | `/vocabulary` |
@@ -209,7 +218,7 @@ $client = new GbifSDK([
 $enumerations = $client->Enumeration()->list();
 print_r($enumerations);
 
-// Load a specific enumeration (returns the bare record; throws on error)
+// Load a specific enumeration (returns the ENTITY; call data_get() for the record; throws on error)
 $enumeration = $client->Enumeration()->load(["enumeration" => "example_enumeration"]);
 print_r($enumeration);
 ```
@@ -253,7 +262,7 @@ client = GbifSDK.new({
 enumerations = client.Enumeration.list
 puts enumerations
 
-# Load a specific enumeration (returns the bare record; raises on error)
+# Load a specific enumeration (returns the ENTITY; call data_get for the record)
 enumeration = client.Enumeration.load({ "enumeration" => "example_enumeration" })
 puts enumeration
 ```
@@ -392,6 +401,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.gbif.org/contact-us](https://www.gbif.org/contact-us)
 

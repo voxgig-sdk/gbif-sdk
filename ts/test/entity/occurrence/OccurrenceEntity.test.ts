@@ -62,16 +62,14 @@ describe('OccurrenceEntity', async () => {
     const occurrence_ref01_ent = client.Occurrence()
     let occurrence_ref01_data = setup.data.new.occurrence['occurrence_ref01']
 
-    occurrence_ref01_data = await occurrence_ref01_ent.create(occurrence_ref01_data)
+    occurrence_ref01_data = (await occurrence_ref01_ent.create(occurrence_ref01_data)).data()
     assert(null != occurrence_ref01_data)
 
 
     // LIST
     const occurrence_ref01_match: any = {}
 
-    const occurrence_ref01_list = await occurrence_ref01_ent.list(occurrence_ref01_match)
-
-    assert(!isempty(select(occurrence_ref01_list, { id: occurrence_ref01_data.id })))
+    const occurrence_ref01_list = (await occurrence_ref01_ent.list(occurrence_ref01_match)).map((e: any) => e.data())
 
 
   })

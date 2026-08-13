@@ -2,19 +2,19 @@
   "existing": {
     "literature": {
       "LITERATURE00": {
-        "author": [],
+        "authors": [],
         "id": "LITERATURE00",
         "title": "s2a",
         "year": "s2b"
       },
       "LITERATURE01": {
-        "author": [],
+        "authors": [],
         "id": "LITERATURE01",
         "title": "s52",
         "year": "s53"
       },
       "LITERATURE02": {
-        "author": [],
+        "authors": [],
         "id": "LITERATURE02",
         "title": "s7a",
         "year": "s7b"
@@ -24,7 +24,7 @@
   "new": {
     "literature": {
       "literature_ref01": {
-        "author": [],
+        "authors": [],
         "title": "sa2",
         "year": "sa3"
       }

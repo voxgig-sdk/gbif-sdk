@@ -182,6 +182,28 @@ const enumeration = client.Enumeration()
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `basic` | `/enumeration/basic` | `client.Enumeration().list({ $action: 'basic', ... })` |
+| `country` | `/enumeration/country` | `client.Enumeration().list({ $action: 'country', ... })` |
+| `license` | `/enumeration/license` | `client.Enumeration().list({ $action: 'license', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Enumeration record — check the API definition for its shape.
+
+```ts
+const result = await client.Enumeration().list({
+  $action: 'basic',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `list(match: object, ctrl?: object)`
@@ -238,10 +260,30 @@ const literature = client.Literature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `any[]` | No |  |
+| `authors` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `title` | `string` | No |  |
 | `year` | `number` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/literature/search` | `client.Literature().list({ $action: 'search', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Literature record — check the API definition for its shape.
+
+```ts
+const result = await client.Literature().list({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -293,14 +335,34 @@ const occurrence = client.Occurrence()
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `creator` | `string` | No |  |
-| `decimal_latitude` | `number` | No |  |
-| `decimal_longitude` | `number` | No |  |
+| `decimalLatitude` | `number` | No |  |
+| `decimalLongitude` | `number` | No |  |
 | `format` | `string` | No |  |
 | `key` | `number` | No |  |
-| `notification_address` | `any[]` | No |  |
+| `notificationAddresses` | `any[]` | No |  |
 | `predicate` | `Record<string, any>` | No |  |
-| `scientific_name` | `string` | No |  |
+| `scientificName` | `string` | No |  |
 | `year` | `number` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/occurrence/search` | `client.Occurrence().list({ $action: 'search', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Occurrence record — check the API definition for its shape.
+
+```ts
+const result = await client.Occurrence().list({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -361,7 +423,7 @@ const registry = client.Registry()
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `key` | `string` | No |  |
-| `publishing_organization_key` | `string` | No |  |
+| `publishingOrganizationKey` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -413,13 +475,34 @@ const species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | `string` | No |  |
+| `canonicalName` | `string` | No |  |
 | `confidence` | `number` | No |  |
 | `key` | `number` | No |  |
-| `match_type` | `string` | No |  |
+| `matchType` | `string` | No |  |
 | `rank` | `string` | No |  |
-| `scientific_name` | `string` | No |  |
-| `usage_key` | `number` | No |  |
+| `scientificName` | `string` | No |  |
+| `usageKey` | `number` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/species/search` | `client.Species().list({ $action: 'search', ... })` |
+| `match` | `/species/match` | `client.Species().load({ $action: 'match', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Species record — check the API definition for its shape.
+
+```ts
+const result = await client.Species().list({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 

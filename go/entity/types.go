@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/gbif-sdk/go/core"
+)
 
 // Enumeration is the typed data model for the enumeration entity.
 type Enumeration struct {
@@ -31,7 +35,7 @@ type EnumerationListMatch struct {
 
 // Literature is the typed data model for the literature entity.
 type Literature struct {
-	Author *[]any `json:"author,omitempty"`
+	Authors *[]any `json:"authors,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Year *int `json:"year,omitempty"`
@@ -39,7 +43,7 @@ type Literature struct {
 
 // LiteratureListMatch is the typed request payload for Literature.ListTyped.
 type LiteratureListMatch struct {
-	Author *[]any `json:"author,omitempty"`
+	Authors *[]any `json:"authors,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Year *int `json:"year,omitempty"`
@@ -49,13 +53,13 @@ type LiteratureListMatch struct {
 type Occurrence struct {
 	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
-	DecimalLatitude *float64 `json:"decimal_latitude,omitempty"`
-	DecimalLongitude *float64 `json:"decimal_longitude,omitempty"`
+	DecimalLatitude *float64 `json:"decimalLatitude,omitempty"`
+	DecimalLongitude *float64 `json:"decimalLongitude,omitempty"`
 	Format *string `json:"format,omitempty"`
 	Key *int `json:"key,omitempty"`
-	NotificationAddress *[]any `json:"notification_address,omitempty"`
+	NotificationAddresses *[]any `json:"notificationAddresses,omitempty"`
 	Predicate *map[string]any `json:"predicate,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
 	Year *int `json:"year,omitempty"`
 }
 
@@ -63,13 +67,13 @@ type Occurrence struct {
 type OccurrenceListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
-	DecimalLatitude *float64 `json:"decimal_latitude,omitempty"`
-	DecimalLongitude *float64 `json:"decimal_longitude,omitempty"`
+	DecimalLatitude *float64 `json:"decimalLatitude,omitempty"`
+	DecimalLongitude *float64 `json:"decimalLongitude,omitempty"`
 	Format *string `json:"format,omitempty"`
 	Key *int `json:"key,omitempty"`
-	NotificationAddress *[]any `json:"notification_address,omitempty"`
+	NotificationAddresses *[]any `json:"notificationAddresses,omitempty"`
 	Predicate *map[string]any `json:"predicate,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
 	Year *int `json:"year,omitempty"`
 }
 
@@ -77,13 +81,13 @@ type OccurrenceListMatch struct {
 type OccurrenceCreateData struct {
 	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
-	DecimalLatitude *float64 `json:"decimal_latitude,omitempty"`
-	DecimalLongitude *float64 `json:"decimal_longitude,omitempty"`
+	DecimalLatitude *float64 `json:"decimalLatitude,omitempty"`
+	DecimalLongitude *float64 `json:"decimalLongitude,omitempty"`
 	Format *string `json:"format,omitempty"`
 	Key *int `json:"key,omitempty"`
-	NotificationAddress *[]any `json:"notification_address,omitempty"`
+	NotificationAddresses *[]any `json:"notificationAddresses,omitempty"`
 	Predicate *map[string]any `json:"predicate,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
 	Year *int `json:"year,omitempty"`
 }
 
@@ -91,7 +95,7 @@ type OccurrenceCreateData struct {
 type Registry struct {
 	Country *string `json:"country,omitempty"`
 	Key *string `json:"key,omitempty"`
-	PublishingOrganizationKey *string `json:"publishing_organization_key,omitempty"`
+	PublishingOrganizationKey *string `json:"publishingOrganizationKey,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
@@ -100,42 +104,42 @@ type Registry struct {
 type RegistryListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Key *string `json:"key,omitempty"`
-	PublishingOrganizationKey *string `json:"publishing_organization_key,omitempty"`
+	PublishingOrganizationKey *string `json:"publishingOrganizationKey,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
 // Species is the typed data model for the species entity.
 type Species struct {
-	CanonicalName *string `json:"canonical_name,omitempty"`
+	CanonicalName *string `json:"canonicalName,omitempty"`
 	Confidence *int `json:"confidence,omitempty"`
 	Key *int `json:"key,omitempty"`
-	MatchType *string `json:"match_type,omitempty"`
+	MatchType *string `json:"matchType,omitempty"`
 	Rank *string `json:"rank,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
-	UsageKey *int `json:"usage_key,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
+	UsageKey *int `json:"usageKey,omitempty"`
 }
 
 // SpeciesLoadMatch is the typed request payload for Species.LoadTyped.
 type SpeciesLoadMatch struct {
-	CanonicalName *string `json:"canonical_name,omitempty"`
+	CanonicalName *string `json:"canonicalName,omitempty"`
 	Confidence *int `json:"confidence,omitempty"`
 	Key *int `json:"key,omitempty"`
-	MatchType *string `json:"match_type,omitempty"`
+	MatchType *string `json:"matchType,omitempty"`
 	Rank *string `json:"rank,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
-	UsageKey *int `json:"usage_key,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
+	UsageKey *int `json:"usageKey,omitempty"`
 }
 
 // SpeciesListMatch is the typed request payload for Species.ListTyped.
 type SpeciesListMatch struct {
-	CanonicalName *string `json:"canonical_name,omitempty"`
+	CanonicalName *string `json:"canonicalName,omitempty"`
 	Confidence *int `json:"confidence,omitempty"`
 	Key *int `json:"key,omitempty"`
-	MatchType *string `json:"match_type,omitempty"`
+	MatchType *string `json:"matchType,omitempty"`
 	Rank *string `json:"rank,omitempty"`
-	ScientificName *string `json:"scientific_name,omitempty"`
-	UsageKey *int `json:"usage_key,omitempty"`
+	ScientificName *string `json:"scientificName,omitempty"`
+	UsageKey *int `json:"usageKey,omitempty"`
 }
 
 // Vocabulary is the typed data model for the vocabulary entity.
@@ -162,12 +166,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -179,12 +197,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

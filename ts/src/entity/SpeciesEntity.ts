@@ -37,7 +37,7 @@ class SpeciesEntity extends GbifEntityBase<Species> {
 
 
 
-  async load(this: any, reqmatch?: SpeciesLoadMatch, ctrl?: Control): Promise<Species> {
+  async load(this: any, reqmatch?: SpeciesLoadMatch, ctrl?: Control): Promise<SpeciesEntity> {
 
     const utility = this._utility
 
@@ -128,7 +128,15 @@ class SpeciesEntity extends GbifEntityBase<Species> {
         }
       }
 
-      return done(ctx)
+      const out = done(ctx)
+
+      // An operation resolves to the ENTITY, not the raw data — the record
+      // has just been absorbed into this instance and is reached through
+      // data(). `done` still runs: it completes the pipeline and raises on
+      // failure, and when throwing is disabled it hands back the error
+      // payload, which passes through unchanged. See AGENTS.md "Entity
+      // operations return ENTITIES".
+      return (ctx.result && ctx.result.ok) ? this : out
     }
     catch (err: any) {
 
@@ -150,7 +158,7 @@ class SpeciesEntity extends GbifEntityBase<Species> {
 
 
 
-  async list(this: any, reqmatch?: SpeciesListMatch, ctrl?: Control): Promise<Species[]> {
+  async list(this: any, reqmatch?: SpeciesListMatch, ctrl?: Control): Promise<SpeciesEntity[]> {
 
     const utility = this._utility
 

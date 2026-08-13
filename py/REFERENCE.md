@@ -172,7 +172,7 @@ literature = client.Literature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `list` | No |  |
+| `authors` | `list` | No |  |
 | `id` | `str` | No |  |
 | `title` | `str` | No |  |
 | `year` | `int` | No |  |
@@ -230,13 +230,13 @@ occurrence = client.Occurrence()
 | --- | --- | --- | --- |
 | `country` | `str` | No |  |
 | `creator` | `str` | No |  |
-| `decimal_latitude` | `float` | No |  |
-| `decimal_longitude` | `float` | No |  |
+| `decimalLatitude` | `float` | No |  |
+| `decimalLongitude` | `float` | No |  |
 | `format` | `str` | No |  |
 | `key` | `int` | No |  |
-| `notification_address` | `list` | No |  |
+| `notificationAddresses` | `list` | No |  |
 | `predicate` | `dict` | No |  |
-| `scientific_name` | `str` | No |  |
+| `scientificName` | `str` | No |  |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -301,7 +301,7 @@ registry = client.Registry()
 | --- | --- | --- | --- |
 | `country` | `str` | No |  |
 | `key` | `str` | No |  |
-| `publishing_organization_key` | `str` | No |  |
+| `publishingOrganizationKey` | `str` | No |  |
 | `title` | `str` | No |  |
 | `type` | `str` | No |  |
 
@@ -356,13 +356,13 @@ species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | `str` | No |  |
+| `canonicalName` | `str` | No |  |
 | `confidence` | `int` | No |  |
 | `key` | `int` | No |  |
-| `match_type` | `str` | No |  |
+| `matchType` | `str` | No |  |
 | `rank` | `str` | No |  |
-| `scientific_name` | `str` | No |  |
-| `usage_key` | `int` | No |  |
+| `scientificName` | `str` | No |  |
+| `usageKey` | `int` | No |  |
 
 ### Operations
 

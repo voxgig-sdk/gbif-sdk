@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Gbif',
   }
 
 
@@ -111,6 +111,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/enumeration/basic",
               "parts": [
@@ -129,6 +130,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/enumeration/country",
               "parts": [
@@ -147,6 +149,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/enumeration/license",
               "parts": [
@@ -184,6 +187,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/enumeration/basic/{enumeration}",
               "parts": [
@@ -218,7 +222,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "author",
+          "name": "authors",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -291,6 +295,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/literature/search",
               "parts": [
@@ -308,7 +313,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             }
@@ -338,14 +343,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "decimal_latitude",
+          "name": "decimalLatitude",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "decimal_longitude",
+          "name": "decimalLongitude",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 3
@@ -366,7 +371,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "notification_address",
+          "name": "notificationAddresses",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
@@ -380,7 +385,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "scientific_name",
+          "name": "scientificName",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
@@ -402,6 +407,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/occurrence/download/request",
               "parts": [
@@ -465,6 +471,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/occurrence/search",
               "parts": [
@@ -482,7 +489,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             }
@@ -512,7 +519,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "publishing_organization_key",
+          "name": "publishingOrganizationKey",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -578,6 +585,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/organization/search",
               "parts": [
@@ -594,7 +602,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             },
@@ -638,6 +646,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/dataset/search",
               "parts": [
@@ -654,7 +663,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 1
             }
@@ -670,7 +679,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "canonical_name",
+          "name": "canonicalName",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -691,7 +700,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "match_type",
+          "name": "matchType",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -705,14 +714,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "scientific_name",
+          "name": "scientificName",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "usage_key",
+          "name": "usageKey",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 6
@@ -756,6 +765,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/species/search",
               "parts": [
@@ -772,7 +782,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             }
@@ -805,6 +815,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/species/match",
               "parts": [
@@ -858,6 +869,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/vocabulary",
               "parts": [

@@ -16,12 +16,12 @@ main: kit: entity: occurrence: {
       type: "`$STRING`"
     }
     {
-      name: "decimal_latitude"
+      name: "decimalLatitude"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "decimal_longitude"
+      name: "decimalLongitude"
       req: false
       type: "`$NUMBER`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: occurrence: {
       type: "`$INTEGER`"
     }
     {
-      name: "notification_address"
+      name: "notificationAddresses"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,7 +46,7 @@ main: kit: entity: occurrence: {
       type: "`$OBJECT`"
     }
     {
-      name: "scientific_name"
+      name: "scientificName"
       req: false
       type: "`$STRING`"
     }
@@ -134,7 +134,7 @@ main: kit: entity: occurrence: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

@@ -37,7 +37,7 @@ class RegistryEntity extends GbifEntityBase<Registry> {
 
 
 
-  async list(this: any, reqmatch?: RegistryListMatch, ctrl?: Control): Promise<Registry[]> {
+  async list(this: any, reqmatch?: RegistryListMatch, ctrl?: Control): Promise<RegistryEntity[]> {
 
     const utility = this._utility
 

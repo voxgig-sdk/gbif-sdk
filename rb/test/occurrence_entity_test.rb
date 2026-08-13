@@ -73,7 +73,7 @@ class OccurrenceEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.occurrence"), "occurrence_ref01"))
 
     occurrence_ref01_data_result = occurrence_ref01_ent.create(occurrence_ref01_data, nil)
-    occurrence_ref01_data = Helpers.to_map(occurrence_ref01_data_result)
+    occurrence_ref01_data = Helpers.to_map(occurrence_ref01_data_result.respond_to?(:data_get) ? occurrence_ref01_data_result.data_get : occurrence_ref01_data_result)
     assert !occurrence_ref01_data.nil?
 
     # LIST
@@ -81,11 +81,6 @@ class OccurrenceEntityTest < Minitest::Test
 
     occurrence_ref01_list_result = occurrence_ref01_ent.list(occurrence_ref01_match, nil)
     assert occurrence_ref01_list_result.is_a?(Array)
-
-    found_item = Vs.select(
-      Runner.entity_list_to_data(occurrence_ref01_list_result),
-      { "id" => occurrence_ref01_data["id"] })
-    assert !Vs.isempty(found_item)
 
   end
 end

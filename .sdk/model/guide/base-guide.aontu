@@ -27,6 +27,7 @@ guide: {
     path: "/literature/search": {
       action: "search": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 
@@ -37,15 +38,18 @@ guide: {
     path: "/occurrence/search": {
       action: "search": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 
   entity: registry: {
     path: "/dataset/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
     path: "/organization/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 
@@ -57,6 +61,7 @@ guide: {
     path: "/species/search": {
       action: "search": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

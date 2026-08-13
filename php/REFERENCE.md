@@ -176,7 +176,7 @@ $literature = $client->Literature();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `array` | No |  |
+| `authors` | `array` | No |  |
 | `id` | `string` | No |  |
 | `title` | `string` | No |  |
 | `year` | `int` | No |  |
@@ -233,13 +233,13 @@ $occurrence = $client->Occurrence();
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `creator` | `string` | No |  |
-| `decimal_latitude` | `float` | No |  |
-| `decimal_longitude` | `float` | No |  |
+| `decimalLatitude` | `float` | No |  |
+| `decimalLongitude` | `float` | No |  |
 | `format` | `string` | No |  |
 | `key` | `int` | No |  |
-| `notification_address` | `array` | No |  |
+| `notificationAddresses` | `array` | No |  |
 | `predicate` | `array` | No |  |
-| `scientific_name` | `string` | No |  |
+| `scientificName` | `string` | No |  |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -303,7 +303,7 @@ $registry = $client->Registry();
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `key` | `string` | No |  |
-| `publishing_organization_key` | `string` | No |  |
+| `publishingOrganizationKey` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -357,13 +357,13 @@ $species = $client->Species();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonical_name` | `string` | No |  |
+| `canonicalName` | `string` | No |  |
 | `confidence` | `int` | No |  |
 | `key` | `int` | No |  |
-| `match_type` | `string` | No |  |
+| `matchType` | `string` | No |  |
 | `rank` | `string` | No |  |
-| `scientific_name` | `string` | No |  |
-| `usage_key` | `int` | No |  |
+| `scientificName` | `string` | No |  |
+| `usageKey` | `int` | No |  |
 
 ### Operations
 

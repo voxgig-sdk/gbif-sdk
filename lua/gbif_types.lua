@@ -22,13 +22,13 @@
 ---@field url? string
 
 ---@class Literature
----@field author? table
+---@field authors? table
 ---@field id? string
 ---@field title? string
 ---@field year? number
 
 ---@class LiteratureListMatch
----@field author? table
+---@field authors? table
 ---@field id? string
 ---@field title? string
 ---@field year? number
@@ -36,79 +36,79 @@
 ---@class Occurrence
 ---@field country? string
 ---@field creator? string
----@field decimal_latitude? number
----@field decimal_longitude? number
+---@field decimalLatitude? number
+---@field decimalLongitude? number
 ---@field format? string
 ---@field key? number
----@field notification_address? table
+---@field notificationAddresses? table
 ---@field predicate? table
----@field scientific_name? string
+---@field scientificName? string
 ---@field year? number
 
 ---@class OccurrenceListMatch
 ---@field country? string
 ---@field creator? string
----@field decimal_latitude? number
----@field decimal_longitude? number
+---@field decimalLatitude? number
+---@field decimalLongitude? number
 ---@field format? string
 ---@field key? number
----@field notification_address? table
+---@field notificationAddresses? table
 ---@field predicate? table
----@field scientific_name? string
+---@field scientificName? string
 ---@field year? number
 
 ---@class OccurrenceCreateData
 ---@field country? string
 ---@field creator? string
----@field decimal_latitude? number
----@field decimal_longitude? number
+---@field decimalLatitude? number
+---@field decimalLongitude? number
 ---@field format? string
 ---@field key? number
----@field notification_address? table
+---@field notificationAddresses? table
 ---@field predicate? table
----@field scientific_name? string
+---@field scientificName? string
 ---@field year? number
 
 ---@class Registry
 ---@field country? string
 ---@field key? string
----@field publishing_organization_key? string
+---@field publishingOrganizationKey? string
 ---@field title? string
 ---@field type? string
 
 ---@class RegistryListMatch
 ---@field country? string
 ---@field key? string
----@field publishing_organization_key? string
+---@field publishingOrganizationKey? string
 ---@field title? string
 ---@field type? string
 
 ---@class Species
----@field canonical_name? string
+---@field canonicalName? string
 ---@field confidence? number
 ---@field key? number
----@field match_type? string
+---@field matchType? string
 ---@field rank? string
----@field scientific_name? string
----@field usage_key? number
+---@field scientificName? string
+---@field usageKey? number
 
 ---@class SpeciesLoadMatch
----@field canonical_name? string
+---@field canonicalName? string
 ---@field confidence? number
 ---@field key? number
----@field match_type? string
+---@field matchType? string
 ---@field rank? string
----@field scientific_name? string
----@field usage_key? number
+---@field scientificName? string
+---@field usageKey? number
 
 ---@class SpeciesListMatch
----@field canonical_name? string
+---@field canonicalName? string
 ---@field confidence? number
 ---@field key? number
----@field match_type? string
+---@field matchType? string
 ---@field rank? string
----@field scientific_name? string
----@field usage_key? number
+---@field scientificName? string
+---@field usageKey? number
 
 ---@class Vocabulary
 ---@field description? string

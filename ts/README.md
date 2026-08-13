@@ -37,7 +37,9 @@ const client = new GbifSDK({
 
 ### 2. List enumeration records
 
-`list()` resolves to an array of Enumeration objects — iterate it directly:
+`list()` resolves to an array of Enumeration ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const enumerations = await client.Enumeration().list()
@@ -70,8 +72,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const enumerations = await client.Enumeration().list()
-  console.log(enumerations)
+  const literatures = await client.Literature().list()
+  console.log(literatures)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -137,9 +139,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GbifSDK.test()
 
-const enumeration = await client.Enumeration().list()
-// enumeration is a bare entity populated with mock response data
-console.log(enumeration)
+const literature = await client.Literature().list()
+// literature is the entity, populated with mock response data
+// — call literature.data() for the record itself
+console.log(literature)
 ```
 
 You can also use the instance method:
@@ -154,14 +157,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Enumeration()
+const entity = client.Literature()
 
 // First call runs the operation and stores its result
 await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -327,7 +330,7 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `id` |  |
 | `title` |  |
 | `year` |  |
@@ -342,13 +345,13 @@ API path: `/literature/search`
 | --- | --- |
 | `country` |  |
 | `creator` |  |
-| `decimal_latitude` |  |
-| `decimal_longitude` |  |
+| `decimalLatitude` |  |
+| `decimalLongitude` |  |
 | `format` |  |
 | `key` |  |
-| `notification_address` |  |
+| `notificationAddresses` |  |
 | `predicate` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `year` |  |
 
 Operations: create, list.
@@ -361,7 +364,7 @@ API path: `/occurrence/download/request`
 | --- | --- |
 | `country` |  |
 | `key` |  |
-| `publishing_organization_key` |  |
+| `publishingOrganizationKey` |  |
 | `title` |  |
 | `type` |  |
 
@@ -373,13 +376,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonical_name` |  |
+| `canonicalName` |  |
 | `confidence` |  |
 | `key` |  |
-| `match_type` |  |
+| `matchType` |  |
 | `rank` |  |
-| `scientific_name` |  |
-| `usage_key` |  |
+| `scientificName` |  |
+| `usageKey` |  |
 
 Operations: list, load.
 
@@ -448,7 +451,7 @@ Create an instance: `const literature = client.Literature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `any[]` |  |
+| `authors` | `any[]` |  |
 | `id` | `string` |  |
 | `title` | `string` |  |
 | `year` | `number` |  |
@@ -477,13 +480,13 @@ Create an instance: `const occurrence = client.Occurrence()`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `creator` | `string` |  |
-| `decimal_latitude` | `number` |  |
-| `decimal_longitude` | `number` |  |
+| `decimalLatitude` | `number` |  |
+| `decimalLongitude` | `number` |  |
 | `format` | `string` |  |
 | `key` | `number` |  |
-| `notification_address` | `any[]` |  |
+| `notificationAddresses` | `any[]` |  |
 | `predicate` | `Record<string, any>` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `year` | `number` |  |
 
 #### Example: List
@@ -516,7 +519,7 @@ Create an instance: `const registry = client.Registry()`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `key` | `string` |  |
-| `publishing_organization_key` | `string` |  |
+| `publishingOrganizationKey` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
 
@@ -542,13 +545,13 @@ Create an instance: `const species = client.Species()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | `string` |  |
+| `canonicalName` | `string` |  |
 | `confidence` | `number` |  |
 | `key` | `number` |  |
-| `match_type` | `string` |  |
+| `matchType` | `string` |  |
 | `rank` | `string` |  |
-| `scientific_name` | `string` |  |
-| `usage_key` | `number` |  |
+| `scientificName` | `string` |  |
+| `usageKey` | `number` |  |
 
 #### Example: Load
 
@@ -656,11 +659,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const enumeration = client.Enumeration()
-await enumeration.list()
+const literature = client.Literature()
+await literature.list()
 
-// enumeration.data() now returns the enumeration data from the last `list`
-// enumeration.match() returns the last match criteria
+// literature.data() now returns the literature data from the last `list`
+// literature.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

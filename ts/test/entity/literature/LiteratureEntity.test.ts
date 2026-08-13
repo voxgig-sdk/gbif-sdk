@@ -63,7 +63,7 @@ describe('LiteratureEntity', async () => {
     const literature_ref01_ent = client.Literature()
     const literature_ref01_match: any = {}
 
-    const literature_ref01_list = await literature_ref01_ent.list(literature_ref01_match)
+    const literature_ref01_list = (await literature_ref01_ent.list(literature_ref01_match)).map((e: any) => e.data())
 
 
   })

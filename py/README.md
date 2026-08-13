@@ -56,7 +56,7 @@ except Exception as err:
 ### 3. Load an enumeration
 
 Enumeration is nested under enumeration, so provide the `enumeration`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -73,8 +73,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    enumerations = client.Enumeration().list()
-    print(enumerations)
+    literatures = client.Literature().list()
+    print(literatures)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -140,9 +140,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GbifSDK.test()
 
-# Entity ops return the bare record and raise on error.
-enumeration = client.Enumeration().list()
-# enumeration contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+literature = client.Literature().list()
+# literature contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -245,7 +246,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -280,7 +281,7 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `id` |  |
 | `title` |  |
 | `year` |  |
@@ -295,13 +296,13 @@ API path: `/literature/search`
 | --- | --- |
 | `country` |  |
 | `creator` |  |
-| `decimal_latitude` |  |
-| `decimal_longitude` |  |
+| `decimalLatitude` |  |
+| `decimalLongitude` |  |
 | `format` |  |
 | `key` |  |
-| `notification_address` |  |
+| `notificationAddresses` |  |
 | `predicate` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `year` |  |
 
 Operations: Create, List.
@@ -314,7 +315,7 @@ API path: `/occurrence/download/request`
 | --- | --- |
 | `country` |  |
 | `key` |  |
-| `publishing_organization_key` |  |
+| `publishingOrganizationKey` |  |
 | `title` |  |
 | `type` |  |
 
@@ -326,13 +327,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonical_name` |  |
+| `canonicalName` |  |
 | `confidence` |  |
 | `key` |  |
-| `match_type` |  |
+| `matchType` |  |
 | `rank` |  |
-| `scientific_name` |  |
-| `usage_key` |  |
+| `scientificName` |  |
+| `usageKey` |  |
 
 Operations: List, Load.
 
@@ -401,7 +402,7 @@ Create an instance: `literature = client.Literature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `list` |  |
+| `authors` | `list` |  |
 | `id` | `str` |  |
 | `title` | `str` |  |
 | `year` | `int` |  |
@@ -430,13 +431,13 @@ Create an instance: `occurrence = client.Occurrence()`
 | --- | --- | --- |
 | `country` | `str` |  |
 | `creator` | `str` |  |
-| `decimal_latitude` | `float` |  |
-| `decimal_longitude` | `float` |  |
+| `decimalLatitude` | `float` |  |
+| `decimalLongitude` | `float` |  |
 | `format` | `str` |  |
 | `key` | `int` |  |
-| `notification_address` | `list` |  |
+| `notificationAddresses` | `list` |  |
 | `predicate` | `dict` |  |
-| `scientific_name` | `str` |  |
+| `scientificName` | `str` |  |
 | `year` | `int` |  |
 
 #### Example: List
@@ -469,7 +470,7 @@ Create an instance: `registry = client.Registry()`
 | --- | --- | --- |
 | `country` | `str` |  |
 | `key` | `str` |  |
-| `publishing_organization_key` | `str` |  |
+| `publishingOrganizationKey` | `str` |  |
 | `title` | `str` |  |
 | `type` | `str` |  |
 
@@ -495,13 +496,13 @@ Create an instance: `species = client.Species()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | `str` |  |
+| `canonicalName` | `str` |  |
 | `confidence` | `int` |  |
 | `key` | `int` |  |
-| `match_type` | `str` |  |
+| `matchType` | `str` |  |
 | `rank` | `str` |  |
-| `scientific_name` | `str` |  |
-| `usage_key` | `int` |  |
+| `scientificName` | `str` |  |
+| `usageKey` | `int` |  |
 
 #### Example: Load
 
@@ -615,11 +616,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-enumeration = client.Enumeration()
-enumeration.list()
+literature = client.Literature()
+literature.list()
 
-# enumeration.data_get() now returns the enumeration data from the last list
-# enumeration.match_get() returns the last match criteria
+# literature.data_get() now returns the literature data from the last list
+# literature.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

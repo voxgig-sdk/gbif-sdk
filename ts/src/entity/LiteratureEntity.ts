@@ -37,7 +37,7 @@ class LiteratureEntity extends GbifEntityBase<Literature> {
 
 
 
-  async list(this: any, reqmatch?: LiteratureListMatch, ctrl?: Control): Promise<Literature[]> {
+  async list(this: any, reqmatch?: LiteratureListMatch, ctrl?: Control): Promise<LiteratureEntity[]> {
 
     const utility = this._utility
 

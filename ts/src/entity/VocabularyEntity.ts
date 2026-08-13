@@ -37,7 +37,7 @@ class VocabularyEntity extends GbifEntityBase<Vocabulary> {
 
 
 
-  async list(this: any, reqmatch?: VocabularyListMatch, ctrl?: Control): Promise<Vocabulary[]> {
+  async list(this: any, reqmatch?: VocabularyListMatch, ctrl?: Control): Promise<VocabularyEntity[]> {
 
     const utility = this._utility
 

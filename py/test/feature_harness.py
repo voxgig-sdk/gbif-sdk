@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import GbifControl
-from core.error import GbifError
-from core.result import GbifResult
-from core.spec import GbifSpec
+from gbif_sdk.config import make_config
+from gbif_sdk.features import _make_feature
+from gbif_sdk.core.control import GbifControl
+from gbif_sdk.core.error import GbifError
+from gbif_sdk.core.result import GbifResult
+from gbif_sdk.core.spec import GbifSpec
 
 
 # True when this SDK was generated with the named feature.

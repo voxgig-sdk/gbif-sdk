@@ -66,7 +66,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local enumerations, err = client:Enumeration():list()
+local literatures, err = client:Literature():list()
 if err then error(err) end
 ```
 
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Enumeration():list()
+local result, err = client:Literature():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -266,7 +266,7 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `id` |  |
 | `title` |  |
 | `year` |  |
@@ -281,13 +281,13 @@ API path: `/literature/search`
 | --- | --- |
 | `country` |  |
 | `creator` |  |
-| `decimal_latitude` |  |
-| `decimal_longitude` |  |
+| `decimalLatitude` |  |
+| `decimalLongitude` |  |
 | `format` |  |
 | `key` |  |
-| `notification_address` |  |
+| `notificationAddresses` |  |
 | `predicate` |  |
-| `scientific_name` |  |
+| `scientificName` |  |
 | `year` |  |
 
 Operations: Create, List.
@@ -300,7 +300,7 @@ API path: `/occurrence/download/request`
 | --- | --- |
 | `country` |  |
 | `key` |  |
-| `publishing_organization_key` |  |
+| `publishingOrganizationKey` |  |
 | `title` |  |
 | `type` |  |
 
@@ -312,13 +312,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonical_name` |  |
+| `canonicalName` |  |
 | `confidence` |  |
 | `key` |  |
-| `match_type` |  |
+| `matchType` |  |
 | `rank` |  |
-| `scientific_name` |  |
-| `usage_key` |  |
+| `scientificName` |  |
+| `usageKey` |  |
 
 Operations: List, Load.
 
@@ -387,7 +387,7 @@ Create an instance: `local literature = client:Literature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `table` |  |
+| `authors` | `table` |  |
 | `id` | `string` |  |
 | `title` | `string` |  |
 | `year` | `number` |  |
@@ -416,13 +416,13 @@ Create an instance: `local occurrence = client:Occurrence(nil)`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `creator` | `string` |  |
-| `decimal_latitude` | `number` |  |
-| `decimal_longitude` | `number` |  |
+| `decimalLatitude` | `number` |  |
+| `decimalLongitude` | `number` |  |
 | `format` | `string` |  |
 | `key` | `number` |  |
-| `notification_address` | `table` |  |
+| `notificationAddresses` | `table` |  |
 | `predicate` | `table` |  |
-| `scientific_name` | `string` |  |
+| `scientificName` | `string` |  |
 | `year` | `number` |  |
 
 #### Example: List
@@ -455,7 +455,7 @@ Create an instance: `local registry = client:Registry(nil)`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `key` | `string` |  |
-| `publishing_organization_key` | `string` |  |
+| `publishingOrganizationKey` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
 
@@ -481,13 +481,13 @@ Create an instance: `local species = client:Species(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonical_name` | `string` |  |
+| `canonicalName` | `string` |  |
 | `confidence` | `number` |  |
 | `key` | `number` |  |
-| `match_type` | `string` |  |
+| `matchType` | `string` |  |
 | `rank` | `string` |  |
-| `scientific_name` | `string` |  |
-| `usage_key` | `number` |  |
+| `scientificName` | `string` |  |
+| `usageKey` | `number` |  |
 
 #### Example: Load
 
@@ -602,11 +602,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local enumeration = client:Enumeration()
-enumeration:list()
+local literature = client:Literature()
+literature:list()
 
--- enumeration:data_get() now returns the enumeration data from the last list
--- enumeration:match_get() returns the last match criteria
+-- literature:data_get() now returns the literature data from the last list
+-- literature:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

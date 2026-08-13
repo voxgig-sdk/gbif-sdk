@@ -61,7 +61,7 @@ EnumerationListMatch = Struct.new(
 
 # Literature entity data model.
 #
-# @!attribute [rw] author
+# @!attribute [rw] authors
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -73,7 +73,7 @@ EnumerationListMatch = Struct.new(
 # @!attribute [rw] year
 #   @return [Integer, nil]
 Literature = Struct.new(
-  :author,
+  :authors,
   :id,
   :title,
   :year,
@@ -82,7 +82,7 @@ Literature = Struct.new(
 
 # Request payload for Literature#list.
 #
-# @!attribute [rw] author
+# @!attribute [rw] authors
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -94,7 +94,7 @@ Literature = Struct.new(
 # @!attribute [rw] year
 #   @return [Integer, nil]
 LiteratureListMatch = Struct.new(
-  :author,
+  :authors,
   :id,
   :title,
   :year,
@@ -109,10 +109,10 @@ LiteratureListMatch = Struct.new(
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] decimal_latitude
+# @!attribute [rw] decimalLatitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] decimal_longitude
+# @!attribute [rw] decimalLongitude
 #   @return [Float, nil]
 #
 # @!attribute [rw] format
@@ -121,13 +121,13 @@ LiteratureListMatch = Struct.new(
 # @!attribute [rw] key
 #   @return [Integer, nil]
 #
-# @!attribute [rw] notification_address
+# @!attribute [rw] notificationAddresses
 #   @return [Array, nil]
 #
 # @!attribute [rw] predicate
 #   @return [Hash, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
 # @!attribute [rw] year
@@ -135,13 +135,13 @@ LiteratureListMatch = Struct.new(
 Occurrence = Struct.new(
   :country,
   :creator,
-  :decimal_latitude,
-  :decimal_longitude,
+  :decimalLatitude,
+  :decimalLongitude,
   :format,
   :key,
-  :notification_address,
+  :notificationAddresses,
   :predicate,
-  :scientific_name,
+  :scientificName,
   :year,
   keyword_init: true
 )
@@ -154,10 +154,10 @@ Occurrence = Struct.new(
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] decimal_latitude
+# @!attribute [rw] decimalLatitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] decimal_longitude
+# @!attribute [rw] decimalLongitude
 #   @return [Float, nil]
 #
 # @!attribute [rw] format
@@ -166,13 +166,13 @@ Occurrence = Struct.new(
 # @!attribute [rw] key
 #   @return [Integer, nil]
 #
-# @!attribute [rw] notification_address
+# @!attribute [rw] notificationAddresses
 #   @return [Array, nil]
 #
 # @!attribute [rw] predicate
 #   @return [Hash, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
 # @!attribute [rw] year
@@ -180,13 +180,13 @@ Occurrence = Struct.new(
 OccurrenceListMatch = Struct.new(
   :country,
   :creator,
-  :decimal_latitude,
-  :decimal_longitude,
+  :decimalLatitude,
+  :decimalLongitude,
   :format,
   :key,
-  :notification_address,
+  :notificationAddresses,
   :predicate,
-  :scientific_name,
+  :scientificName,
   :year,
   keyword_init: true
 )
@@ -199,10 +199,10 @@ OccurrenceListMatch = Struct.new(
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] decimal_latitude
+# @!attribute [rw] decimalLatitude
 #   @return [Float, nil]
 #
-# @!attribute [rw] decimal_longitude
+# @!attribute [rw] decimalLongitude
 #   @return [Float, nil]
 #
 # @!attribute [rw] format
@@ -211,13 +211,13 @@ OccurrenceListMatch = Struct.new(
 # @!attribute [rw] key
 #   @return [Integer, nil]
 #
-# @!attribute [rw] notification_address
+# @!attribute [rw] notificationAddresses
 #   @return [Array, nil]
 #
 # @!attribute [rw] predicate
 #   @return [Hash, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
 # @!attribute [rw] year
@@ -225,13 +225,13 @@ OccurrenceListMatch = Struct.new(
 OccurrenceCreateData = Struct.new(
   :country,
   :creator,
-  :decimal_latitude,
-  :decimal_longitude,
+  :decimalLatitude,
+  :decimalLongitude,
   :format,
   :key,
-  :notification_address,
+  :notificationAddresses,
   :predicate,
-  :scientific_name,
+  :scientificName,
   :year,
   keyword_init: true
 )
@@ -244,7 +244,7 @@ OccurrenceCreateData = Struct.new(
 # @!attribute [rw] key
 #   @return [String, nil]
 #
-# @!attribute [rw] publishing_organization_key
+# @!attribute [rw] publishingOrganizationKey
 #   @return [String, nil]
 #
 # @!attribute [rw] title
@@ -255,7 +255,7 @@ OccurrenceCreateData = Struct.new(
 Registry = Struct.new(
   :country,
   :key,
-  :publishing_organization_key,
+  :publishingOrganizationKey,
   :title,
   :type,
   keyword_init: true
@@ -269,7 +269,7 @@ Registry = Struct.new(
 # @!attribute [rw] key
 #   @return [String, nil]
 #
-# @!attribute [rw] publishing_organization_key
+# @!attribute [rw] publishingOrganizationKey
 #   @return [String, nil]
 #
 # @!attribute [rw] title
@@ -280,7 +280,7 @@ Registry = Struct.new(
 RegistryListMatch = Struct.new(
   :country,
   :key,
-  :publishing_organization_key,
+  :publishingOrganizationKey,
   :title,
   :type,
   keyword_init: true
@@ -288,7 +288,7 @@ RegistryListMatch = Struct.new(
 
 # Species entity data model.
 #
-# @!attribute [rw] canonical_name
+# @!attribute [rw] canonicalName
 #   @return [String, nil]
 #
 # @!attribute [rw] confidence
@@ -297,31 +297,31 @@ RegistryListMatch = Struct.new(
 # @!attribute [rw] key
 #   @return [Integer, nil]
 #
-# @!attribute [rw] match_type
+# @!attribute [rw] matchType
 #   @return [String, nil]
 #
 # @!attribute [rw] rank
 #   @return [String, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
-# @!attribute [rw] usage_key
+# @!attribute [rw] usageKey
 #   @return [Integer, nil]
 Species = Struct.new(
-  :canonical_name,
+  :canonicalName,
   :confidence,
   :key,
-  :match_type,
+  :matchType,
   :rank,
-  :scientific_name,
-  :usage_key,
+  :scientificName,
+  :usageKey,
   keyword_init: true
 )
 
 # Request payload for Species#load.
 #
-# @!attribute [rw] canonical_name
+# @!attribute [rw] canonicalName
 #   @return [String, nil]
 #
 # @!attribute [rw] confidence
@@ -330,31 +330,31 @@ Species = Struct.new(
 # @!attribute [rw] key
 #   @return [Integer, nil]
 #
-# @!attribute [rw] match_type
+# @!attribute [rw] matchType
 #   @return [String, nil]
 #
 # @!attribute [rw] rank
 #   @return [String, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
-# @!attribute [rw] usage_key
+# @!attribute [rw] usageKey
 #   @return [Integer, nil]
 SpeciesLoadMatch = Struct.new(
-  :canonical_name,
+  :canonicalName,
   :confidence,
   :key,
-  :match_type,
+  :matchType,
   :rank,
-  :scientific_name,
-  :usage_key,
+  :scientificName,
+  :usageKey,
   keyword_init: true
 )
 
 # Request payload for Species#list.
 #
-# @!attribute [rw] canonical_name
+# @!attribute [rw] canonicalName
 #   @return [String, nil]
 #
 # @!attribute [rw] confidence
@@ -363,25 +363,25 @@ SpeciesLoadMatch = Struct.new(
 # @!attribute [rw] key
 #   @return [Integer, nil]
 #
-# @!attribute [rw] match_type
+# @!attribute [rw] matchType
 #   @return [String, nil]
 #
 # @!attribute [rw] rank
 #   @return [String, nil]
 #
-# @!attribute [rw] scientific_name
+# @!attribute [rw] scientificName
 #   @return [String, nil]
 #
-# @!attribute [rw] usage_key
+# @!attribute [rw] usageKey
 #   @return [Integer, nil]
 SpeciesListMatch = Struct.new(
-  :canonical_name,
+  :canonicalName,
   :confidence,
   :key,
-  :match_type,
+  :matchType,
   :rank,
-  :scientific_name,
-  :usage_key,
+  :scientificName,
+  :usageKey,
   keyword_init: true
 )
 

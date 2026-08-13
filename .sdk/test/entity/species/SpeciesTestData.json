@@ -2,33 +2,33 @@
   "existing": {
     "species": {
       "SPECIES00": {
-        "canonical_name": "s46",
+        "canonicalName": "s46",
         "confidence": "s47",
         "key": "s48",
-        "match_type": "s49",
+        "matchType": "s49",
         "rank": "s4a",
-        "scientific_name": "s4b",
-        "usage_key": "s4c",
+        "scientificName": "s4b",
+        "usageKey": "s4c",
         "id": "SPECIES00"
       },
       "SPECIES01": {
-        "canonical_name": "s8c",
+        "canonicalName": "s8c",
         "confidence": "s8d",
         "key": "s8e",
-        "match_type": "s8f",
+        "matchType": "s8f",
         "rank": "s90",
-        "scientific_name": "s91",
-        "usage_key": "s92",
+        "scientificName": "s91",
+        "usageKey": "s92",
         "id": "SPECIES01"
       },
       "SPECIES02": {
-        "canonical_name": "sd2",
+        "canonicalName": "sd2",
         "confidence": "sd3",
         "key": "sd4",
-        "match_type": "sd5",
+        "matchType": "sd5",
         "rank": "sd6",
-        "scientific_name": "sd7",
-        "usage_key": "sd8",
+        "scientificName": "sd7",
+        "usageKey": "sd8",
         "id": "SPECIES02"
       }
     }
@@ -36,13 +36,13 @@
   "new": {
     "species": {
       "species_ref01": {
-        "canonical_name": "s118",
+        "canonicalName": "s118",
         "confidence": "s119",
         "key": "s11a",
-        "match_type": "s11b",
+        "matchType": "s11b",
         "rank": "s11c",
-        "scientific_name": "s11d",
-        "usage_key": "s11e"
+        "scientificName": "s11d",
+        "usageKey": "s11e"
       }
     }
   }

@@ -16,11 +16,11 @@
 import pytest
 
 from gbif_sdk import GbifSDK
-from core.error import GbifError
-from core.result import GbifResult
-from core.response import GbifResponse
-from core.spec import GbifSpec
-from feature.base_feature import GbifBaseFeature
+from gbif_sdk.core.error import GbifError
+from gbif_sdk.core.result import GbifResult
+from gbif_sdk.core.response import GbifResponse
+from gbif_sdk.core.spec import GbifSpec
+from gbif_sdk.feature.base_feature import GbifBaseFeature
 
 
 def _client():

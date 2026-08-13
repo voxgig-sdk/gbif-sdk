@@ -6,7 +6,7 @@ main: kit: entity: literature: {
 
   fields: [
     {
-      name: "author"
+      name: "authors"
       req: false
       type: "`$ARRAY`"
     }
@@ -89,7 +89,7 @@ main: kit: entity: literature: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]
