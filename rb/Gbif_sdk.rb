@@ -28,7 +28,7 @@ class GbifSDK
     utility = GbifUtility.new
     @_utility = utility
 
-    config = GbifConfig.make_config
+    config = GbifConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

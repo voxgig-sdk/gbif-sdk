@@ -15,7 +15,7 @@ require_relative "../Gbif_sdk"
 module GbifFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = GbifConfig.make_config["feature"]
+    f = GbifConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

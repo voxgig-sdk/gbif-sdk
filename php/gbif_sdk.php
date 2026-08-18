@@ -40,7 +40,7 @@ class GbifSDK
         $utility = new GbifUtility();
         $this->_utility = $utility;
 
-        $config = GbifConfig::make_config();
+        $config = GbifConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

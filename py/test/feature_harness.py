@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from gbif_sdk.config import make_config
+from gbif_sdk.config import shared_config
 from gbif_sdk.features import _make_feature
 from gbif_sdk.core.control import GbifControl
 from gbif_sdk.core.error import GbifError
@@ -24,7 +24,7 @@ from gbif_sdk.core.spec import GbifSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
