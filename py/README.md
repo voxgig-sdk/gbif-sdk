@@ -268,10 +268,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `iso2` |  |
-| `name` |  |
-| `title` |  |
-| `url` |  |
+| `iso2` | ISO 3166-1 alpha-2 country code |
+| `name` | License name |
+| `title` | Country or area name |
+| `url` | License URL |
 
 Operations: List, Load.
 
@@ -281,10 +281,10 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `authors` |  |
-| `id` |  |
-| `title` |  |
-| `year` |  |
+| `authors` | List of authors |
+| `id` | Literature identifier |
+| `title` | Publication title |
+| `year` | Publication year |
 
 Operations: List.
 
@@ -294,16 +294,16 @@ API path: `/literature/search`
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
-| `creator` |  |
-| `decimalLatitude` |  |
-| `decimalLongitude` |  |
-| `format` |  |
-| `key` |  |
-| `notificationAddresses` |  |
-| `predicate` |  |
-| `scientificName` |  |
-| `year` |  |
+| `country` | Country code |
+| `creator` | Username of the download creator |
+| `decimalLatitude` | Latitude in decimal degrees |
+| `decimalLongitude` | Longitude in decimal degrees |
+| `format` | Download format |
+| `key` | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | Email addresses for download notification |
+| `predicate` | Download filter predicate |
+| `scientificName` | Scientific name of the species |
+| `year` | Year of occurrence |
 
 Operations: Create, List.
 
@@ -313,11 +313,11 @@ API path: `/occurrence/download/request`
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
-| `key` |  |
-| `publishingOrganizationKey` |  |
-| `title` |  |
-| `type` |  |
+| `country` | Country code |
+| `key` | Organization UUID |
+| `publishingOrganizationKey` | Publishing organization UUID |
+| `title` | Organization name |
+| `type` | Dataset type |
 
 Operations: List.
 
@@ -327,13 +327,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonicalName` |  |
-| `confidence` |  |
-| `key` |  |
-| `matchType` |  |
-| `rank` |  |
-| `scientificName` |  |
-| `usageKey` |  |
+| `canonicalName` | Canonical name |
+| `confidence` | Confidence score of the match |
+| `key` | Unique GBIF species key |
+| `matchType` | Type of match |
+| `rank` | Taxonomic rank |
+| `scientificName` | Matched scientific name |
+| `usageKey` | GBIF taxon key |
 
 Operations: List, Load.
 
@@ -343,8 +343,8 @@ API path: `/species/search`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `name` |  |
+| `description` | Vocabulary description |
+| `name` | Vocabulary name |
 
 Operations: List.
 
@@ -370,10 +370,10 @@ Create an instance: `enumeration = client.Enumeration()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `iso2` | `str` |  |
-| `name` | `str` |  |
-| `title` | `str` |  |
-| `url` | `str` |  |
+| `iso2` | `str` | ISO 3166-1 alpha-2 country code |
+| `name` | `str` | License name |
+| `title` | `str` | Country or area name |
+| `url` | `str` | License URL |
 
 #### Example: Load
 
@@ -402,10 +402,10 @@ Create an instance: `literature = client.Literature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `authors` | `list` |  |
-| `id` | `str` |  |
-| `title` | `str` |  |
-| `year` | `int` |  |
+| `authors` | `list` | List of authors |
+| `id` | `str` | Literature identifier |
+| `title` | `str` | Publication title |
+| `year` | `int` | Publication year |
 
 #### Example: List
 
@@ -429,16 +429,16 @@ Create an instance: `occurrence = client.Occurrence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `str` |  |
-| `creator` | `str` |  |
-| `decimalLatitude` | `float` |  |
-| `decimalLongitude` | `float` |  |
-| `format` | `str` |  |
-| `key` | `int` |  |
-| `notificationAddresses` | `list` |  |
-| `predicate` | `dict` |  |
-| `scientificName` | `str` |  |
-| `year` | `int` |  |
+| `country` | `str` | Country code |
+| `creator` | `str` | Username of the download creator |
+| `decimalLatitude` | `float` | Latitude in decimal degrees |
+| `decimalLongitude` | `float` | Longitude in decimal degrees |
+| `format` | `str` | Download format |
+| `key` | `int` | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | `list` | Email addresses for download notification |
+| `predicate` | `dict` | Download filter predicate |
+| `scientificName` | `str` | Scientific name of the species |
+| `year` | `int` | Year of occurrence |
 
 #### Example: List
 
@@ -468,11 +468,11 @@ Create an instance: `registry = client.Registry()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `str` |  |
-| `key` | `str` |  |
-| `publishingOrganizationKey` | `str` |  |
-| `title` | `str` |  |
-| `type` | `str` |  |
+| `country` | `str` | Country code |
+| `key` | `str` | Organization UUID |
+| `publishingOrganizationKey` | `str` | Publishing organization UUID |
+| `title` | `str` | Organization name |
+| `type` | `str` | Dataset type |
 
 #### Example: List
 
@@ -496,13 +496,13 @@ Create an instance: `species = client.Species()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonicalName` | `str` |  |
-| `confidence` | `int` |  |
-| `key` | `int` |  |
-| `matchType` | `str` |  |
-| `rank` | `str` |  |
-| `scientificName` | `str` |  |
-| `usageKey` | `int` |  |
+| `canonicalName` | `str` | Canonical name |
+| `confidence` | `int` | Confidence score of the match |
+| `key` | `int` | Unique GBIF species key |
+| `matchType` | `str` | Type of match |
+| `rank` | `str` | Taxonomic rank |
+| `scientificName` | `str` | Matched scientific name |
+| `usageKey` | `int` | GBIF taxon key |
 
 #### Example: Load
 
@@ -531,8 +531,8 @@ Create an instance: `vocabulary = client.Vocabulary()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `name` | `str` |  |
+| `description` | `str` | Vocabulary description |
+| `name` | `str` | Vocabulary name |
 
 #### Example: List
 

@@ -1,0 +1,44 @@
+# Entity: vocabulary
+
+main: kit: entity: vocabulary: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      short: "Vocabulary description"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Vocabulary name"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "vocabulary"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/vocabulary"
+          parts: [
+            "vocabulary"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

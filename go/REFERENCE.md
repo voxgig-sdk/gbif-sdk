@@ -119,10 +119,10 @@ fmt.Println(enumeration.GetName()) // "enumeration"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | `string` | No |  |
-| `name` | `string` | No |  |
-| `title` | `string` | No |  |
-| `url` | `string` | No |  |
+| `iso2` | `string` | No | ISO 3166-1 alpha-2 country code |
+| `name` | `string` | No | License name |
+| `title` | `string` | No | Country or area name |
+| `url` | `string` | No | License URL |
 
 ### Operations
 
@@ -185,10 +185,10 @@ fmt.Println(literature.GetName()) // "literature"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `authors` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `title` | `string` | No |  |
-| `year` | `int` | No |  |
+| `authors` | `[]any` | No | List of authors |
+| `id` | `string` | No | Literature identifier |
+| `title` | `string` | No | Publication title |
+| `year` | `int` | No | Publication year |
 
 ### Operations
 
@@ -239,16 +239,16 @@ fmt.Println(occurrence.GetName()) // "occurrence"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No |  |
-| `creator` | `string` | No |  |
-| `decimalLatitude` | `float64` | No |  |
-| `decimalLongitude` | `float64` | No |  |
-| `format` | `string` | No |  |
-| `key` | `int` | No |  |
-| `notificationAddresses` | `[]any` | No |  |
-| `predicate` | `map[string]any` | No |  |
-| `scientificName` | `string` | No |  |
-| `year` | `int` | No |  |
+| `country` | `string` | No | Country code |
+| `creator` | `string` | No | Username of the download creator |
+| `decimalLatitude` | `float64` | No | Latitude in decimal degrees |
+| `decimalLongitude` | `float64` | No | Longitude in decimal degrees |
+| `format` | `string` | No | Download format |
+| `key` | `int` | No | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | `[]any` | No | Email addresses for download notification |
+| `predicate` | `map[string]any` | No | Download filter predicate |
+| `scientificName` | `string` | No | Scientific name of the species |
+| `year` | `int` | No | Year of occurrence |
 
 ### Operations
 
@@ -312,11 +312,11 @@ fmt.Println(registry.GetName()) // "registry"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No |  |
-| `key` | `string` | No |  |
-| `publishingOrganizationKey` | `string` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `country` | `string` | No | Country code |
+| `key` | `string` | No | Organization UUID |
+| `publishingOrganizationKey` | `string` | No | Publishing organization UUID |
+| `title` | `string` | No | Organization name |
+| `type` | `string` | No | Dataset type |
 
 ### Operations
 
@@ -367,13 +367,13 @@ fmt.Println(species.GetName()) // "species"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonicalName` | `string` | No |  |
-| `confidence` | `int` | No |  |
-| `key` | `int` | No |  |
-| `matchType` | `string` | No |  |
-| `rank` | `string` | No |  |
-| `scientificName` | `string` | No |  |
-| `usageKey` | `int` | No |  |
+| `canonicalName` | `string` | No | Canonical name |
+| `confidence` | `int` | No | Confidence score of the match |
+| `key` | `int` | No | Unique GBIF species key |
+| `matchType` | `string` | No | Type of match |
+| `rank` | `string` | No | Taxonomic rank |
+| `scientificName` | `string` | No | Matched scientific name |
+| `usageKey` | `int` | No | GBIF taxon key |
 
 ### Operations
 
@@ -436,8 +436,8 @@ fmt.Println(vocabulary.GetName()) // "vocabulary"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `name` | `string` | No |  |
+| `description` | `string` | No | Vocabulary description |
+| `name` | `string` | No | Vocabulary name |
 
 ### Operations
 

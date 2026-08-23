@@ -1,0 +1,105 @@
+# Entity: literature
+
+main: kit: entity: literature: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "authors"
+      req: false
+      short: "List of authors"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Literature identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Publication title"
+      type: "`$STRING`"
+    }
+    {
+      name: "year"
+      req: false
+      short: "Publication year"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "literature"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "year"
+                orig: "year"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/literature/search"
+          parts: [
+            "literature"
+            "search"
+          ]
+          select: {
+            "$action": "search"
+            exist: [
+              "limit"
+              "offset"
+              "q"
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

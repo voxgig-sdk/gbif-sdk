@@ -177,10 +177,10 @@ const enumeration = client.Enumeration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | `string` | No |  |
-| `name` | `string` | No |  |
-| `title` | `string` | No |  |
-| `url` | `string` | No |  |
+| `iso2` | `string` | No | ISO 3166-1 alpha-2 country code |
+| `name` | `string` | No | License name |
+| `title` | `string` | No | Country or area name |
+| `url` | `string` | No | License URL |
 
 ### Actions
 
@@ -260,10 +260,10 @@ const literature = client.Literature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `authors` | `any[]` | No |  |
-| `id` | `string` | No |  |
-| `title` | `string` | No |  |
-| `year` | `number` | No |  |
+| `authors` | `any[]` | No | List of authors |
+| `id` | `string` | No | Literature identifier |
+| `title` | `string` | No | Publication title |
+| `year` | `number` | No | Publication year |
 
 ### Actions
 
@@ -333,16 +333,16 @@ const occurrence = client.Occurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No |  |
-| `creator` | `string` | No |  |
-| `decimalLatitude` | `number` | No |  |
-| `decimalLongitude` | `number` | No |  |
-| `format` | `string` | No |  |
-| `key` | `number` | No |  |
-| `notificationAddresses` | `any[]` | No |  |
-| `predicate` | `Record<string, any>` | No |  |
-| `scientificName` | `string` | No |  |
-| `year` | `number` | No |  |
+| `country` | `string` | No | Country code |
+| `creator` | `string` | No | Username of the download creator |
+| `decimalLatitude` | `number` | No | Latitude in decimal degrees |
+| `decimalLongitude` | `number` | No | Longitude in decimal degrees |
+| `format` | `string` | No | Download format |
+| `key` | `number` | No | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | `any[]` | No | Email addresses for download notification |
+| `predicate` | `Record<string, any>` | No | Download filter predicate |
+| `scientificName` | `string` | No | Scientific name of the species |
+| `year` | `number` | No | Year of occurrence |
 
 ### Actions
 
@@ -421,11 +421,11 @@ const registry = client.Registry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No |  |
-| `key` | `string` | No |  |
-| `publishingOrganizationKey` | `string` | No |  |
-| `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `country` | `string` | No | Country code |
+| `key` | `string` | No | Organization UUID |
+| `publishingOrganizationKey` | `string` | No | Publishing organization UUID |
+| `title` | `string` | No | Organization name |
+| `type` | `string` | No | Dataset type |
 
 ### Operations
 
@@ -475,13 +475,13 @@ const species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonicalName` | `string` | No |  |
-| `confidence` | `number` | No |  |
-| `key` | `number` | No |  |
-| `matchType` | `string` | No |  |
-| `rank` | `string` | No |  |
-| `scientificName` | `string` | No |  |
-| `usageKey` | `number` | No |  |
+| `canonicalName` | `string` | No | Canonical name |
+| `confidence` | `number` | No | Confidence score of the match |
+| `key` | `number` | No | Unique GBIF species key |
+| `matchType` | `string` | No | Type of match |
+| `rank` | `string` | No | Taxonomic rank |
+| `scientificName` | `string` | No | Matched scientific name |
+| `usageKey` | `number` | No | GBIF taxon key |
 
 ### Actions
 
@@ -560,8 +560,8 @@ const vocabulary = client.Vocabulary()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `name` | `string` | No |  |
+| `description` | `string` | No | Vocabulary description |
+| `name` | `string` | No | Vocabulary name |
 
 ### Operations
 

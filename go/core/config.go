@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Gbif",
+			"slug": "gbif",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -41,18 +44,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "iso2",
+						"short": "ISO 3166-1 alpha-2 country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "License name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Country or area name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "License URL",
 						"type": "`$STRING`",
 					},
 				},
@@ -164,18 +171,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "authors",
+						"short": "List of authors",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Literature identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Publication title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "year",
+						"short": "Publication year",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -248,42 +259,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "creator",
+						"short": "Username of the download creator",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "decimalLatitude",
+						"short": "Latitude in decimal degrees",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "decimalLongitude",
+						"short": "Longitude in decimal degrees",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "format",
+						"short": "Download format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "key",
+						"short": "Unique GBIF identifier for the occurrence",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "notificationAddresses",
+						"short": "Email addresses for download notification",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "predicate",
+						"short": "Download filter predicate",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "scientificName",
+						"short": "Scientific name of the species",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "year",
+						"short": "Year of occurrence",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -380,22 +401,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "key",
+						"short": "Organization UUID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "publishingOrganizationKey",
+						"short": "Publishing organization UUID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Organization name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Dataset type",
 						"type": "`$STRING`",
 					},
 				},
@@ -518,30 +544,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "canonicalName",
+						"short": "Canonical name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "confidence",
+						"short": "Confidence score of the match",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "key",
+						"short": "Unique GBIF species key",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "matchType",
+						"short": "Type of match",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rank",
+						"short": "Taxonomic rank",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "scientificName",
+						"short": "Matched scientific name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "usageKey",
+						"short": "GBIF taxon key",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -650,10 +683,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Vocabulary description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Vocabulary name",
 						"type": "`$STRING`",
 					},
 				},

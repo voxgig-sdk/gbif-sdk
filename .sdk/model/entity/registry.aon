@@ -1,0 +1,159 @@
+# Entity: registry
+
+main: kit: entity: registry: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "country"
+      req: false
+      short: "Country code"
+      type: "`$STRING`"
+    }
+    {
+      name: "key"
+      req: false
+      short: "Organization UUID"
+      type: "`$STRING`"
+    }
+    {
+      name: "publishingOrganizationKey"
+      req: false
+      short: "Publishing organization UUID"
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Organization name"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Dataset type"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "registry"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/organization/search"
+          parts: [
+            "organization"
+            "search"
+          ]
+          select: {
+            exist: [
+              "country"
+              "limit"
+              "offset"
+              "q"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/dataset/search"
+          parts: [
+            "dataset"
+            "search"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "offset"
+              "q"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

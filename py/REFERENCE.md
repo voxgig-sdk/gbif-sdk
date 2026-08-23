@@ -108,10 +108,10 @@ enumeration = client.Enumeration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `iso2` | `str` | No |  |
-| `name` | `str` | No |  |
-| `title` | `str` | No |  |
-| `url` | `str` | No |  |
+| `iso2` | `str` | No | ISO 3166-1 alpha-2 country code |
+| `name` | `str` | No | License name |
+| `title` | `str` | No | Country or area name |
+| `url` | `str` | No | License URL |
 
 ### Operations
 
@@ -172,10 +172,10 @@ literature = client.Literature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `authors` | `list` | No |  |
-| `id` | `str` | No |  |
-| `title` | `str` | No |  |
-| `year` | `int` | No |  |
+| `authors` | `list` | No | List of authors |
+| `id` | `str` | No | Literature identifier |
+| `title` | `str` | No | Publication title |
+| `year` | `int` | No | Publication year |
 
 ### Operations
 
@@ -228,16 +228,16 @@ occurrence = client.Occurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `str` | No |  |
-| `creator` | `str` | No |  |
-| `decimalLatitude` | `float` | No |  |
-| `decimalLongitude` | `float` | No |  |
-| `format` | `str` | No |  |
-| `key` | `int` | No |  |
-| `notificationAddresses` | `list` | No |  |
-| `predicate` | `dict` | No |  |
-| `scientificName` | `str` | No |  |
-| `year` | `int` | No |  |
+| `country` | `str` | No | Country code |
+| `creator` | `str` | No | Username of the download creator |
+| `decimalLatitude` | `float` | No | Latitude in decimal degrees |
+| `decimalLongitude` | `float` | No | Longitude in decimal degrees |
+| `format` | `str` | No | Download format |
+| `key` | `int` | No | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | `list` | No | Email addresses for download notification |
+| `predicate` | `dict` | No | Download filter predicate |
+| `scientificName` | `str` | No | Scientific name of the species |
+| `year` | `int` | No | Year of occurrence |
 
 ### Operations
 
@@ -299,11 +299,11 @@ registry = client.Registry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `str` | No |  |
-| `key` | `str` | No |  |
-| `publishingOrganizationKey` | `str` | No |  |
-| `title` | `str` | No |  |
-| `type` | `str` | No |  |
+| `country` | `str` | No | Country code |
+| `key` | `str` | No | Organization UUID |
+| `publishingOrganizationKey` | `str` | No | Publishing organization UUID |
+| `title` | `str` | No | Organization name |
+| `type` | `str` | No | Dataset type |
 
 ### Operations
 
@@ -356,13 +356,13 @@ species = client.Species()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `canonicalName` | `str` | No |  |
-| `confidence` | `int` | No |  |
-| `key` | `int` | No |  |
-| `matchType` | `str` | No |  |
-| `rank` | `str` | No |  |
-| `scientificName` | `str` | No |  |
-| `usageKey` | `int` | No |  |
+| `canonicalName` | `str` | No | Canonical name |
+| `confidence` | `int` | No | Confidence score of the match |
+| `key` | `int` | No | Unique GBIF species key |
+| `matchType` | `str` | No | Type of match |
+| `rank` | `str` | No | Taxonomic rank |
+| `scientificName` | `str` | No | Matched scientific name |
+| `usageKey` | `int` | No | GBIF taxon key |
 
 ### Operations
 
@@ -423,8 +423,8 @@ vocabulary = client.Vocabulary()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `name` | `str` | No |  |
+| `description` | `str` | No | Vocabulary description |
+| `name` | `str` | No | Vocabulary name |
 
 ### Operations
 

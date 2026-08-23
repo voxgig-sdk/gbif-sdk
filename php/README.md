@@ -272,10 +272,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `iso2` |  |
-| `name` |  |
-| `title` |  |
-| `url` |  |
+| `iso2` | ISO 3166-1 alpha-2 country code |
+| `name` | License name |
+| `title` | Country or area name |
+| `url` | License URL |
 
 Operations: List, Load.
 
@@ -285,10 +285,10 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `authors` |  |
-| `id` |  |
-| `title` |  |
-| `year` |  |
+| `authors` | List of authors |
+| `id` | Literature identifier |
+| `title` | Publication title |
+| `year` | Publication year |
 
 Operations: List.
 
@@ -298,16 +298,16 @@ API path: `/literature/search`
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
-| `creator` |  |
-| `decimalLatitude` |  |
-| `decimalLongitude` |  |
-| `format` |  |
-| `key` |  |
-| `notificationAddresses` |  |
-| `predicate` |  |
-| `scientificName` |  |
-| `year` |  |
+| `country` | Country code |
+| `creator` | Username of the download creator |
+| `decimalLatitude` | Latitude in decimal degrees |
+| `decimalLongitude` | Longitude in decimal degrees |
+| `format` | Download format |
+| `key` | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | Email addresses for download notification |
+| `predicate` | Download filter predicate |
+| `scientificName` | Scientific name of the species |
+| `year` | Year of occurrence |
 
 Operations: Create, List.
 
@@ -317,11 +317,11 @@ API path: `/occurrence/download/request`
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
-| `key` |  |
-| `publishingOrganizationKey` |  |
-| `title` |  |
-| `type` |  |
+| `country` | Country code |
+| `key` | Organization UUID |
+| `publishingOrganizationKey` | Publishing organization UUID |
+| `title` | Organization name |
+| `type` | Dataset type |
 
 Operations: List.
 
@@ -331,13 +331,13 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonicalName` |  |
-| `confidence` |  |
-| `key` |  |
-| `matchType` |  |
-| `rank` |  |
-| `scientificName` |  |
-| `usageKey` |  |
+| `canonicalName` | Canonical name |
+| `confidence` | Confidence score of the match |
+| `key` | Unique GBIF species key |
+| `matchType` | Type of match |
+| `rank` | Taxonomic rank |
+| `scientificName` | Matched scientific name |
+| `usageKey` | GBIF taxon key |
 
 Operations: List, Load.
 
@@ -347,8 +347,8 @@ API path: `/species/search`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `name` |  |
+| `description` | Vocabulary description |
+| `name` | Vocabulary name |
 
 Operations: List.
 
@@ -374,10 +374,10 @@ Create an instance: `$enumeration = $client->Enumeration();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `iso2` | `string` |  |
-| `name` | `string` |  |
-| `title` | `string` |  |
-| `url` | `string` |  |
+| `iso2` | `string` | ISO 3166-1 alpha-2 country code |
+| `name` | `string` | License name |
+| `title` | `string` | Country or area name |
+| `url` | `string` | License URL |
 
 #### Example: Load
 
@@ -408,10 +408,10 @@ Create an instance: `$literature = $client->Literature();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `authors` | `array` |  |
-| `id` | `string` |  |
-| `title` | `string` |  |
-| `year` | `int` |  |
+| `authors` | `array` | List of authors |
+| `id` | `string` | Literature identifier |
+| `title` | `string` | Publication title |
+| `year` | `int` | Publication year |
 
 #### Example: List
 
@@ -436,16 +436,16 @@ Create an instance: `$occurrence = $client->Occurrence();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `string` |  |
-| `creator` | `string` |  |
-| `decimalLatitude` | `float` |  |
-| `decimalLongitude` | `float` |  |
-| `format` | `string` |  |
-| `key` | `int` |  |
-| `notificationAddresses` | `array` |  |
-| `predicate` | `array` |  |
-| `scientificName` | `string` |  |
-| `year` | `int` |  |
+| `country` | `string` | Country code |
+| `creator` | `string` | Username of the download creator |
+| `decimalLatitude` | `float` | Latitude in decimal degrees |
+| `decimalLongitude` | `float` | Longitude in decimal degrees |
+| `format` | `string` | Download format |
+| `key` | `int` | Unique GBIF identifier for the occurrence |
+| `notificationAddresses` | `array` | Email addresses for download notification |
+| `predicate` | `array` | Download filter predicate |
+| `scientificName` | `string` | Scientific name of the species |
+| `year` | `int` | Year of occurrence |
 
 #### Example: List
 
@@ -476,11 +476,11 @@ Create an instance: `$registry = $client->Registry();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `string` |  |
-| `key` | `string` |  |
-| `publishingOrganizationKey` | `string` |  |
-| `title` | `string` |  |
-| `type` | `string` |  |
+| `country` | `string` | Country code |
+| `key` | `string` | Organization UUID |
+| `publishingOrganizationKey` | `string` | Publishing organization UUID |
+| `title` | `string` | Organization name |
+| `type` | `string` | Dataset type |
 
 #### Example: List
 
@@ -505,13 +505,13 @@ Create an instance: `$species = $client->Species();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `canonicalName` | `string` |  |
-| `confidence` | `int` |  |
-| `key` | `int` |  |
-| `matchType` | `string` |  |
-| `rank` | `string` |  |
-| `scientificName` | `string` |  |
-| `usageKey` | `int` |  |
+| `canonicalName` | `string` | Canonical name |
+| `confidence` | `int` | Confidence score of the match |
+| `key` | `int` | Unique GBIF species key |
+| `matchType` | `string` | Type of match |
+| `rank` | `string` | Taxonomic rank |
+| `scientificName` | `string` | Matched scientific name |
+| `usageKey` | `int` | GBIF taxon key |
 
 #### Example: Load
 
@@ -542,8 +542,8 @@ Create an instance: `$vocabulary = $client->Vocabulary();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `name` | `string` |  |
+| `description` | `string` | Vocabulary description |
+| `name` | `string` | Vocabulary name |
 
 #### Example: List
 

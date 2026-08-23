@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Gbif",
+            "slug": "gbif",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -58,18 +61,22 @@ def make_config():
         "fields": [
           {
             "name": "iso2",
+            "short": "ISO 3166-1 alpha-2 country code",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "License name",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "Country or area name",
             "type": "`$STRING`",
           },
           {
             "name": "url",
+            "short": "License URL",
             "type": "`$STRING`",
           },
         ],
@@ -181,18 +188,22 @@ def make_config():
         "fields": [
           {
             "name": "authors",
+            "short": "List of authors",
             "type": "`$ARRAY`",
           },
           {
             "name": "id",
+            "short": "Literature identifier",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "Publication title",
             "type": "`$STRING`",
           },
           {
             "name": "year",
+            "short": "Publication year",
             "type": "`$INTEGER`",
           },
         ],
@@ -265,42 +276,52 @@ def make_config():
         "fields": [
           {
             "name": "country",
+            "short": "Country code",
             "type": "`$STRING`",
           },
           {
             "name": "creator",
+            "short": "Username of the download creator",
             "type": "`$STRING`",
           },
           {
             "name": "decimalLatitude",
+            "short": "Latitude in decimal degrees",
             "type": "`$NUMBER`",
           },
           {
             "name": "decimalLongitude",
+            "short": "Longitude in decimal degrees",
             "type": "`$NUMBER`",
           },
           {
             "name": "format",
+            "short": "Download format",
             "type": "`$STRING`",
           },
           {
             "name": "key",
+            "short": "Unique GBIF identifier for the occurrence",
             "type": "`$INTEGER`",
           },
           {
             "name": "notificationAddresses",
+            "short": "Email addresses for download notification",
             "type": "`$ARRAY`",
           },
           {
             "name": "predicate",
+            "short": "Download filter predicate",
             "type": "`$OBJECT`",
           },
           {
             "name": "scientificName",
+            "short": "Scientific name of the species",
             "type": "`$STRING`",
           },
           {
             "name": "year",
+            "short": "Year of occurrence",
             "type": "`$INTEGER`",
           },
         ],
@@ -397,22 +418,27 @@ def make_config():
         "fields": [
           {
             "name": "country",
+            "short": "Country code",
             "type": "`$STRING`",
           },
           {
             "name": "key",
+            "short": "Organization UUID",
             "type": "`$STRING`",
           },
           {
             "name": "publishingOrganizationKey",
+            "short": "Publishing organization UUID",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "Organization name",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "Dataset type",
             "type": "`$STRING`",
           },
         ],
@@ -535,30 +561,37 @@ def make_config():
         "fields": [
           {
             "name": "canonicalName",
+            "short": "Canonical name",
             "type": "`$STRING`",
           },
           {
             "name": "confidence",
+            "short": "Confidence score of the match",
             "type": "`$INTEGER`",
           },
           {
             "name": "key",
+            "short": "Unique GBIF species key",
             "type": "`$INTEGER`",
           },
           {
             "name": "matchType",
+            "short": "Type of match",
             "type": "`$STRING`",
           },
           {
             "name": "rank",
+            "short": "Taxonomic rank",
             "type": "`$STRING`",
           },
           {
             "name": "scientificName",
+            "short": "Matched scientific name",
             "type": "`$STRING`",
           },
           {
             "name": "usageKey",
+            "short": "GBIF taxon key",
             "type": "`$INTEGER`",
           },
         ],
@@ -667,10 +700,12 @@ def make_config():
         "fields": [
           {
             "name": "description",
+            "short": "Vocabulary description",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Vocabulary name",
             "type": "`$STRING`",
           },
         ],

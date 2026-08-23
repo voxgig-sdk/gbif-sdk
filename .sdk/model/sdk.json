@@ -36,24 +36,28 @@
               "active": true,
               "name": "iso2",
               "req": false,
+              "short": "ISO 3166-1 alpha-2 country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "License name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Country or area name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "License URL",
               "type": "`$STRING`"
             }
           ],
@@ -176,24 +180,28 @@
               "active": true,
               "name": "authors",
               "req": false,
+              "short": "List of authors",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Literature identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Publication title",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "year",
               "req": false,
+              "short": "Publication year",
               "type": "`$INTEGER`"
             }
           ],
@@ -285,60 +293,70 @@
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "creator",
               "req": false,
+              "short": "Username of the download creator",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "decimalLatitude",
               "req": false,
+              "short": "Latitude in decimal degrees",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "decimalLongitude",
               "req": false,
+              "short": "Longitude in decimal degrees",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "format",
               "req": false,
+              "short": "Download format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "key",
               "req": false,
+              "short": "Unique GBIF identifier for the occurrence",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "notificationAddresses",
               "req": false,
+              "short": "Email addresses for download notification",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "predicate",
               "req": false,
+              "short": "Download filter predicate",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "scientificName",
               "req": false,
+              "short": "Scientific name of the species",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "year",
               "req": false,
+              "short": "Year of occurrence",
               "type": "`$INTEGER`"
             }
           ],
@@ -451,30 +469,35 @@
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "key",
               "req": false,
+              "short": "Organization UUID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "publishingOrganizationKey",
               "req": false,
+              "short": "Publishing organization UUID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Organization name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Dataset type",
               "type": "`$STRING`"
             }
           ],
@@ -621,42 +644,49 @@
               "active": true,
               "name": "canonicalName",
               "req": false,
+              "short": "Canonical name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "confidence",
               "req": false,
+              "short": "Confidence score of the match",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "key",
               "req": false,
+              "short": "Unique GBIF species key",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "matchType",
               "req": false,
+              "short": "Type of match",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rank",
               "req": false,
+              "short": "Taxonomic rank",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "scientificName",
               "req": false,
+              "short": "Matched scientific name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "usageKey",
               "req": false,
+              "short": "GBIF taxon key",
               "type": "`$INTEGER`"
             }
           ],
@@ -782,12 +812,14 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Vocabulary description",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Vocabulary name",
               "type": "`$STRING`"
             }
           ],

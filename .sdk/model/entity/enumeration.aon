@@ -1,0 +1,132 @@
+# Entity: enumeration
+
+main: kit: entity: enumeration: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "iso2"
+      req: false
+      short: "ISO 3166-1 alpha-2 country code"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "License name"
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Country or area name"
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      short: "License URL"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "enumeration"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/enumeration/basic"
+          parts: [
+            "enumeration"
+            "basic"
+          ]
+          select: {
+            "$action": "basic"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/enumeration/country"
+          parts: [
+            "enumeration"
+            "country"
+          ]
+          select: {
+            "$action": "country"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/enumeration/license"
+          parts: [
+            "enumeration"
+            "license"
+          ]
+          select: {
+            "$action": "license"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "enumeration"
+                orig: "enumeration"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/enumeration/basic/{enumeration}"
+          parts: [
+            "enumeration"
+            "basic"
+            "{enumeration}"
+          ]
+          select: {
+            exist: [
+              "enumeration"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "basic"
+      ]
+    ]
+  }
+
+
+
+}
