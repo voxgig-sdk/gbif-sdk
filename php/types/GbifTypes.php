@@ -48,9 +48,9 @@ class Literature
 /** Request payload for Literature#list. */
 class LiteratureListMatch
 {
-    public ?array $authors = null;
-    public ?string $id = null;
-    public ?string $title = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public ?string $q = null;
     public ?int $year = null;
 }
 
@@ -73,15 +73,9 @@ class Occurrence
 class OccurrenceListMatch
 {
     public ?string $country = null;
-    public ?string $creator = null;
-    public ?float $decimalLatitude = null;
-    public ?float $decimalLongitude = null;
-    public ?string $format = null;
-    public ?int $key = null;
-    public ?array $notificationAddresses = null;
-    public ?array $predicate = null;
-    public ?string $scientificName = null;
-    public ?int $year = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public ?string $year = null;
 }
 
 /** Request payload for Occurrence#create. */
@@ -113,10 +107,9 @@ class Registry
 class RegistryListMatch
 {
     public ?string $country = null;
-    public ?string $key = null;
-    public ?string $publishingOrganizationKey = null;
-    public ?string $title = null;
-    public ?string $type = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public ?string $q = null;
 }
 
 /** Species entity data model. */
@@ -134,25 +127,16 @@ class Species
 /** Request payload for Species#load. */
 class SpeciesLoadMatch
 {
-    public ?string $canonicalName = null;
-    public ?int $confidence = null;
-    public ?int $key = null;
-    public ?string $matchType = null;
-    public ?string $rank = null;
-    public ?string $scientificName = null;
-    public ?int $usageKey = null;
+    public ?string $kingdom = null;
+    public string $name;
 }
 
 /** Request payload for Species#list. */
 class SpeciesListMatch
 {
-    public ?string $canonicalName = null;
-    public ?int $confidence = null;
-    public ?int $key = null;
-    public ?string $matchType = null;
-    public ?string $rank = null;
-    public ?string $scientificName = null;
-    public ?int $usageKey = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public ?string $q = null;
 }
 
 /** Vocabulary entity data model. */

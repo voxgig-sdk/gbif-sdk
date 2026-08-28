@@ -28,9 +28,9 @@
 ---@field year? number
 
 ---@class LiteratureListMatch
----@field authors? table
----@field id? string
----@field title? string
+---@field limit? number
+---@field offset? number
+---@field q? string
 ---@field year? number
 
 ---@class Occurrence
@@ -47,15 +47,9 @@
 
 ---@class OccurrenceListMatch
 ---@field country? string
----@field creator? string
----@field decimalLatitude? number
----@field decimalLongitude? number
----@field format? string
----@field key? number
----@field notificationAddresses? table
----@field predicate? table
----@field scientificName? string
----@field year? number
+---@field limit? number
+---@field offset? number
+---@field year? string
 
 ---@class OccurrenceCreateData
 ---@field country? string
@@ -78,10 +72,9 @@
 
 ---@class RegistryListMatch
 ---@field country? string
----@field key? string
----@field publishingOrganizationKey? string
----@field title? string
----@field type? string
+---@field limit? number
+---@field offset? number
+---@field q? string
 
 ---@class Species
 ---@field canonicalName? string
@@ -93,22 +86,13 @@
 ---@field usageKey? number
 
 ---@class SpeciesLoadMatch
----@field canonicalName? string
----@field confidence? number
----@field key? number
----@field matchType? string
----@field rank? string
----@field scientificName? string
----@field usageKey? number
+---@field kingdom? string
+---@field name string
 
 ---@class SpeciesListMatch
----@field canonicalName? string
----@field confidence? number
----@field key? number
----@field matchType? string
----@field rank? string
----@field scientificName? string
----@field usageKey? number
+---@field limit? number
+---@field offset? number
+---@field q? string
 
 ---@class Vocabulary
 ---@field description? string

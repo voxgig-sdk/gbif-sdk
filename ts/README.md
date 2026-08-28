@@ -32,6 +32,7 @@ import { GbifSDK } from '@voxgig-sdk/gbif'
 
 const client = new GbifSDK({
   apikey: process.env.GBIF_APIKEY,
+  secret: process.env.GBIF_SECRET,
 })
 ```
 
@@ -148,7 +149,7 @@ console.log(literature)
 You can also use the instance method:
 
 ```ts
-const client = new GbifSDK({ apikey: '...' })
+const client = new GbifSDK({ apikey: '...', secret: '...' })
 const testClient = client.tester()
 ```
 
@@ -185,6 +186,7 @@ const logger = {
 
 const client = new GbifSDK({
   apikey: '...',
+  secret: '...',
   extend: [logger],
 })
 ```
@@ -196,6 +198,7 @@ Create a `.env.local` file at the project root:
 ```
 GBIF_TEST_LIVE=TRUE
 GBIF_APIKEY=<your-key>
+GBIF_SECRET=<your-secret>
 ```
 
 Then run:
@@ -214,6 +217,7 @@ cd ts && npm test
 ```ts
 new GbifSDK(options?: {
   apikey?: string
+  secret?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -225,6 +229,7 @@ new GbifSDK(options?: {
 | Option | Type | Description |
 | --- | --- | --- |
 | `apikey` | `string` | API key for authentication. |
+| `secret` | `string` | API secret for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -556,7 +561,7 @@ Create an instance: `const species = client.Species()`
 #### Example: Load
 
 ```ts
-const species = await client.Species().load()
+const species = await client.Species().load({ name: 'name' })
 ```
 
 #### Example: List
@@ -588,6 +593,29 @@ Create an instance: `const vocabulary = client.Vocabulary()`
 ```ts
 const vocabularys = await client.Vocabulary().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

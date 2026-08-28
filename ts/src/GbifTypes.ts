@@ -37,9 +37,9 @@ export interface Literature {
 }
 
 export interface LiteratureListMatch {
-  authors?: any[]
-  id?: string
-  title?: string
+  limit?: number
+  offset?: number
+  q?: string
   year?: number
 
   // Selects a custom action instead of the plain list:
@@ -64,15 +64,9 @@ export interface Occurrence {
 
 export interface OccurrenceListMatch {
   country?: string
-  creator?: string
-  decimalLatitude?: number
-  decimalLongitude?: number
-  format?: string
-  key?: number
-  notificationAddresses?: any[]
-  predicate?: Record<string, any>
-  scientificName?: string
-  year?: number
+  limit?: number
+  offset?: number
+  year?: string
 
   // Selects a custom action instead of the plain list:
   //   'search'
@@ -104,10 +98,9 @@ export interface Registry {
 
 export interface RegistryListMatch {
   country?: string
-  key?: string
-  publishingOrganizationKey?: string
-  title?: string
-  type?: string
+  limit?: number
+  offset?: number
+  q?: string
 }
 
 export interface Species {
@@ -121,13 +114,8 @@ export interface Species {
 }
 
 export interface SpeciesLoadMatch {
-  canonicalName?: string
-  confidence?: number
-  key?: number
-  matchType?: string
-  rank?: string
-  scientificName?: string
-  usageKey?: number
+  kingdom?: string
+  name: string
 
   // Selects a custom action instead of the plain load:
   //   'match'
@@ -137,13 +125,9 @@ export interface SpeciesLoadMatch {
 }
 
 export interface SpeciesListMatch {
-  canonicalName?: string
-  confidence?: number
-  key?: number
-  matchType?: string
-  rank?: string
-  scientificName?: string
-  usageKey?: number
+  limit?: number
+  offset?: number
+  q?: string
 
   // Selects a custom action instead of the plain list:
   //   'search'

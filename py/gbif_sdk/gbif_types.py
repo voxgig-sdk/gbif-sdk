@@ -42,9 +42,9 @@ class Literature(TypedDict, total=False):
 
 
 class LiteratureListMatch(TypedDict, total=False):
-    authors: list
-    id: str
-    title: str
+    limit: int
+    offset: int
+    q: str
     year: int
 
 
@@ -63,15 +63,9 @@ class Occurrence(TypedDict, total=False):
 
 class OccurrenceListMatch(TypedDict, total=False):
     country: str
-    creator: str
-    decimalLatitude: float
-    decimalLongitude: float
-    format: str
-    key: int
-    notificationAddresses: list
-    predicate: dict
-    scientificName: str
-    year: int
+    limit: int
+    offset: int
+    year: str
 
 
 class OccurrenceCreateData(TypedDict, total=False):
@@ -97,10 +91,9 @@ class Registry(TypedDict, total=False):
 
 class RegistryListMatch(TypedDict, total=False):
     country: str
-    key: str
-    publishingOrganizationKey: str
-    title: str
-    type: str
+    limit: int
+    offset: int
+    q: str
 
 
 class Species(TypedDict, total=False):
@@ -113,24 +106,18 @@ class Species(TypedDict, total=False):
     usageKey: int
 
 
-class SpeciesLoadMatch(TypedDict, total=False):
-    canonicalName: str
-    confidence: int
-    key: int
-    matchType: str
-    rank: str
-    scientificName: str
-    usageKey: int
+class SpeciesLoadMatchRequired(TypedDict):
+    name: str
+
+
+class SpeciesLoadMatch(SpeciesLoadMatchRequired, total=False):
+    kingdom: str
 
 
 class SpeciesListMatch(TypedDict, total=False):
-    canonicalName: str
-    confidence: int
-    key: int
-    matchType: str
-    rank: str
-    scientificName: str
-    usageKey: int
+    limit: int
+    offset: int
+    q: str
 
 
 class Vocabulary(TypedDict, total=False):

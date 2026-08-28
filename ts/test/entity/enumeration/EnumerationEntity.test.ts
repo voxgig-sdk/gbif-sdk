@@ -115,6 +115,7 @@ function basicSetup(extra?: any) {
     'GBIF_TEST_LIVE': 'FALSE',
     'GBIF_TEST_EXPLAIN': 'FALSE',
     'GBIF_APIKEY': 'NONE',
+    'GBIF_SECRET': 'NONE',
   })
 
   idmap = env['GBIF_TEST_ENUMERATION_ENTID']
@@ -125,6 +126,7 @@ function basicSetup(extra?: any) {
     client = new GbifSDK(merge([
       {
         apikey: env.GBIF_APIKEY,
+        secret: env.GBIF_SECRET,
       },
       extra
     ]))

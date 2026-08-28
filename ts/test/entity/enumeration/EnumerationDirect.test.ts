@@ -142,6 +142,7 @@ function directSetup(mockres?: any) {
     'GBIF_TEST_ENUMERATION_ENTID': {},
     'GBIF_TEST_LIVE': 'FALSE',
     'GBIF_APIKEY': 'NONE',
+    'GBIF_SECRET': 'NONE',
   })
 
   const live = 'TRUE' === env.GBIF_TEST_LIVE
@@ -149,6 +150,7 @@ function directSetup(mockres?: any) {
   if (live) {
     const client = new GbifSDK({
       apikey: env.GBIF_APIKEY,
+      secret: env.GBIF_SECRET,
     })
 
     let idmap: any = env['GBIF_TEST_ENUMERATION_ENTID']

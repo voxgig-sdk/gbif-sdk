@@ -43,9 +43,9 @@ type Literature struct {
 
 // LiteratureListMatch is the typed request payload for Literature.ListTyped.
 type LiteratureListMatch struct {
-	Authors *[]any `json:"authors,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	Q *string `json:"q,omitempty"`
 	Year *int `json:"year,omitempty"`
 }
 
@@ -66,15 +66,9 @@ type Occurrence struct {
 // OccurrenceListMatch is the typed request payload for Occurrence.ListTyped.
 type OccurrenceListMatch struct {
 	Country *string `json:"country,omitempty"`
-	Creator *string `json:"creator,omitempty"`
-	DecimalLatitude *float64 `json:"decimalLatitude,omitempty"`
-	DecimalLongitude *float64 `json:"decimalLongitude,omitempty"`
-	Format *string `json:"format,omitempty"`
-	Key *int `json:"key,omitempty"`
-	NotificationAddresses *[]any `json:"notificationAddresses,omitempty"`
-	Predicate *map[string]any `json:"predicate,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	Year *int `json:"year,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	Year *string `json:"year,omitempty"`
 }
 
 // OccurrenceCreateData is the typed request payload for Occurrence.CreateTyped.
@@ -103,10 +97,9 @@ type Registry struct {
 // RegistryListMatch is the typed request payload for Registry.ListTyped.
 type RegistryListMatch struct {
 	Country *string `json:"country,omitempty"`
-	Key *string `json:"key,omitempty"`
-	PublishingOrganizationKey *string `json:"publishingOrganizationKey,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	Q *string `json:"q,omitempty"`
 }
 
 // Species is the typed data model for the species entity.
@@ -122,24 +115,15 @@ type Species struct {
 
 // SpeciesLoadMatch is the typed request payload for Species.LoadTyped.
 type SpeciesLoadMatch struct {
-	CanonicalName *string `json:"canonicalName,omitempty"`
-	Confidence *int `json:"confidence,omitempty"`
-	Key *int `json:"key,omitempty"`
-	MatchType *string `json:"matchType,omitempty"`
-	Rank *string `json:"rank,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	UsageKey *int `json:"usageKey,omitempty"`
+	Kingdom *string `json:"kingdom,omitempty"`
+	Name string `json:"name"`
 }
 
 // SpeciesListMatch is the typed request payload for Species.ListTyped.
 type SpeciesListMatch struct {
-	CanonicalName *string `json:"canonicalName,omitempty"`
-	Confidence *int `json:"confidence,omitempty"`
-	Key *int `json:"key,omitempty"`
-	MatchType *string `json:"matchType,omitempty"`
-	Rank *string `json:"rank,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	UsageKey *int `json:"usageKey,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	Q *string `json:"q,omitempty"`
 }
 
 // Vocabulary is the typed data model for the vocabulary entity.
