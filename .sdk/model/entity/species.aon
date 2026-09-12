@@ -84,9 +84,13 @@ main: kit: entity: species: {
           }
           method: "GET"
           orig: "/species/search"
-          parts: [
-            "species"
-            "search"
+          segments: [
+            {
+              lit: "species"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             "$action": "search"
@@ -127,9 +131,13 @@ main: kit: entity: species: {
           }
           method: "GET"
           orig: "/species/match"
-          parts: [
-            "species"
-            "match"
+          segments: [
+            {
+              lit: "species"
+            }
+            {
+              lit: "match"
+            }
           ]
           select: {
             "$action": "match"

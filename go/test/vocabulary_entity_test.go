@@ -98,7 +98,7 @@ func TestVocabularyEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		vocabularyRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.vocabulary", setup.data)))
+		vocabularyRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.vocabulary")))
 		var vocabularyRef01Data map[string]any
 		if len(vocabularyRef01DataRaw) > 0 {
 			vocabularyRef01Data = core.ToMapAny(vocabularyRef01DataRaw[0][1])
@@ -147,7 +147,7 @@ func vocabularyBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"vocabulary01", "vocabulary02", "vocabulary03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -167,7 +167,7 @@ func vocabularyBasicSetup(extra map[string]any) *entityTestSetup {
 		"GBIF_TEST_VOCABULARY_ENTID": idmap,
 		"GBIF_TEST_LIVE":      "FALSE",
 		"GBIF_TEST_EXPLAIN":   "FALSE",
-		"GBIF_APIKEY":         "NONE",
+		"GBIF_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["GBIF_TEST_VOCABULARY_ENTID"])
@@ -176,11 +176,23 @@ func vocabularyBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["GBIF_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["GBIF_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewGbifSDK(core.ToMapAny(mergedOpts))
 	}

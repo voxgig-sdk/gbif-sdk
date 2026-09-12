@@ -55,6 +55,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "url",
               "req": false,
               "short": "License URL",
@@ -73,9 +74,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/enumeration/basic",
-                  "parts": [
-                    "enumeration",
-                    "basic"
+                  "segments": [
+                    {
+                      "lit": "enumeration"
+                    },
+                    {
+                      "lit": "basic"
+                    }
                   ],
                   "select": {
                     "$action": "basic"
@@ -91,9 +96,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/enumeration/country",
-                  "parts": [
-                    "enumeration",
-                    "country"
+                  "segments": [
+                    {
+                      "lit": "enumeration"
+                    },
+                    {
+                      "lit": "country"
+                    }
                   ],
                   "select": {
                     "$action": "country"
@@ -109,9 +118,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/enumeration/license",
-                  "parts": [
-                    "enumeration",
-                    "license"
+                  "segments": [
+                    {
+                      "lit": "enumeration"
+                    },
+                    {
+                      "lit": "license"
+                    }
                   ],
                   "select": {
                     "$action": "license"
@@ -144,10 +157,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/enumeration/basic/{enumeration}",
-                  "parts": [
-                    "enumeration",
-                    "basic",
-                    "{enumeration}"
+                  "segments": [
+                    {
+                      "lit": "enumeration"
+                    },
+                    {
+                      "lit": "basic"
+                    },
+                    {
+                      "var": "enumeration"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -258,9 +277,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/literature/search",
-                  "parts": [
-                    "literature",
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "literature"
+                    },
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "$action": "search",
@@ -305,6 +328,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "decimalLatitude",
               "req": false,
               "short": "Latitude in decimal degrees",
@@ -312,6 +336,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "decimalLongitude",
               "req": false,
               "short": "Longitude in decimal degrees",
@@ -372,10 +397,16 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/occurrence/download/request",
-                  "parts": [
-                    "occurrence",
-                    "download",
-                    "request"
+                  "segments": [
+                    {
+                      "lit": "occurrence"
+                    },
+                    {
+                      "lit": "download"
+                    },
+                    {
+                      "lit": "request"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -434,9 +465,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/occurrence/search",
-                  "parts": [
-                    "occurrence",
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "occurrence"
+                    },
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "$action": "search",
@@ -474,6 +509,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "key",
               "req": false,
               "short": "Organization UUID",
@@ -481,6 +517,7 @@
             },
             {
               "active": true,
+              "format": "uuid",
               "name": "publishingOrganizationKey",
               "req": false,
               "short": "Publishing organization UUID",
@@ -550,9 +587,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/organization/search",
-                  "parts": [
-                    "organization",
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "organization"
+                    },
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -610,9 +651,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/dataset/search",
-                  "parts": [
-                    "dataset",
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "dataset"
+                    },
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -731,9 +776,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/species/search",
-                  "parts": [
-                    "species",
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "species"
+                    },
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "$action": "search",
@@ -779,9 +828,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/species/match",
-                  "parts": [
-                    "species",
-                    "match"
+                  "segments": [
+                    {
+                      "lit": "species"
+                    },
+                    {
+                      "lit": "match"
+                    }
                   ],
                   "select": {
                     "$action": "match",
@@ -835,8 +888,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/vocabulary",
-                  "parts": [
-                    "vocabulary"
+                  "segments": [
+                    {
+                      "lit": "vocabulary"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -916,8 +971,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1231,6 +1289,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1256,6 +1317,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1307,6 +1372,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1331,6 +1397,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1382,6 +1449,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1406,6 +1474,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1446,6 +1515,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1471,6 +1543,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1505,6 +1580,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1530,6 +1608,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1570,6 +1651,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1595,6 +1679,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1640,6 +1727,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1665,6 +1755,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1682,11 +1775,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1715,6 +1803,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1739,6 +1830,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

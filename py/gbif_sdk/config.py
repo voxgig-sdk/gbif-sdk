@@ -1,6 +1,14 @@
 # Gbif SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -76,6 +84,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "url",
             "short": "License URL",
             "type": "`$STRING`",
@@ -92,9 +101,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enumeration/basic",
-                "parts": [
-                  "enumeration",
-                  "basic",
+                "segments": [
+                  {
+                    "lit": "enumeration",
+                  },
+                  {
+                    "lit": "basic",
+                  },
                 ],
                 "select": {
                   "$action": "basic",
@@ -103,15 +116,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "enumeration",
+                  "basic",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enumeration/country",
-                "parts": [
-                  "enumeration",
-                  "country",
+                "segments": [
+                  {
+                    "lit": "enumeration",
+                  },
+                  {
+                    "lit": "country",
+                  },
                 ],
                 "select": {
                   "$action": "country",
@@ -120,15 +141,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "enumeration",
+                  "country",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enumeration/license",
-                "parts": [
-                  "enumeration",
-                  "license",
+                "segments": [
+                  {
+                    "lit": "enumeration",
+                  },
+                  {
+                    "lit": "license",
+                  },
                 ],
                 "select": {
                   "$action": "license",
@@ -137,6 +166,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "enumeration",
+                  "license",
+                ],
               },
             ],
           },
@@ -159,10 +192,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/enumeration/basic/{enumeration}",
-                "parts": [
-                  "enumeration",
-                  "basic",
-                  "{enumeration}",
+                "segments": [
+                  {
+                    "lit": "enumeration",
+                  },
+                  {
+                    "lit": "basic",
+                  },
+                  {
+                    "var": "enumeration",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -173,6 +212,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "enumeration",
+                  "basic",
+                  "{enumeration}",
+                ],
               },
             ],
           },
@@ -208,6 +252,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "literature",
         "op": {
           "list": {
@@ -248,9 +296,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/literature/search",
-                "parts": [
-                  "literature",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "literature",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "$action": "search",
@@ -265,6 +317,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.results`",
                 },
+                "parts": [
+                  "literature",
+                  "search",
+                ],
               },
             ],
           },
@@ -286,11 +342,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "decimalLatitude",
             "short": "Latitude in decimal degrees",
             "type": "`$NUMBER`",
           },
           {
+            "format": "double",
             "name": "decimalLongitude",
             "short": "Longitude in decimal degrees",
             "type": "`$NUMBER`",
@@ -337,16 +395,27 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/occurrence/download/request",
-                "parts": [
-                  "occurrence",
-                  "download",
-                  "request",
+                "segments": [
+                  {
+                    "lit": "occurrence",
+                  },
+                  {
+                    "lit": "download",
+                  },
+                  {
+                    "lit": "request",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "occurrence",
+                  "download",
+                  "request",
+                ],
               },
             ],
           },
@@ -390,9 +459,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/occurrence/search",
-                "parts": [
-                  "occurrence",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "occurrence",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "$action": "search",
@@ -407,6 +480,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.results`",
                 },
+                "parts": [
+                  "occurrence",
+                  "search",
+                ],
               },
             ],
           },
@@ -423,11 +500,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "key",
             "short": "Organization UUID",
             "type": "`$STRING`",
           },
           {
+            "format": "uuid",
             "name": "publishingOrganizationKey",
             "short": "Publishing organization UUID",
             "type": "`$STRING`",
@@ -483,9 +562,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/organization/search",
-                "parts": [
-                  "organization",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "organization",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -499,6 +582,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.results`",
                 },
+                "parts": [
+                  "organization",
+                  "search",
+                ],
               },
               {
                 "args": {
@@ -534,9 +621,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/dataset/search",
-                "parts": [
-                  "dataset",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "dataset",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -550,6 +641,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.results`",
                 },
+                "parts": [
+                  "dataset",
+                  "search",
+                ],
               },
             ],
           },
@@ -630,9 +725,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/species/search",
-                "parts": [
-                  "species",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "species",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "$action": "search",
@@ -646,6 +745,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.results`",
                 },
+                "parts": [
+                  "species",
+                  "search",
+                ],
               },
             ],
           },
@@ -674,9 +777,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/species/match",
-                "parts": [
-                  "species",
-                  "match",
+                "segments": [
+                  {
+                    "lit": "species",
+                  },
+                  {
+                    "lit": "match",
+                  },
                 ],
                 "select": {
                   "$action": "match",
@@ -689,6 +796,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "species",
+                  "match",
+                ],
               },
             ],
           },
@@ -721,14 +832,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/vocabulary",
-                "parts": [
-                  "vocabulary",
+                "segments": [
+                  {
+                    "lit": "vocabulary",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "vocabulary",
+                ],
               },
             ],
           },

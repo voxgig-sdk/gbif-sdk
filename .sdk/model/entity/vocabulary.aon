@@ -27,8 +27,10 @@ main: kit: entity: vocabulary: {
         {
           method: "GET"
           orig: "/vocabulary"
-          parts: [
-            "vocabulary"
+          segments: [
+            {
+              lit: "vocabulary"
+            }
           ]
           transform: {
             req: "`reqdata`"

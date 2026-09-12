@@ -24,6 +24,7 @@ main: kit: entity: enumeration: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       req: false
       short: "License URL"
@@ -39,9 +40,13 @@ main: kit: entity: enumeration: {
         {
           method: "GET"
           orig: "/enumeration/basic"
-          parts: [
-            "enumeration"
-            "basic"
+          segments: [
+            {
+              lit: "enumeration"
+            }
+            {
+              lit: "basic"
+            }
           ]
           select: {
             "$action": "basic"
@@ -54,9 +59,13 @@ main: kit: entity: enumeration: {
         {
           method: "GET"
           orig: "/enumeration/country"
-          parts: [
-            "enumeration"
-            "country"
+          segments: [
+            {
+              lit: "enumeration"
+            }
+            {
+              lit: "country"
+            }
           ]
           select: {
             "$action": "country"
@@ -69,9 +78,13 @@ main: kit: entity: enumeration: {
         {
           method: "GET"
           orig: "/enumeration/license"
-          parts: [
-            "enumeration"
-            "license"
+          segments: [
+            {
+              lit: "enumeration"
+            }
+            {
+              lit: "license"
+            }
           ]
           select: {
             "$action": "license"
@@ -100,10 +113,16 @@ main: kit: entity: enumeration: {
           }
           method: "GET"
           orig: "/enumeration/basic/{enumeration}"
-          parts: [
-            "enumeration"
-            "basic"
-            "{enumeration}"
+          segments: [
+            {
+              lit: "enumeration"
+            }
+            {
+              lit: "basic"
+            }
+            {
+              var: "enumeration"
+            }
           ]
           select: {
             exist: [

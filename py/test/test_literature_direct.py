@@ -60,15 +60,18 @@ def _literature_direct_setup(mockres):
     env = runner.env_override({
         "GBIF_TEST_LITERATURE_ENTID": {},
         "GBIF_TEST_LIVE": "FALSE",
-        "GBIF_APIKEY": "NONE",
+        "GBIF_APIKEY": "",
     })
 
     live = env.get("GBIF_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("GBIF_APIKEY"),
-        }
+        })
         client = GbifSDK(merged_opts)
         return {
             "client": client,

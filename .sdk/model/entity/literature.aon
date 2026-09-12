@@ -78,9 +78,13 @@ main: kit: entity: literature: {
           }
           method: "GET"
           orig: "/literature/search"
-          parts: [
-            "literature"
-            "search"
+          segments: [
+            {
+              lit: "literature"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             "$action": "search"

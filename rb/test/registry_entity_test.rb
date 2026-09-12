@@ -118,7 +118,7 @@ def registry_basic_setup(extra)
     "GBIF_TEST_REGISTRY_ENTID" => idmap,
     "GBIF_TEST_LIVE" => "FALSE",
     "GBIF_TEST_EXPLAIN" => "FALSE",
-    "GBIF_APIKEY" => "NONE",
+    "GBIF_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -129,6 +129,9 @@ def registry_basic_setup(extra)
 
   if env["GBIF_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["GBIF_APIKEY"],
       },

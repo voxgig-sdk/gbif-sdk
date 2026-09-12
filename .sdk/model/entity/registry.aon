@@ -12,12 +12,14 @@ main: kit: entity: registry: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "key"
       req: false
       short: "Organization UUID"
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "publishingOrganizationKey"
       req: false
       short: "Publishing organization UUID"
@@ -79,9 +81,13 @@ main: kit: entity: registry: {
           }
           method: "GET"
           orig: "/organization/search"
-          parts: [
-            "organization"
-            "search"
+          segments: [
+            {
+              lit: "organization"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -133,9 +139,13 @@ main: kit: entity: registry: {
           }
           method: "GET"
           orig: "/dataset/search"
-          parts: [
-            "dataset"
-            "search"
+          segments: [
+            {
+              lit: "dataset"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [

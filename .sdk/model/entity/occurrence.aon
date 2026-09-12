@@ -18,12 +18,14 @@ main: kit: entity: occurrence: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "decimalLatitude"
       req: false
       short: "Latitude in decimal degrees"
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "decimalLongitude"
       req: false
       short: "Longitude in decimal degrees"
@@ -75,10 +77,16 @@ main: kit: entity: occurrence: {
         {
           method: "POST"
           orig: "/occurrence/download/request"
-          parts: [
-            "occurrence"
-            "download"
-            "request"
+          segments: [
+            {
+              lit: "occurrence"
+            }
+            {
+              lit: "download"
+            }
+            {
+              lit: "request"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -129,9 +137,13 @@ main: kit: entity: occurrence: {
           }
           method: "GET"
           orig: "/occurrence/search"
-          parts: [
-            "occurrence"
-            "search"
+          segments: [
+            {
+              lit: "occurrence"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             "$action": "search"

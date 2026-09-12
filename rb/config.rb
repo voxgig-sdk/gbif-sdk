@@ -67,6 +67,7 @@ module GbifConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "short" => "License URL",
               "type" => "`$STRING`",
@@ -83,9 +84,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/basic",
-                  "parts" => [
-                    "enumeration",
-                    "basic",
+                  "segments" => [
+                    {
+                      "lit" => "enumeration",
+                    },
+                    {
+                      "lit" => "basic",
+                    },
                   ],
                   "select" => {
                     "$action" => "basic",
@@ -94,15 +99,23 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "enumeration",
+                    "basic",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/country",
-                  "parts" => [
-                    "enumeration",
-                    "country",
+                  "segments" => [
+                    {
+                      "lit" => "enumeration",
+                    },
+                    {
+                      "lit" => "country",
+                    },
                   ],
                   "select" => {
                     "$action" => "country",
@@ -111,15 +124,23 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "enumeration",
+                    "country",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/license",
-                  "parts" => [
-                    "enumeration",
-                    "license",
+                  "segments" => [
+                    {
+                      "lit" => "enumeration",
+                    },
+                    {
+                      "lit" => "license",
+                    },
                   ],
                   "select" => {
                     "$action" => "license",
@@ -128,6 +149,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "enumeration",
+                    "license",
+                  ],
                 },
               ],
             },
@@ -150,10 +175,16 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enumeration/basic/{enumeration}",
-                  "parts" => [
-                    "enumeration",
-                    "basic",
-                    "{enumeration}",
+                  "segments" => [
+                    {
+                      "lit" => "enumeration",
+                    },
+                    {
+                      "lit" => "basic",
+                    },
+                    {
+                      "var" => "enumeration",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -164,6 +195,11 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "enumeration",
+                    "basic",
+                    "{enumeration}",
+                  ],
                 },
               ],
             },
@@ -199,6 +235,10 @@ module GbifConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "literature",
           "op" => {
             "list" => {
@@ -239,9 +279,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/literature/search",
-                  "parts" => [
-                    "literature",
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "literature",
+                    },
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "$action" => "search",
@@ -256,6 +300,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "literature",
+                    "search",
+                  ],
                 },
               ],
             },
@@ -277,11 +325,13 @@ module GbifConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "double",
               "name" => "decimalLatitude",
               "short" => "Latitude in decimal degrees",
               "type" => "`$NUMBER`",
             },
             {
+              "format" => "double",
               "name" => "decimalLongitude",
               "short" => "Longitude in decimal degrees",
               "type" => "`$NUMBER`",
@@ -328,16 +378,27 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/occurrence/download/request",
-                  "parts" => [
-                    "occurrence",
-                    "download",
-                    "request",
+                  "segments" => [
+                    {
+                      "lit" => "occurrence",
+                    },
+                    {
+                      "lit" => "download",
+                    },
+                    {
+                      "lit" => "request",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "occurrence",
+                    "download",
+                    "request",
+                  ],
                 },
               ],
             },
@@ -381,9 +442,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/occurrence/search",
-                  "parts" => [
-                    "occurrence",
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "occurrence",
+                    },
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "$action" => "search",
@@ -398,6 +463,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "occurrence",
+                    "search",
+                  ],
                 },
               ],
             },
@@ -414,11 +483,13 @@ module GbifConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "key",
               "short" => "Organization UUID",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uuid",
               "name" => "publishingOrganizationKey",
               "short" => "Publishing organization UUID",
               "type" => "`$STRING`",
@@ -474,9 +545,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/organization/search",
-                  "parts" => [
-                    "organization",
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "organization",
+                    },
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -490,6 +565,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "organization",
+                    "search",
+                  ],
                 },
                 {
                   "args" => {
@@ -525,9 +604,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dataset/search",
-                  "parts" => [
-                    "dataset",
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "dataset",
+                    },
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -541,6 +624,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "dataset",
+                    "search",
+                  ],
                 },
               ],
             },
@@ -621,9 +708,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/species/search",
-                  "parts" => [
-                    "species",
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "species",
+                    },
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "$action" => "search",
@@ -637,6 +728,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "species",
+                    "search",
+                  ],
                 },
               ],
             },
@@ -665,9 +760,13 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/species/match",
-                  "parts" => [
-                    "species",
-                    "match",
+                  "segments" => [
+                    {
+                      "lit" => "species",
+                    },
+                    {
+                      "lit" => "match",
+                    },
                   ],
                   "select" => {
                     "$action" => "match",
@@ -680,6 +779,10 @@ module GbifConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "species",
+                    "match",
+                  ],
                 },
               ],
             },
@@ -712,14 +815,19 @@ module GbifConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/vocabulary",
-                  "parts" => [
-                    "vocabulary",
+                  "segments" => [
+                    {
+                      "lit" => "vocabulary",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "vocabulary",
+                  ],
                 },
               ],
             },
