@@ -105,7 +105,7 @@ local results, err = client:Literature():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
+| TypeScript | `@voxgig-sdk/gbif-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
 | Python | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
 | PHP | `voxgig-sdk/gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/gbif-sdk/go` | `go get github.com/voxgig-sdk/gbif-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Literature():list()
 ### TypeScript
 
 ```ts
-import { GbifSDK } from '@voxgig-sdk/gbif'
+import { GbifSDK } from '@voxgig-sdk/gbif-sdk'
 
 const client = new GbifSDK({
   apikey: process.env.GBIF_APIKEY,

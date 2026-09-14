@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GbifSDK } from '@voxgig-sdk/gbif'
+import { GbifSDK } from '@voxgig-sdk/gbif-sdk'
 
 const client = new GbifSDK({
   apikey: process.env.GBIF_APIKEY,
@@ -677,7 +677,7 @@ gbif/
 Import the SDK from the package root:
 
 ```ts
-import { GbifSDK } from '@voxgig-sdk/gbif'
+import { GbifSDK } from '@voxgig-sdk/gbif-sdk'
 ```
 
 ### Entity state
