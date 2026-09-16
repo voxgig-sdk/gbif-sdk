@@ -25,6 +25,12 @@ main: kit: entity: vocabulary: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /vocabulary"
+            json: "{\"operationId\":\"listVocabularies\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Vocabulary description\",\"type\":\"string\"},\"name\":{\"description\":\"Vocabulary name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"List of available vocabularies\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/vocabulary"
           segments: [

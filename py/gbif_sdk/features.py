@@ -1,12 +1,18 @@
 # Gbif SDK feature factory
 
 from gbif_sdk.feature.base_feature import GbifBaseFeature
+from gbif_sdk.feature.ratelimit_feature import GbifRatelimitFeature
+from gbif_sdk.feature.retry_feature import GbifRetryFeature
 from gbif_sdk.feature.test_feature import GbifTestFeature
+from gbif_sdk.feature.timeout_feature import GbifTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: GbifBaseFeature(),
+    "ratelimit": lambda: GbifRatelimitFeature(),
+    "retry": lambda: GbifRetryFeature(),
     "test": lambda: GbifTestFeature(),
+    "timeout": lambda: GbifTimeoutFeature(),
 }
 
 

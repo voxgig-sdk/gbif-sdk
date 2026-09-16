@@ -34,5 +34,216 @@
         "type": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /organization/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchOrganizations",
+        "parameters": [
+          {
+            "description": "Search query string",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Country code filter",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "country": {
+                            "description": "Country code",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "Organization UUID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Organization name",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with organization search results"
+          }
+        },
+        "securitySchemes": {
+          "basicAuth": {
+            "description": "HTTP Basic Authentication using GBIF user credentials",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /dataset/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchDatasets",
+        "parameters": [
+          {
+            "description": "Search query string",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Dataset type filter",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "key": {
+                            "description": "Dataset UUID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "publishingOrganizationKey": {
+                            "description": "Publishing organization UUID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Dataset title",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "Dataset type",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with dataset search results"
+          }
+        },
+        "securitySchemes": {
+          "basicAuth": {
+            "description": "HTTP Basic Authentication using GBIF user credentials",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

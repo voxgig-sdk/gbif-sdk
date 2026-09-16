@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.GBIF_TEST_LIVE;
         for (const op of ['list', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'species.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'species.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set GBIF_TEST_SPECIES_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "canonicalName", "req": false, "short": "Canonical name", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "confidence", "req": false, "short": "Confidence score of the match", "type": "`$INTEGER`", "index$": 1 }, { "active": true, "name": "key", "req": false, "short": "Unique GBIF species key", "type": "`$INTEGER`", "index$": 2 }, { "active": true, "name": "matchType", "req": false, "short": "Type of match", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "rank", "req": false, "short": "Taxonomic rank", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "scientificName", "req": false, "short": "Matched scientific name", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "usageKey", "req": false, "short": "GBIF taxon key", "type": "`$INTEGER`", "index$": 6 }], "name": "species", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": 20, "kind": "query", "name": "limit", "orig": "limit", "reqd": false, "type": "`$INTEGER`", "index$": 0 }, { "active": true, "example": 0, "kind": "query", "name": "offset", "orig": "offset", "reqd": false, "type": "`$INTEGER`", "index$": 1 }, { "active": true, "kind": "query", "name": "q", "orig": "q", "reqd": false, "type": "`$STRING`", "index$": 2 }] }, "contract": { "id": "GET /species/search", "json": "{\"operationId\":\"searchSpecies\",\"parameters\":[{\"description\":\"Search query string\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Offset for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"endOfRecords\":{\"type\":\"boolean\"},\"limit\":{\"type\":\"integer\"},\"offset\":{\"type\":\"integer\"},\"results\":{\"items\":{\"properties\":{\"canonicalName\":{\"description\":\"Canonical name\",\"type\":\"string\"},\"key\":{\"description\":\"Unique GBIF species key\",\"type\":\"integer\"},\"rank\":{\"description\":\"Taxonomic rank\",\"type\":\"string\"},\"scientificName\":{\"description\":\"Scientific name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with species search results\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/species/search", "segments": [{ "lit": "species" }, { "lit": "search" }], "select": { "$action": "search", "exist": ["limit", "offset", "q"] }, "transform": { "req": "`reqdata`", "res": "`body.results`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "query": [{ "active": true, "kind": "query", "name": "kingdom", "orig": "kingdom", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "kind": "query", "name": "name", "orig": "name", "reqd": true, "type": "`$STRING`", "index$": 1 }] }, "contract": { "id": "GET /species/match", "json": "{\"operationId\":\"matchSpecies\",\"parameters\":[{\"description\":\"Scientific name to match\",\"in\":\"query\",\"name\":\"name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Kingdom to improve matching accuracy\",\"in\":\"query\",\"name\":\"kingdom\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"confidence\":{\"description\":\"Confidence score of the match\",\"type\":\"integer\"},\"matchType\":{\"description\":\"Type of match\",\"type\":\"string\"},\"scientificName\":{\"description\":\"Matched scientific name\",\"type\":\"string\"},\"usageKey\":{\"description\":\"GBIF taxon key\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful species match\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/species/match", "segments": [{ "lit": "species" }, { "lit": "match" }], "select": { "$action": "match", "exist": ["kingdom", "name"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "species", "name__orig": "species", "Name": "Species", "name_": "species", "name-": "species", "NAME": "SPECIES", "index$": 4 }, { "active": true, "entity": "species", "key$": "BasicSpeciesFlow", "kind": "basic", "name": "BasicSpeciesFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "species_ref01" } }], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "species_ref01", "srcdatavar": "species_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-species_ref01" } }], "index$": 1 }] }, 'Species');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -105,12 +103,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['GBIF_TEST_SPECIES_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'GBIF_TEST_SPECIES_ENTID': idmap,
         'GBIF_TEST_LIVE': 'FALSE',
@@ -120,7 +112,13 @@ function basicSetup(extra) {
     });
     idmap = env['GBIF_TEST_SPECIES_ENTID'];
     const live = 'TRUE' === env.GBIF_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['GBIF_TEST_SPECIES_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.GbifSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -134,7 +132,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -146,7 +145,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.GBIF_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

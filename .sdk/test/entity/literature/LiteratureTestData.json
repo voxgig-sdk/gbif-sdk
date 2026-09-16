@@ -5,19 +5,19 @@
         "authors": [],
         "id": "LITERATURE00",
         "title": "s2a",
-        "year": "s2b"
+        "year": 43
       },
       "LITERATURE01": {
         "authors": [],
         "id": "LITERATURE01",
         "title": "s52",
-        "year": "s53"
+        "year": 83
       },
       "LITERATURE02": {
         "authors": [],
         "id": "LITERATURE02",
         "title": "s7a",
-        "year": "s7b"
+        "year": 123
       }
     }
   },
@@ -26,7 +26,117 @@
       "literature_ref01": {
         "authors": [],
         "title": "sa2",
-        "year": "sa3"
+        "year": 163
+      }
+    }
+  },
+  "requests": {
+    "GET /literature/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchLiterature",
+        "parameters": [
+          {
+            "description": "Search query string",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Publication year",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of results per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "authors": {
+                            "description": "List of authors",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "description": "Literature identifier",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Publication title",
+                            "type": "string"
+                          },
+                          "year": {
+                            "description": "Publication year",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with literature search results"
+          }
+        },
+        "securitySchemes": {
+          "basicAuth": {
+            "description": "HTTP Basic Authentication using GBIF user credentials",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -3,32 +3,32 @@
     "species": {
       "SPECIES00": {
         "canonicalName": "s46",
-        "confidence": "s47",
-        "key": "s48",
+        "confidence": 71,
+        "key": 72,
         "matchType": "s49",
         "rank": "s4a",
         "scientificName": "s4b",
-        "usageKey": "s4c",
+        "usageKey": 76,
         "id": "SPECIES00"
       },
       "SPECIES01": {
         "canonicalName": "s8c",
-        "confidence": "s8d",
-        "key": "s8e",
+        "confidence": 141,
+        "key": 142,
         "matchType": "s8f",
         "rank": "s90",
         "scientificName": "s91",
-        "usageKey": "s92",
+        "usageKey": 146,
         "id": "SPECIES01"
       },
       "SPECIES02": {
         "canonicalName": "sd2",
-        "confidence": "sd3",
-        "key": "sd4",
+        "confidence": 211,
+        "key": 212,
         "matchType": "sd5",
         "rank": "sd6",
         "scientificName": "sd7",
-        "usageKey": "sd8",
+        "usageKey": 216,
         "id": "SPECIES02"
       }
     }
@@ -37,12 +37,172 @@
     "species": {
       "species_ref01": {
         "canonicalName": "s118",
-        "confidence": "s119",
-        "key": "s11a",
+        "confidence": 281,
+        "key": 282,
         "matchType": "s11b",
         "rank": "s11c",
         "scientificName": "s11d",
-        "usageKey": "s11e"
+        "usageKey": 286
+      }
+    }
+  },
+  "requests": {
+    "GET /species/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchSpecies",
+        "parameters": [
+          {
+            "description": "Search query string",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of results per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "endOfRecords": {
+                      "type": "boolean"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "canonicalName": {
+                            "description": "Canonical name",
+                            "type": "string"
+                          },
+                          "key": {
+                            "description": "Unique GBIF species key",
+                            "type": "integer"
+                          },
+                          "rank": {
+                            "description": "Taxonomic rank",
+                            "type": "string"
+                          },
+                          "scientificName": {
+                            "description": "Scientific name",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with species search results"
+          }
+        },
+        "securitySchemes": {
+          "basicAuth": {
+            "description": "HTTP Basic Authentication using GBIF user credentials",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /species/match": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "matchSpecies",
+        "parameters": [
+          {
+            "description": "Scientific name to match",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Kingdom to improve matching accuracy",
+            "in": "query",
+            "name": "kingdom",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "confidence": {
+                      "description": "Confidence score of the match",
+                      "type": "integer"
+                    },
+                    "matchType": {
+                      "description": "Type of match",
+                      "type": "string"
+                    },
+                    "scientificName": {
+                      "description": "Matched scientific name",
+                      "type": "string"
+                    },
+                    "usageKey": {
+                      "description": "GBIF taxon key",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful species match"
+          }
+        },
+        "securitySchemes": {
+          "basicAuth": {
+            "description": "HTTP Basic Authentication using GBIF user credentials",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

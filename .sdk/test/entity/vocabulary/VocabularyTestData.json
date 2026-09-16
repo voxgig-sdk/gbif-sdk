@@ -22,5 +22,48 @@
         "name": "s51"
       }
     }
+  },
+  "requests": {
+    "GET /vocabulary": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listVocabularies",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "description": {
+                        "description": "Vocabulary description",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Vocabulary name",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "List of available vocabularies"
+          }
+        },
+        "securitySchemes": {
+          "basicAuth": {
+            "description": "HTTP Basic Authentication using GBIF user credentials",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

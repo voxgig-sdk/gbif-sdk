@@ -38,6 +38,12 @@ main: kit: entity: enumeration: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /enumeration/basic"
+            json: "{\"operationId\":\"listEnumerations\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"List of available enumerations\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enumeration/basic"
           segments: [
@@ -57,6 +63,12 @@ main: kit: entity: enumeration: {
           }
         }
         {
+          contract: {
+            id: "GET /enumeration/country"
+            json: "{\"operationId\":\"listCountries\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"iso2\":{\"description\":\"ISO 3166-1 alpha-2 country code\",\"type\":\"string\"},\"title\":{\"description\":\"Country or area name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"List of countries and areas\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enumeration/country"
           segments: [
@@ -76,6 +88,12 @@ main: kit: entity: enumeration: {
           }
         }
         {
+          contract: {
+            id: "GET /enumeration/license"
+            json: "{\"operationId\":\"listLicenses\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"name\":{\"description\":\"License name\",\"type\":\"string\"},\"url\":{\"description\":\"License URL\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"List of supported licenses\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enumeration/license"
           segments: [
@@ -110,6 +128,12 @@ main: kit: entity: enumeration: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /enumeration/basic/{enumeration}"
+            json: "{\"operationId\":\"getEnumerationValues\",\"parameters\":[{\"description\":\"Name of the enumeration\",\"in\":\"path\",\"name\":\"enumeration\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"List of enumeration values\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"status\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Enumeration not found\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/enumeration/basic/{enumeration}"

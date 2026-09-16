@@ -76,6 +76,12 @@ main: kit: entity: literature: {
               }
             ]
           }
+          contract: {
+            id: "GET /literature/search"
+            json: "{\"operationId\":\"searchLiterature\",\"parameters\":[{\"description\":\"Search query string\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Publication year\",\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Number of results per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Offset for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"count\":{\"type\":\"integer\"},\"endOfRecords\":{\"type\":\"boolean\"},\"limit\":{\"type\":\"integer\"},\"offset\":{\"type\":\"integer\"},\"results\":{\"items\":{\"properties\":{\"authors\":{\"description\":\"List of authors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Literature identifier\",\"type\":\"string\"},\"title\":{\"description\":\"Publication title\",\"type\":\"string\"},\"year\":{\"description\":\"Publication year\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with literature search results\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/literature/search"
           segments: [

@@ -82,6 +82,12 @@ main: kit: entity: species: {
               }
             ]
           }
+          contract: {
+            id: "GET /species/search"
+            json: "{\"operationId\":\"searchSpecies\",\"parameters\":[{\"description\":\"Search query string\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Offset for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"endOfRecords\":{\"type\":\"boolean\"},\"limit\":{\"type\":\"integer\"},\"offset\":{\"type\":\"integer\"},\"results\":{\"items\":{\"properties\":{\"canonicalName\":{\"description\":\"Canonical name\",\"type\":\"string\"},\"key\":{\"description\":\"Unique GBIF species key\",\"type\":\"integer\"},\"rank\":{\"description\":\"Taxonomic rank\",\"type\":\"string\"},\"scientificName\":{\"description\":\"Scientific name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with species search results\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/species/search"
           segments: [
@@ -128,6 +134,12 @@ main: kit: entity: species: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /species/match"
+            json: "{\"operationId\":\"matchSpecies\",\"parameters\":[{\"description\":\"Scientific name to match\",\"in\":\"query\",\"name\":\"name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Kingdom to improve matching accuracy\",\"in\":\"query\",\"name\":\"kingdom\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"confidence\":{\"description\":\"Confidence score of the match\",\"type\":\"integer\"},\"matchType\":{\"description\":\"Type of match\",\"type\":\"string\"},\"scientificName\":{\"description\":\"Matched scientific name\",\"type\":\"string\"},\"usageKey\":{\"description\":\"GBIF taxon key\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful species match\"}},\"securitySchemes\":{\"basicAuth\":{\"description\":\"HTTP Basic Authentication using GBIF user credentials\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/species/match"
