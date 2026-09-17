@@ -2,48 +2,19 @@
   "existing": {
     "species": {
       "SPECIES00": {
-        "canonicalName": "s46",
-        "confidence": 71,
-        "key": 72,
-        "matchType": "s49",
-        "rank": "s4a",
-        "scientificName": "s4b",
-        "usageKey": 76,
         "id": "SPECIES00"
       },
       "SPECIES01": {
-        "canonicalName": "s8c",
-        "confidence": 141,
-        "key": 142,
-        "matchType": "s8f",
-        "rank": "s90",
-        "scientificName": "s91",
-        "usageKey": 146,
         "id": "SPECIES01"
       },
       "SPECIES02": {
-        "canonicalName": "sd2",
-        "confidence": 211,
-        "key": 212,
-        "matchType": "sd5",
-        "rank": "sd6",
-        "scientificName": "sd7",
-        "usageKey": 216,
         "id": "SPECIES02"
       }
     }
   },
   "new": {
     "species": {
-      "species_ref01": {
-        "canonicalName": "s118",
-        "confidence": 281,
-        "key": 282,
-        "matchType": "s11b",
-        "rank": "s11c",
-        "scientificName": "s11d",
-        "usageKey": 286
-      }
+      "species_ref01": {}
     }
   },
   "requests": {

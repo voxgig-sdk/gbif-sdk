@@ -118,29 +118,7 @@ class GbifConfig
             ],
             "entity" => [
         'enumeration' => [
-          'fields' => [
-            [
-              'name' => 'iso2',
-              'short' => 'ISO 3166-1 alpha-2 country code',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'name',
-              'short' => 'License name',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'title',
-              'short' => 'Country or area name',
-              'type' => '`$STRING`',
-            ],
-            [
-              'format' => 'uri',
-              'name' => 'url',
-              'short' => 'License URL',
-              'type' => '`$STRING`',
-            ],
-          ],
+          'fields' => [],
           'name' => 'enumeration',
           'op' => [
             'list' => [
@@ -281,32 +259,7 @@ class GbifConfig
           ],
         ],
         'literature' => [
-          'fields' => [
-            [
-              'name' => 'authors',
-              'short' => 'List of authors',
-              'type' => '`$ARRAY`',
-            ],
-            [
-              'name' => 'id',
-              'short' => 'Literature identifier',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'title',
-              'short' => 'Publication title',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'year',
-              'short' => 'Publication year',
-              'type' => '`$INTEGER`',
-            ],
-          ],
-          'id' => [
-            'field' => 'id',
-            'name' => 'id',
-          ],
+          'fields' => [],
           'name' => 'literature',
           'op' => [
             'list' => [
@@ -383,36 +336,14 @@ class GbifConfig
         'occurrence' => [
           'fields' => [
             [
-              'name' => 'country',
-              'short' => 'Country code',
-              'type' => '`$STRING`',
-            ],
-            [
               'name' => 'creator',
               'short' => 'Username of the download creator',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'double',
-              'name' => 'decimalLatitude',
-              'short' => 'Latitude in decimal degrees',
-              'type' => '`$NUMBER`',
-            ],
-            [
-              'format' => 'double',
-              'name' => 'decimalLongitude',
-              'short' => 'Longitude in decimal degrees',
-              'type' => '`$NUMBER`',
-            ],
-            [
               'name' => 'format',
               'short' => 'Download format',
               'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'key',
-              'short' => 'Unique GBIF identifier for the occurrence',
-              'type' => '`$INTEGER`',
             ],
             [
               'name' => 'notificationAddresses',
@@ -423,16 +354,6 @@ class GbifConfig
               'name' => 'predicate',
               'short' => 'Download filter predicate',
               'type' => '`$OBJECT`',
-            ],
-            [
-              'name' => 'scientificName',
-              'short' => 'Scientific name of the species',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'year',
-              'short' => 'Year of occurrence',
-              'type' => '`$INTEGER`',
             ],
           ],
           'name' => 'occurrence',
@@ -705,43 +626,7 @@ class GbifConfig
           ],
         ],
         'species' => [
-          'fields' => [
-            [
-              'name' => 'canonicalName',
-              'short' => 'Canonical name',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'confidence',
-              'short' => 'Confidence score of the match',
-              'type' => '`$INTEGER`',
-            ],
-            [
-              'name' => 'key',
-              'short' => 'Unique GBIF species key',
-              'type' => '`$INTEGER`',
-            ],
-            [
-              'name' => 'matchType',
-              'short' => 'Type of match',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'rank',
-              'short' => 'Taxonomic rank',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'scientificName',
-              'short' => 'Matched scientific name',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'usageKey',
-              'short' => 'GBIF taxon key',
-              'type' => '`$INTEGER`',
-            ],
-          ],
+          'fields' => [],
           'name' => 'species',
           'op' => [
             'list' => [

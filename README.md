@@ -105,12 +105,12 @@ local results, err = client:Literature():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/gbif-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
-| Python | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
-| PHP | `voxgig-sdk/gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
+| TypeScript | `@voxgig-sdk/gbif-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/tags) |
+| Python | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/tags) |
+| PHP | `voxgig-sdk/gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/gbif-sdk/go` | `go get github.com/voxgig-sdk/gbif-sdk/go@latest` |
-| Ruby | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
-| Lua | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/releases) |
+| Ruby | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/tags) |
+| Lua | `voxgig-sdk-gbif` | publish pending — [install from git tag](https://github.com/voxgig-sdk/gbif-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/gbif-sdk/go-cli` | `go install github.com/voxgig-sdk/gbif-sdk/go-cli/cmd/gbif@latest` |
 | Go MCP server | `github.com/voxgig-sdk/gbif-sdk/go-mcp` | `go get github.com/voxgig-sdk/gbif-sdk/go-mcp@latest` |
 

@@ -7,25 +7,13 @@
 -- edit by hand.
 
 ---@class Enumeration
----@field iso2? string
----@field name? string
----@field title? string
----@field url? string
 
 ---@class EnumerationLoadMatch
 ---@field enumeration string
 
 ---@class EnumerationListMatch
----@field iso2? string
----@field name? string
----@field title? string
----@field url? string
 
 ---@class Literature
----@field authors? table
----@field id? string
----@field title? string
----@field year? number
 
 ---@class LiteratureListMatch
 ---@field limit? number
@@ -34,16 +22,10 @@
 ---@field year? number
 
 ---@class Occurrence
----@field country? string
 ---@field creator? string
----@field decimalLatitude? number
----@field decimalLongitude? number
 ---@field format? string
----@field key? number
 ---@field notificationAddresses? table
 ---@field predicate? table
----@field scientificName? string
----@field year? number
 
 ---@class OccurrenceListMatch
 ---@field country? string
@@ -52,16 +34,10 @@
 ---@field year? string
 
 ---@class OccurrenceCreateData
----@field country? string
 ---@field creator? string
----@field decimalLatitude? number
----@field decimalLongitude? number
 ---@field format? string
----@field key? number
 ---@field notificationAddresses? table
 ---@field predicate? table
----@field scientificName? string
----@field year? number
 
 ---@class Registry
 ---@field country? string
@@ -77,13 +53,6 @@
 ---@field q? string
 
 ---@class Species
----@field canonicalName? string
----@field confidence? number
----@field key? number
----@field matchType? string
----@field rank? string
----@field scientificName? string
----@field usageKey? number
 
 ---@class SpeciesLoadMatch
 ---@field kingdom? string

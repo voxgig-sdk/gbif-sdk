@@ -4,34 +4,6 @@ main: kit: entity: enumeration: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "iso2"
-      req: false
-      short: "ISO 3166-1 alpha-2 country code"
-      type: "`$STRING`"
-    }
-    {
-      name: "name"
-      req: false
-      short: "License name"
-      type: "`$STRING`"
-    }
-    {
-      name: "title"
-      req: false
-      short: "Country or area name"
-      type: "`$STRING`"
-    }
-    {
-      format: "uri"
-      name: "url"
-      req: false
-      short: "License URL"
-      type: "`$STRING`"
-    }
-  ]
-
   name: "enumeration"
   op: {
     list: {

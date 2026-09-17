@@ -16,29 +16,20 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class Enumeration(TypedDict, total=False):
-    iso2: str
-    name: str
-    title: str
-    url: str
+class Enumeration(TypedDict):
+    pass
 
 
 class EnumerationLoadMatch(TypedDict):
     enumeration: str
 
 
-class EnumerationListMatch(TypedDict, total=False):
-    iso2: str
-    name: str
-    title: str
-    url: str
+class EnumerationListMatch(TypedDict):
+    pass
 
 
-class Literature(TypedDict, total=False):
-    authors: list
-    id: str
-    title: str
-    year: int
+class Literature(TypedDict):
+    pass
 
 
 class LiteratureListMatch(TypedDict, total=False):
@@ -49,16 +40,10 @@ class LiteratureListMatch(TypedDict, total=False):
 
 
 class Occurrence(TypedDict, total=False):
-    country: str
     creator: str
-    decimalLatitude: float
-    decimalLongitude: float
     format: str
-    key: int
     notificationAddresses: list
     predicate: dict
-    scientificName: str
-    year: int
 
 
 class OccurrenceListMatch(TypedDict, total=False):
@@ -69,16 +54,10 @@ class OccurrenceListMatch(TypedDict, total=False):
 
 
 class OccurrenceCreateData(TypedDict, total=False):
-    country: str
     creator: str
-    decimalLatitude: float
-    decimalLongitude: float
     format: str
-    key: int
     notificationAddresses: list
     predicate: dict
-    scientificName: str
-    year: int
 
 
 class Registry(TypedDict, total=False):
@@ -96,14 +75,8 @@ class RegistryListMatch(TypedDict, total=False):
     q: str
 
 
-class Species(TypedDict, total=False):
-    canonicalName: str
-    confidence: int
-    key: int
-    matchType: str
-    rank: str
-    scientificName: str
-    usageKey: int
+class Species(TypedDict):
+    pass
 
 
 class SpeciesLoadMatchRequired(TypedDict):

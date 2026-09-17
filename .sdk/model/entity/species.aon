@@ -4,51 +4,6 @@ main: kit: entity: species: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "canonicalName"
-      req: false
-      short: "Canonical name"
-      type: "`$STRING`"
-    }
-    {
-      name: "confidence"
-      req: false
-      short: "Confidence score of the match"
-      type: "`$INTEGER`"
-    }
-    {
-      name: "key"
-      req: false
-      short: "Unique GBIF species key"
-      type: "`$INTEGER`"
-    }
-    {
-      name: "matchType"
-      req: false
-      short: "Type of match"
-      type: "`$STRING`"
-    }
-    {
-      name: "rank"
-      req: false
-      short: "Taxonomic rank"
-      type: "`$STRING`"
-    }
-    {
-      name: "scientificName"
-      req: false
-      short: "Matched scientific name"
-      type: "`$STRING`"
-    }
-    {
-      name: "usageKey"
-      req: false
-      short: "GBIF taxon key"
-      type: "`$INTEGER`"
-    }
-  ]
-
   name: "species"
   op: {
     list: {

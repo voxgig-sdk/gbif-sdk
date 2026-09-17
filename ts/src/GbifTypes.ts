@@ -6,10 +6,6 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Enumeration {
-  iso2?: string
-  name?: string
-  title?: string
-  url?: string
 }
 
 export interface EnumerationLoadMatch {
@@ -17,10 +13,6 @@ export interface EnumerationLoadMatch {
 }
 
 export interface EnumerationListMatch {
-  iso2?: string
-  name?: string
-  title?: string
-  url?: string
 
   // Selects a custom action instead of the plain list:
   //   'basic' | 'country' | 'license'
@@ -30,10 +22,6 @@ export interface EnumerationListMatch {
 }
 
 export interface Literature {
-  authors?: any[]
-  id?: string
-  title?: string
-  year?: number
 }
 
 export interface LiteratureListMatch {
@@ -50,16 +38,10 @@ export interface LiteratureListMatch {
 }
 
 export interface Occurrence {
-  country?: string
   creator?: string
-  decimalLatitude?: number
-  decimalLongitude?: number
   format?: string
-  key?: number
   notificationAddresses?: any[]
   predicate?: Record<string, any>
-  scientificName?: string
-  year?: number
 }
 
 export interface OccurrenceListMatch {
@@ -76,16 +58,10 @@ export interface OccurrenceListMatch {
 }
 
 export interface OccurrenceCreateData {
-  country?: string
   creator?: string
-  decimalLatitude?: number
-  decimalLongitude?: number
   format?: string
-  key?: number
   notificationAddresses?: any[]
   predicate?: Record<string, any>
-  scientificName?: string
-  year?: number
 }
 
 export interface Registry {
@@ -104,13 +80,6 @@ export interface RegistryListMatch {
 }
 
 export interface Species {
-  canonicalName?: string
-  confidence?: number
-  key?: number
-  matchType?: string
-  rank?: string
-  scientificName?: string
-  usageKey?: number
 }
 
 export interface SpeciesLoadMatch {

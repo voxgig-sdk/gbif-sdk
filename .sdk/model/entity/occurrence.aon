@@ -6,42 +6,16 @@ main: kit: entity: occurrence: {
 
   fields: [
     {
-      name: "country"
-      req: false
-      short: "Country code"
-      type: "`$STRING`"
-    }
-    {
       name: "creator"
       req: false
       short: "Username of the download creator"
       type: "`$STRING`"
     }
     {
-      format: "double"
-      name: "decimalLatitude"
-      req: false
-      short: "Latitude in decimal degrees"
-      type: "`$NUMBER`"
-    }
-    {
-      format: "double"
-      name: "decimalLongitude"
-      req: false
-      short: "Longitude in decimal degrees"
-      type: "`$NUMBER`"
-    }
-    {
       name: "format"
       req: false
       short: "Download format"
       type: "`$STRING`"
-    }
-    {
-      name: "key"
-      req: false
-      short: "Unique GBIF identifier for the occurrence"
-      type: "`$INTEGER`"
     }
     {
       name: "notificationAddresses"
@@ -54,18 +28,6 @@ main: kit: entity: occurrence: {
       req: false
       short: "Download filter predicate"
       type: "`$OBJECT`"
-    }
-    {
-      name: "scientificName"
-      req: false
-      short: "Scientific name of the species"
-      type: "`$STRING`"
-    }
-    {
-      name: "year"
-      req: false
-      short: "Year of occurrence"
-      type: "`$INTEGER`"
     }
   ]
 

@@ -174,15 +174,6 @@ Alias for `GbifSDK.test()`.
 const enumeration = client.Enumeration()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `iso2` | `string` | No | ISO 3166-1 alpha-2 country code |
-| `name` | `string` | No | License name |
-| `title` | `string` | No | Country or area name |
-| `url` | `string` | No | License URL |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard
@@ -257,15 +248,6 @@ Return a copy of the entity options.
 const literature = client.Literature()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `authors` | `any[]` | No | List of authors |
-| `id` | `string` | No | Literature identifier |
-| `title` | `string` | No | Publication title |
-| `year` | `number` | No | Publication year |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard
@@ -334,16 +316,10 @@ const occurrence = client.Occurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No | Country code |
 | `creator` | `string` | No | Username of the download creator |
-| `decimalLatitude` | `number` | No | Latitude in decimal degrees |
-| `decimalLongitude` | `number` | No | Longitude in decimal degrees |
 | `format` | `string` | No | Download format |
-| `key` | `number` | No | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `any[]` | No | Email addresses for download notification |
 | `predicate` | `Record<string, any>` | No | Download filter predicate |
-| `scientificName` | `string` | No | Scientific name of the species |
-| `year` | `number` | No | Year of occurrence |
 
 ### Actions
 
@@ -471,18 +447,6 @@ Return a copy of the entity options.
 ```ts
 const species = client.Species()
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canonicalName` | `string` | No | Canonical name |
-| `confidence` | `number` | No | Confidence score of the match |
-| `key` | `number` | No | Unique GBIF species key |
-| `matchType` | `string` | No | Type of match |
-| `rank` | `string` | No | Taxonomic rank |
-| `scientificName` | `string` | No | Matched scientific name |
-| `usageKey` | `number` | No | GBIF taxon key |
 
 ### Actions
 

@@ -2,42 +2,24 @@
   "existing": {
     "occurrence": {
       "OCCURRENCE00": {
-        "country": "s64",
-        "creator": "s65",
-        "decimalLatitude": 102,
-        "decimalLongitude": 103,
-        "format": "s68",
-        "key": 105,
+        "creator": "s28",
+        "format": "s29",
         "notificationAddresses": [],
         "predicate": {},
-        "scientificName": "s6c",
-        "year": 109,
         "id": "OCCURRENCE00"
       },
       "OCCURRENCE01": {
-        "country": "sc8",
-        "creator": "sc9",
-        "decimalLatitude": 202,
-        "decimalLongitude": 203,
-        "format": "scc",
-        "key": 205,
+        "creator": "s50",
+        "format": "s51",
         "notificationAddresses": [],
         "predicate": {},
-        "scientificName": "sd0",
-        "year": 209,
         "id": "OCCURRENCE01"
       },
       "OCCURRENCE02": {
-        "country": "s12c",
-        "creator": "s12d",
-        "decimalLatitude": 302,
-        "decimalLongitude": 303,
-        "format": "s130",
-        "key": 305,
+        "creator": "s78",
+        "format": "s79",
         "notificationAddresses": [],
         "predicate": {},
-        "scientificName": "s134",
-        "year": 309,
         "id": "OCCURRENCE02"
       }
     }
@@ -45,16 +27,10 @@
   "new": {
     "occurrence": {
       "occurrence_ref01": {
-        "country": "s190",
-        "creator": "s191",
-        "decimalLatitude": 402,
-        "decimalLongitude": 403,
-        "format": "s194",
-        "key": 405,
+        "creator": "sa0",
+        "format": "sa1",
         "notificationAddresses": [],
-        "predicate": {},
-        "scientificName": "s198",
-        "year": 409
+        "predicate": {}
       }
     }
   },

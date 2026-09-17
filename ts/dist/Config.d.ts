@@ -83,17 +83,7 @@ declare class Config {
     };
     entity: {
         enumeration: {
-            fields: ({
-                name: string;
-                short: string;
-                type: string;
-                format?: undefined;
-            } | {
-                format: string;
-                name: string;
-                short: string;
-                type: string;
-            })[];
+            fields: never[];
             name: string;
             op: {
                 list: {
@@ -156,15 +146,7 @@ declare class Config {
             };
         };
         literature: {
-            fields: {
-                name: string;
-                short: string;
-                type: string;
-            }[];
-            id: {
-                field: string;
-                name: string;
-            };
+            fields: never[];
             name: string;
             op: {
                 list: {
@@ -209,17 +191,11 @@ declare class Config {
             };
         };
         occurrence: {
-            fields: ({
+            fields: {
                 name: string;
                 short: string;
                 type: string;
-                format?: undefined;
-            } | {
-                format: string;
-                name: string;
-                short: string;
-                type: string;
-            })[];
+            }[];
             name: string;
             op: {
                 create: {
@@ -337,11 +313,7 @@ declare class Config {
             };
         };
         species: {
-            fields: {
-                name: string;
-                short: string;
-                type: string;
-            }[];
+            fields: never[];
             name: string;
             op: {
                 list: {

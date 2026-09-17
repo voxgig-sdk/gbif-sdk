@@ -24,108 +24,13 @@
         "repr": "auto"
       },
       "contributor": {},
-      "doc": {
-        "active": true,
-        "assets": {
-          "path": ".sdk/doc/assets"
-        },
-        "brand": {
-          "label": "",
-          "notice": "",
-          "shortNotice": "",
-          "url": ""
-        },
-        "ci": {
-          "active": true,
-          "branch": "main"
-        },
-        "content": {
-          "path": ".sdk/doc/content"
-        },
-        "edition": {
-          "summary": {
-            "active": true,
-            "base": "node_modules/@voxgig/docgen/project/.sdk",
-            "brand": {},
-            "filter": {
-              "entities": [],
-              "features": [],
-              "targets": []
-            },
-            "kind": "summary",
-            "name": "summary",
-            "origname": "",
-            "output": {
-              "path": "SUMMARY.md"
-            },
-            "package": "@voxgig/docgen",
-            "site": {
-              "active": true
-            },
-            "style": {},
-            "title": ""
-          }
-        },
-        "qa": {
-          "vocabulary": []
-        },
-        "style": {
-          "color": {
-            "accent": "#00c6d8",
-            "background": "#f5f5f9",
-            "darkBackground": "#0f1117",
-            "darkText": "#e6edf3",
-            "primary": "#e70042",
-            "text": "#0a0a0a"
-          },
-          "font": "Nunito, system-ui, sans-serif",
-          "fontFile": "",
-          "headingFont": "Nunito, system-ui, sans-serif",
-          "headingFontFile": "",
-          "logo": "",
-          "mode": "light",
-          "mono": "ui-monospace, monospace",
-          "monoFile": ""
-        },
-        "target": {}
-      },
       "entity": {
         "enumeration": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "iso2",
-              "req": false,
-              "short": "ISO 3166-1 alpha-2 country code",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "License name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Country or area name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "url",
-              "req": false,
-              "short": "License URL",
-              "type": "`$STRING`"
-            }
-          ],
+          "fields": [],
           "name": "enumeration",
           "op": {
             "list": {
@@ -282,40 +187,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "authors",
-              "req": false,
-              "short": "List of authors",
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Literature identifier",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Publication title",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "year",
-              "req": false,
-              "short": "Publication year",
-              "type": "`$INTEGER`"
-            }
-          ],
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
+          "fields": [],
           "name": "literature",
           "op": {
             "list": {
@@ -408,13 +280,6 @@
           "fields": [
             {
               "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country code",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "creator",
               "req": false,
               "short": "Username of the download creator",
@@ -422,33 +287,10 @@
             },
             {
               "active": true,
-              "format": "double",
-              "name": "decimalLatitude",
-              "req": false,
-              "short": "Latitude in decimal degrees",
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
-              "format": "double",
-              "name": "decimalLongitude",
-              "req": false,
-              "short": "Longitude in decimal degrees",
-              "type": "`$NUMBER`"
-            },
-            {
-              "active": true,
               "name": "format",
               "req": false,
               "short": "Download format",
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "key",
-              "req": false,
-              "short": "Unique GBIF identifier for the occurrence",
-              "type": "`$INTEGER`"
             },
             {
               "active": true,
@@ -463,20 +305,6 @@
               "req": false,
               "short": "Download filter predicate",
               "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "scientificName",
-              "req": false,
-              "short": "Scientific name of the species",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "year",
-              "req": false,
-              "short": "Year of occurrence",
-              "type": "`$INTEGER`"
             }
           ],
           "name": "occurrence",
@@ -802,57 +630,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "canonicalName",
-              "req": false,
-              "short": "Canonical name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "confidence",
-              "req": false,
-              "short": "Confidence score of the match",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "key",
-              "req": false,
-              "short": "Unique GBIF species key",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "matchType",
-              "req": false,
-              "short": "Type of match",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "rank",
-              "req": false,
-              "short": "Taxonomic rank",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "scientificName",
-              "req": false,
-              "short": "Matched scientific name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "usageKey",
-              "req": false,
-              "short": "GBIF taxon key",
-              "type": "`$INTEGER`"
-            }
-          ],
+          "fields": [],
           "name": "species",
           "op": {
             "list": {
@@ -1700,6 +1478,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",
@@ -1774,6 +1554,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2000,6 +1781,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2065,6 +1847,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2136,6 +1919,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2212,6 +1996,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {

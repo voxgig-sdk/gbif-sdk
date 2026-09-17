@@ -14,10 +14,6 @@ import (
 
 // Enumeration is the typed data model for the enumeration entity.
 type Enumeration struct {
-	Iso2 *string `json:"iso2,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // EnumerationLoadMatch is the typed request payload for Enumeration.LoadTyped.
@@ -27,18 +23,10 @@ type EnumerationLoadMatch struct {
 
 // EnumerationListMatch is the typed request payload for Enumeration.ListTyped.
 type EnumerationListMatch struct {
-	Iso2 *string `json:"iso2,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // Literature is the typed data model for the literature entity.
 type Literature struct {
-	Authors *[]any `json:"authors,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Year *int `json:"year,omitempty"`
 }
 
 // LiteratureListMatch is the typed request payload for Literature.ListTyped.
@@ -51,16 +39,10 @@ type LiteratureListMatch struct {
 
 // Occurrence is the typed data model for the occurrence entity.
 type Occurrence struct {
-	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
-	DecimalLatitude *float64 `json:"decimalLatitude,omitempty"`
-	DecimalLongitude *float64 `json:"decimalLongitude,omitempty"`
 	Format *string `json:"format,omitempty"`
-	Key *int `json:"key,omitempty"`
 	NotificationAddresses *[]any `json:"notificationAddresses,omitempty"`
 	Predicate *map[string]any `json:"predicate,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	Year *int `json:"year,omitempty"`
 }
 
 // OccurrenceListMatch is the typed request payload for Occurrence.ListTyped.
@@ -73,16 +55,10 @@ type OccurrenceListMatch struct {
 
 // OccurrenceCreateData is the typed request payload for Occurrence.CreateTyped.
 type OccurrenceCreateData struct {
-	Country *string `json:"country,omitempty"`
 	Creator *string `json:"creator,omitempty"`
-	DecimalLatitude *float64 `json:"decimalLatitude,omitempty"`
-	DecimalLongitude *float64 `json:"decimalLongitude,omitempty"`
 	Format *string `json:"format,omitempty"`
-	Key *int `json:"key,omitempty"`
 	NotificationAddresses *[]any `json:"notificationAddresses,omitempty"`
 	Predicate *map[string]any `json:"predicate,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	Year *int `json:"year,omitempty"`
 }
 
 // Registry is the typed data model for the registry entity.
@@ -104,13 +80,6 @@ type RegistryListMatch struct {
 
 // Species is the typed data model for the species entity.
 type Species struct {
-	CanonicalName *string `json:"canonicalName,omitempty"`
-	Confidence *int `json:"confidence,omitempty"`
-	Key *int `json:"key,omitempty"`
-	MatchType *string `json:"matchType,omitempty"`
-	Rank *string `json:"rank,omitempty"`
-	ScientificName *string `json:"scientificName,omitempty"`
-	UsageKey *int `json:"usageKey,omitempty"`
 }
 
 // SpeciesLoadMatch is the typed request payload for Species.LoadTyped.

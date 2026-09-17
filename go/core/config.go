@@ -96,29 +96,7 @@ func MakeConfig() map[string]any {
 		},
 		"entity": map[string]any{
 			"enumeration": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "iso2",
-						"short": "ISO 3166-1 alpha-2 country code",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "name",
-						"short": "License name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "title",
-						"short": "Country or area name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "url",
-						"short": "License URL",
-						"type": "`$STRING`",
-					},
-				},
+				"fields": []any{},
 				"name": "enumeration",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -259,32 +237,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"literature": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "authors",
-						"short": "List of authors",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "id",
-						"short": "Literature identifier",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "title",
-						"short": "Publication title",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "year",
-						"short": "Publication year",
-						"type": "`$INTEGER`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
+				"fields": []any{},
 				"name": "literature",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -361,36 +314,14 @@ func MakeConfig() map[string]any {
 			"occurrence": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "country",
-						"short": "Country code",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "creator",
 						"short": "Username of the download creator",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "double",
-						"name": "decimalLatitude",
-						"short": "Latitude in decimal degrees",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
-						"format": "double",
-						"name": "decimalLongitude",
-						"short": "Longitude in decimal degrees",
-						"type": "`$NUMBER`",
-					},
-					map[string]any{
 						"name": "format",
 						"short": "Download format",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "key",
-						"short": "Unique GBIF identifier for the occurrence",
-						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "notificationAddresses",
@@ -401,16 +332,6 @@ func MakeConfig() map[string]any {
 						"name": "predicate",
 						"short": "Download filter predicate",
 						"type": "`$OBJECT`",
-					},
-					map[string]any{
-						"name": "scientificName",
-						"short": "Scientific name of the species",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "year",
-						"short": "Year of occurrence",
-						"type": "`$INTEGER`",
 					},
 				},
 				"name": "occurrence",
@@ -683,43 +604,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"species": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "canonicalName",
-						"short": "Canonical name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "confidence",
-						"short": "Confidence score of the match",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "key",
-						"short": "Unique GBIF species key",
-						"type": "`$INTEGER`",
-					},
-					map[string]any{
-						"name": "matchType",
-						"short": "Type of match",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "rank",
-						"short": "Taxonomic rank",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "scientificName",
-						"short": "Matched scientific name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "usageKey",
-						"short": "GBIF taxon key",
-						"type": "`$INTEGER`",
-					},
-				},
+				"fields": []any{},
 				"name": "species",
 				"op": map[string]any{
 					"list": map[string]any{

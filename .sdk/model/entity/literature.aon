@@ -4,38 +4,6 @@ main: kit: entity: literature: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "authors"
-      req: false
-      short: "List of authors"
-      type: "`$ARRAY`"
-    }
-    {
-      name: "id"
-      req: false
-      short: "Literature identifier"
-      type: "`$STRING`"
-    }
-    {
-      name: "title"
-      req: false
-      short: "Publication title"
-      type: "`$STRING`"
-    }
-    {
-      name: "year"
-      req: false
-      short: "Publication year"
-      type: "`$INTEGER`"
-    }
-  ]
-
-  id: {
-    field: "id"
-    name: "id"
-  }
-
   name: "literature"
   op: {
     list: {

@@ -104,15 +104,6 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 enumeration = client.Enumeration()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `iso2` | `str` | No | ISO 3166-1 alpha-2 country code |
-| `name` | `str` | No | License name |
-| `title` | `str` | No | Country or area name |
-| `url` | `str` | No | License URL |
-
 ### Operations
 
 #### `list(reqmatch=None, ctrl=None) -> list`
@@ -168,15 +159,6 @@ Return the entity name.
 literature = client.Literature()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `authors` | `list` | No | List of authors |
-| `id` | `str` | No | Literature identifier |
-| `title` | `str` | No | Publication title |
-| `year` | `int` | No | Publication year |
-
 ### Operations
 
 #### `list(reqmatch=None, ctrl=None) -> list`
@@ -228,16 +210,10 @@ occurrence = client.Occurrence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `str` | No | Country code |
 | `creator` | `str` | No | Username of the download creator |
-| `decimalLatitude` | `float` | No | Latitude in decimal degrees |
-| `decimalLongitude` | `float` | No | Longitude in decimal degrees |
 | `format` | `str` | No | Download format |
-| `key` | `int` | No | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `list` | No | Email addresses for download notification |
 | `predicate` | `dict` | No | Download filter predicate |
-| `scientificName` | `str` | No | Scientific name of the species |
-| `year` | `int` | No | Year of occurrence |
 
 ### Operations
 
@@ -351,18 +327,6 @@ Return the entity name.
 ```python
 species = client.Species()
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canonicalName` | `str` | No | Canonical name |
-| `confidence` | `int` | No | Confidence score of the match |
-| `key` | `int` | No | Unique GBIF species key |
-| `matchType` | `str` | No | Type of match |
-| `rank` | `str` | No | Taxonomic rank |
-| `scientificName` | `str` | No | Matched scientific name |
-| `usageKey` | `int` | No | GBIF taxon key |
 
 ### Operations
 

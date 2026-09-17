@@ -9,25 +9,8 @@
 # annotations document the shapes. Do not edit by hand.
 
 # Enumeration entity data model.
-#
-# @!attribute [rw] iso2
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
-Enumeration = Struct.new(
-  :iso2,
-  :name,
-  :title,
-  :url,
-  keyword_init: true
-)
+class Enumeration
+end
 
 # Request payload for Enumeration#load.
 #
@@ -39,46 +22,12 @@ EnumerationLoadMatch = Struct.new(
 )
 
 # Request payload for Enumeration#list.
-#
-# @!attribute [rw] iso2
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
-EnumerationListMatch = Struct.new(
-  :iso2,
-  :name,
-  :title,
-  :url,
-  keyword_init: true
-)
+class EnumerationListMatch
+end
 
 # Literature entity data model.
-#
-# @!attribute [rw] authors
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] year
-#   @return [Integer, nil]
-Literature = Struct.new(
-  :authors,
-  :id,
-  :title,
-  :year,
-  keyword_init: true
-)
+class Literature
+end
 
 # Request payload for Literature#list.
 #
@@ -103,46 +52,22 @@ LiteratureListMatch = Struct.new(
 
 # Occurrence entity data model.
 #
-# @!attribute [rw] country
-#   @return [String, nil]
-#
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] decimalLatitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] decimalLongitude
-#   @return [Float, nil]
-#
 # @!attribute [rw] format
 #   @return [String, nil]
-#
-# @!attribute [rw] key
-#   @return [Integer, nil]
 #
 # @!attribute [rw] notificationAddresses
 #   @return [Array, nil]
 #
 # @!attribute [rw] predicate
 #   @return [Hash, nil]
-#
-# @!attribute [rw] scientificName
-#   @return [String, nil]
-#
-# @!attribute [rw] year
-#   @return [Integer, nil]
 Occurrence = Struct.new(
-  :country,
   :creator,
-  :decimalLatitude,
-  :decimalLongitude,
   :format,
-  :key,
   :notificationAddresses,
   :predicate,
-  :scientificName,
-  :year,
   keyword_init: true
 )
 
@@ -169,46 +94,22 @@ OccurrenceListMatch = Struct.new(
 
 # Request payload for Occurrence#create.
 #
-# @!attribute [rw] country
-#   @return [String, nil]
-#
 # @!attribute [rw] creator
 #   @return [String, nil]
 #
-# @!attribute [rw] decimalLatitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] decimalLongitude
-#   @return [Float, nil]
-#
 # @!attribute [rw] format
 #   @return [String, nil]
-#
-# @!attribute [rw] key
-#   @return [Integer, nil]
 #
 # @!attribute [rw] notificationAddresses
 #   @return [Array, nil]
 #
 # @!attribute [rw] predicate
 #   @return [Hash, nil]
-#
-# @!attribute [rw] scientificName
-#   @return [String, nil]
-#
-# @!attribute [rw] year
-#   @return [Integer, nil]
 OccurrenceCreateData = Struct.new(
-  :country,
   :creator,
-  :decimalLatitude,
-  :decimalLongitude,
   :format,
-  :key,
   :notificationAddresses,
   :predicate,
-  :scientificName,
-  :year,
   keyword_init: true
 )
 
@@ -259,37 +160,8 @@ RegistryListMatch = Struct.new(
 )
 
 # Species entity data model.
-#
-# @!attribute [rw] canonicalName
-#   @return [String, nil]
-#
-# @!attribute [rw] confidence
-#   @return [Integer, nil]
-#
-# @!attribute [rw] key
-#   @return [Integer, nil]
-#
-# @!attribute [rw] matchType
-#   @return [String, nil]
-#
-# @!attribute [rw] rank
-#   @return [String, nil]
-#
-# @!attribute [rw] scientificName
-#   @return [String, nil]
-#
-# @!attribute [rw] usageKey
-#   @return [Integer, nil]
-Species = Struct.new(
-  :canonicalName,
-  :confidence,
-  :key,
-  :matchType,
-  :rank,
-  :scientificName,
-  :usageKey,
-  keyword_init: true
-)
+class Species
+end
 
 # Request payload for Species#load.
 #

@@ -15,10 +15,6 @@ declare(strict_types=1);
 /** Enumeration entity data model. */
 class Enumeration
 {
-    public ?string $iso2 = null;
-    public ?string $name = null;
-    public ?string $title = null;
-    public ?string $url = null;
 }
 
 /** Request payload for Enumeration#load. */
@@ -30,19 +26,11 @@ class EnumerationLoadMatch
 /** Request payload for Enumeration#list. */
 class EnumerationListMatch
 {
-    public ?string $iso2 = null;
-    public ?string $name = null;
-    public ?string $title = null;
-    public ?string $url = null;
 }
 
 /** Literature entity data model. */
 class Literature
 {
-    public ?array $authors = null;
-    public ?string $id = null;
-    public ?string $title = null;
-    public ?int $year = null;
 }
 
 /** Request payload for Literature#list. */
@@ -57,16 +45,10 @@ class LiteratureListMatch
 /** Occurrence entity data model. */
 class Occurrence
 {
-    public ?string $country = null;
     public ?string $creator = null;
-    public ?float $decimalLatitude = null;
-    public ?float $decimalLongitude = null;
     public ?string $format = null;
-    public ?int $key = null;
     public ?array $notificationAddresses = null;
     public ?array $predicate = null;
-    public ?string $scientificName = null;
-    public ?int $year = null;
 }
 
 /** Request payload for Occurrence#list. */
@@ -81,16 +63,10 @@ class OccurrenceListMatch
 /** Request payload for Occurrence#create. */
 class OccurrenceCreateData
 {
-    public ?string $country = null;
     public ?string $creator = null;
-    public ?float $decimalLatitude = null;
-    public ?float $decimalLongitude = null;
     public ?string $format = null;
-    public ?int $key = null;
     public ?array $notificationAddresses = null;
     public ?array $predicate = null;
-    public ?string $scientificName = null;
-    public ?int $year = null;
 }
 
 /** Registry entity data model. */
@@ -115,13 +91,6 @@ class RegistryListMatch
 /** Species entity data model. */
 class Species
 {
-    public ?string $canonicalName = null;
-    public ?int $confidence = null;
-    public ?int $key = null;
-    public ?string $matchType = null;
-    public ?string $rank = null;
-    public ?string $scientificName = null;
-    public ?int $usageKey = null;
 }
 
 /** Request payload for Species#load. */

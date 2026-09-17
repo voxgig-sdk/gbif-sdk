@@ -1,33 +1,14 @@
 {
   "existing": {
     "literature": {
-      "LITERATURE00": {
-        "authors": [],
-        "id": "LITERATURE00",
-        "title": "s2a",
-        "year": 43
-      },
-      "LITERATURE01": {
-        "authors": [],
-        "id": "LITERATURE01",
-        "title": "s52",
-        "year": 83
-      },
-      "LITERATURE02": {
-        "authors": [],
-        "id": "LITERATURE02",
-        "title": "s7a",
-        "year": 123
-      }
+      "LITERATURE00": {},
+      "LITERATURE01": {},
+      "LITERATURE02": {}
     }
   },
   "new": {
     "literature": {
-      "literature_ref01": {
-        "authors": [],
-        "title": "sa2",
-        "year": 163
-      }
+      "literature_ref01": {}
     }
   },
   "requests": {

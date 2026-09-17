@@ -1,25 +1,13 @@
 export interface Enumeration {
-    iso2?: string;
-    name?: string;
-    title?: string;
-    url?: string;
 }
 export interface EnumerationLoadMatch {
     enumeration: string;
 }
 export interface EnumerationListMatch {
-    iso2?: string;
-    name?: string;
-    title?: string;
-    url?: string;
     $action?: string;
     [action: string]: any;
 }
 export interface Literature {
-    authors?: any[];
-    id?: string;
-    title?: string;
-    year?: number;
 }
 export interface LiteratureListMatch {
     limit?: number;
@@ -30,16 +18,10 @@ export interface LiteratureListMatch {
     [action: string]: any;
 }
 export interface Occurrence {
-    country?: string;
     creator?: string;
-    decimalLatitude?: number;
-    decimalLongitude?: number;
     format?: string;
-    key?: number;
     notificationAddresses?: any[];
     predicate?: Record<string, any>;
-    scientificName?: string;
-    year?: number;
 }
 export interface OccurrenceListMatch {
     country?: string;
@@ -50,16 +32,10 @@ export interface OccurrenceListMatch {
     [action: string]: any;
 }
 export interface OccurrenceCreateData {
-    country?: string;
     creator?: string;
-    decimalLatitude?: number;
-    decimalLongitude?: number;
     format?: string;
-    key?: number;
     notificationAddresses?: any[];
     predicate?: Record<string, any>;
-    scientificName?: string;
-    year?: number;
 }
 export interface Registry {
     country?: string;
@@ -75,13 +51,6 @@ export interface RegistryListMatch {
     q?: string;
 }
 export interface Species {
-    canonicalName?: string;
-    confidence?: number;
-    key?: number;
-    matchType?: string;
-    rank?: string;
-    scientificName?: string;
-    usageKey?: number;
 }
 export interface SpeciesLoadMatch {
     kingdom?: string;

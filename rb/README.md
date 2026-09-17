@@ -39,7 +39,7 @@ begin
   # list returns an Array of Enumeration records — iterate directly.
   enumerations = client.Enumeration.list
   enumerations.each do |item|
-    puts "#{item["iso2"]}"
+    puts "#{item}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -262,10 +262,6 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `iso2` | ISO 3166-1 alpha-2 country code |
-| `name` | License name |
-| `title` | Country or area name |
-| `url` | License URL |
 
 Operations: List, Load.
 
@@ -275,10 +271,6 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `authors` | List of authors |
-| `id` | Literature identifier |
-| `title` | Publication title |
-| `year` | Publication year |
 
 Operations: List.
 
@@ -288,16 +280,10 @@ API path: `/literature/search`
 
 | Field | Description |
 | --- | --- |
-| `country` | Country code |
 | `creator` | Username of the download creator |
-| `decimalLatitude` | Latitude in decimal degrees |
-| `decimalLongitude` | Longitude in decimal degrees |
 | `format` | Download format |
-| `key` | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | Email addresses for download notification |
 | `predicate` | Download filter predicate |
-| `scientificName` | Scientific name of the species |
-| `year` | Year of occurrence |
 
 Operations: Create, List.
 
@@ -321,13 +307,6 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonicalName` | Canonical name |
-| `confidence` | Confidence score of the match |
-| `key` | Unique GBIF species key |
-| `matchType` | Type of match |
-| `rank` | Taxonomic rank |
-| `scientificName` | Matched scientific name |
-| `usageKey` | GBIF taxon key |
 
 Operations: List, Load.
 
@@ -360,15 +339,6 @@ Create an instance: `enumeration = client.Enumeration`
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `iso2` | `String` | ISO 3166-1 alpha-2 country code |
-| `name` | `String` | License name |
-| `title` | `String` | Country or area name |
-| `url` | `String` | License URL |
-
 #### Example: Load
 
 ```ruby
@@ -394,15 +364,6 @@ Create an instance: `literature = client.Literature`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `authors` | `Array` | List of authors |
-| `id` | `String` | Literature identifier |
-| `title` | `String` | Publication title |
-| `year` | `Integer` | Publication year |
-
 #### Example: List
 
 ```ruby
@@ -426,16 +387,10 @@ Create an instance: `occurrence = client.Occurrence`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `String` | Country code |
 | `creator` | `String` | Username of the download creator |
-| `decimalLatitude` | `Float` | Latitude in decimal degrees |
-| `decimalLongitude` | `Float` | Longitude in decimal degrees |
 | `format` | `String` | Download format |
-| `key` | `Integer` | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `Array` | Email addresses for download notification |
 | `predicate` | `Hash` | Download filter predicate |
-| `scientificName` | `String` | Scientific name of the species |
-| `year` | `Integer` | Year of occurrence |
 
 #### Example: List
 
@@ -490,18 +445,6 @@ Create an instance: `species = client.Species`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canonicalName` | `String` | Canonical name |
-| `confidence` | `Integer` | Confidence score of the match |
-| `key` | `Integer` | Unique GBIF species key |
-| `matchType` | `String` | Type of match |
-| `rank` | `String` | Taxonomic rank |
-| `scientificName` | `String` | Matched scientific name |
-| `usageKey` | `Integer` | GBIF taxon key |
 
 #### Example: Load
 
@@ -685,6 +628,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── Gbif_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

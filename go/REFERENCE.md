@@ -115,15 +115,6 @@ enumeration := client.Enumeration(nil)
 fmt.Println(enumeration.GetName()) // "enumeration"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `iso2` | `string` | No | ISO 3166-1 alpha-2 country code |
-| `name` | `string` | No | License name |
-| `title` | `string` | No | Country or area name |
-| `url` | `string` | No | License URL |
-
 ### Operations
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
@@ -181,15 +172,6 @@ literature := client.Literature(nil)
 fmt.Println(literature.GetName()) // "literature"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `authors` | `[]any` | No | List of authors |
-| `id` | `string` | No | Literature identifier |
-| `title` | `string` | No | Publication title |
-| `year` | `int` | No | Publication year |
-
 ### Operations
 
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
@@ -239,16 +221,10 @@ fmt.Println(occurrence.GetName()) // "occurrence"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No | Country code |
 | `creator` | `string` | No | Username of the download creator |
-| `decimalLatitude` | `float64` | No | Latitude in decimal degrees |
-| `decimalLongitude` | `float64` | No | Longitude in decimal degrees |
 | `format` | `string` | No | Download format |
-| `key` | `int` | No | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `[]any` | No | Email addresses for download notification |
 | `predicate` | `map[string]any` | No | Download filter predicate |
-| `scientificName` | `string` | No | Scientific name of the species |
-| `year` | `int` | No | Year of occurrence |
 
 ### Operations
 
@@ -362,18 +338,6 @@ Return the entity name.
 species := client.Species(nil)
 fmt.Println(species.GetName()) // "species"
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canonicalName` | `string` | No | Canonical name |
-| `confidence` | `int` | No | Confidence score of the match |
-| `key` | `int` | No | Unique GBIF species key |
-| `matchType` | `string` | No | Type of match |
-| `rank` | `string` | No | Taxonomic rank |
-| `scientificName` | `string` | No | Matched scientific name |
-| `usageKey` | `int` | No | GBIF taxon key |
 
 ### Operations
 

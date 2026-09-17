@@ -268,10 +268,6 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `iso2` | ISO 3166-1 alpha-2 country code |
-| `name` | License name |
-| `title` | Country or area name |
-| `url` | License URL |
 
 Operations: List, Load.
 
@@ -281,10 +277,6 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `authors` | List of authors |
-| `id` | Literature identifier |
-| `title` | Publication title |
-| `year` | Publication year |
 
 Operations: List.
 
@@ -294,16 +286,10 @@ API path: `/literature/search`
 
 | Field | Description |
 | --- | --- |
-| `country` | Country code |
 | `creator` | Username of the download creator |
-| `decimalLatitude` | Latitude in decimal degrees |
-| `decimalLongitude` | Longitude in decimal degrees |
 | `format` | Download format |
-| `key` | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | Email addresses for download notification |
 | `predicate` | Download filter predicate |
-| `scientificName` | Scientific name of the species |
-| `year` | Year of occurrence |
 
 Operations: Create, List.
 
@@ -327,13 +313,6 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonicalName` | Canonical name |
-| `confidence` | Confidence score of the match |
-| `key` | Unique GBIF species key |
-| `matchType` | Type of match |
-| `rank` | Taxonomic rank |
-| `scientificName` | Matched scientific name |
-| `usageKey` | GBIF taxon key |
 
 Operations: List, Load.
 
@@ -366,15 +345,6 @@ Create an instance: `enumeration = client.Enumeration()`
 | `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `iso2` | `str` | ISO 3166-1 alpha-2 country code |
-| `name` | `str` | License name |
-| `title` | `str` | Country or area name |
-| `url` | `str` | License URL |
-
 #### Example: Load
 
 ```python
@@ -398,15 +368,6 @@ Create an instance: `literature = client.Literature()`
 | --- | --- |
 | `list()` | List entities, optionally matching the given criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `authors` | `list` | List of authors |
-| `id` | `str` | Literature identifier |
-| `title` | `str` | Publication title |
-| `year` | `int` | Publication year |
-
 #### Example: List
 
 ```python
@@ -429,16 +390,10 @@ Create an instance: `occurrence = client.Occurrence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `str` | Country code |
 | `creator` | `str` | Username of the download creator |
-| `decimalLatitude` | `float` | Latitude in decimal degrees |
-| `decimalLongitude` | `float` | Longitude in decimal degrees |
 | `format` | `str` | Download format |
-| `key` | `int` | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `list` | Email addresses for download notification |
 | `predicate` | `dict` | Download filter predicate |
-| `scientificName` | `str` | Scientific name of the species |
-| `year` | `int` | Year of occurrence |
 
 #### Example: List
 
@@ -491,18 +446,6 @@ Create an instance: `species = client.Species()`
 | --- | --- |
 | `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canonicalName` | `str` | Canonical name |
-| `confidence` | `int` | Confidence score of the match |
-| `key` | `int` | Unique GBIF species key |
-| `matchType` | `str` | Type of match |
-| `rank` | `str` | Taxonomic rank |
-| `scientificName` | `str` | Matched scientific name |
-| `usageKey` | `int` | GBIF taxon key |
 
 #### Example: Load
 
@@ -683,6 +626,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── gbif_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

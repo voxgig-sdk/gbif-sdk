@@ -41,7 +41,7 @@ try {
     $enumerations = $client->Enumeration()->list();
     foreach ($enumerations as $record) {
         $item = $record->data_get();
-        echo $item["iso2"] . "\n";
+        echo json_encode($item) . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -273,10 +273,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `iso2` | ISO 3166-1 alpha-2 country code |
-| `name` | License name |
-| `title` | Country or area name |
-| `url` | License URL |
 
 Operations: List, Load.
 
@@ -286,10 +282,6 @@ API path: `/enumeration/basic`
 
 | Field | Description |
 | --- | --- |
-| `authors` | List of authors |
-| `id` | Literature identifier |
-| `title` | Publication title |
-| `year` | Publication year |
 
 Operations: List.
 
@@ -299,16 +291,10 @@ API path: `/literature/search`
 
 | Field | Description |
 | --- | --- |
-| `country` | Country code |
 | `creator` | Username of the download creator |
-| `decimalLatitude` | Latitude in decimal degrees |
-| `decimalLongitude` | Longitude in decimal degrees |
 | `format` | Download format |
-| `key` | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | Email addresses for download notification |
 | `predicate` | Download filter predicate |
-| `scientificName` | Scientific name of the species |
-| `year` | Year of occurrence |
 
 Operations: Create, List.
 
@@ -332,13 +318,6 @@ API path: `/organization/search`
 
 | Field | Description |
 | --- | --- |
-| `canonicalName` | Canonical name |
-| `confidence` | Confidence score of the match |
-| `key` | Unique GBIF species key |
-| `matchType` | Type of match |
-| `rank` | Taxonomic rank |
-| `scientificName` | Matched scientific name |
-| `usageKey` | GBIF taxon key |
 
 Operations: List, Load.
 
@@ -371,15 +350,6 @@ Create an instance: `$enumeration = $client->Enumeration();`
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `iso2` | `string` | ISO 3166-1 alpha-2 country code |
-| `name` | `string` | License name |
-| `title` | `string` | Country or area name |
-| `url` | `string` | License URL |
-
 #### Example: Load
 
 ```php
@@ -405,15 +375,6 @@ Create an instance: `$literature = $client->Literature();`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `authors` | `array` | List of authors |
-| `id` | `string` | Literature identifier |
-| `title` | `string` | Publication title |
-| `year` | `int` | Publication year |
-
 #### Example: List
 
 ```php
@@ -437,16 +398,10 @@ Create an instance: `$occurrence = $client->Occurrence();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `string` | Country code |
 | `creator` | `string` | Username of the download creator |
-| `decimalLatitude` | `float` | Latitude in decimal degrees |
-| `decimalLongitude` | `float` | Longitude in decimal degrees |
 | `format` | `string` | Download format |
-| `key` | `int` | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `array` | Email addresses for download notification |
 | `predicate` | `array` | Download filter predicate |
-| `scientificName` | `string` | Scientific name of the species |
-| `year` | `int` | Year of occurrence |
 
 #### Example: List
 
@@ -501,18 +456,6 @@ Create an instance: `$species = $client->Species();`
 | --- | --- |
 | `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `canonicalName` | `string` | Canonical name |
-| `confidence` | `int` | Confidence score of the match |
-| `key` | `int` | Unique GBIF species key |
-| `matchType` | `string` | Type of match |
-| `rank` | `string` | Taxonomic rank |
-| `scientificName` | `string` | Matched scientific name |
-| `usageKey` | `int` | GBIF taxon key |
 
 #### Example: Load
 
@@ -696,6 +639,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── gbif_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

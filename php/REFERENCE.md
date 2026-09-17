@@ -109,15 +109,6 @@ Prepare a fetch definition without sending the request. Returns the
 $enumeration = $client->Enumeration();
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `iso2` | `string` | No | ISO 3166-1 alpha-2 country code |
-| `name` | `string` | No | License name |
-| `title` | `string` | No | Country or area name |
-| `url` | `string` | No | License URL |
-
 ### Operations
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
@@ -172,15 +163,6 @@ Return the entity name.
 $literature = $client->Literature();
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `authors` | `array` | No | List of authors |
-| `id` | `string` | No | Literature identifier |
-| `title` | `string` | No | Publication title |
-| `year` | `int` | No | Publication year |
-
 ### Operations
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
@@ -231,16 +213,10 @@ $occurrence = $client->Occurrence();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No | Country code |
 | `creator` | `string` | No | Username of the download creator |
-| `decimalLatitude` | `float` | No | Latitude in decimal degrees |
-| `decimalLongitude` | `float` | No | Longitude in decimal degrees |
 | `format` | `string` | No | Download format |
-| `key` | `int` | No | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `array` | No | Email addresses for download notification |
 | `predicate` | `array` | No | Download filter predicate |
-| `scientificName` | `string` | No | Scientific name of the species |
-| `year` | `int` | No | Year of occurrence |
 
 ### Operations
 
@@ -352,18 +328,6 @@ Return the entity name.
 ```php
 $species = $client->Species();
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canonicalName` | `string` | No | Canonical name |
-| `confidence` | `int` | No | Confidence score of the match |
-| `key` | `int` | No | Unique GBIF species key |
-| `matchType` | `string` | No | Type of match |
-| `rank` | `string` | No | Taxonomic rank |
-| `scientificName` | `string` | No | Matched scientific name |
-| `usageKey` | `int` | No | GBIF taxon key |
 
 ### Operations
 

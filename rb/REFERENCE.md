@@ -110,15 +110,6 @@ same parameters as `direct()`. Raises on error.
 enumeration = client.Enumeration
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `iso2` | `String` | No | ISO 3166-1 alpha-2 country code |
-| `name` | `String` | No | License name |
-| `title` | `String` | No | Country or area name |
-| `url` | `String` | No | License URL |
-
 ### Operations
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
@@ -173,15 +164,6 @@ Return the entity name.
 literature = client.Literature
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `authors` | `Array` | No | List of authors |
-| `id` | `String` | No | Literature identifier |
-| `title` | `String` | No | Publication title |
-| `year` | `Integer` | No | Publication year |
-
 ### Operations
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
@@ -232,16 +214,10 @@ occurrence = client.Occurrence
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `String` | No | Country code |
 | `creator` | `String` | No | Username of the download creator |
-| `decimalLatitude` | `Float` | No | Latitude in decimal degrees |
-| `decimalLongitude` | `Float` | No | Longitude in decimal degrees |
 | `format` | `String` | No | Download format |
-| `key` | `Integer` | No | Unique GBIF identifier for the occurrence |
 | `notificationAddresses` | `Array` | No | Email addresses for download notification |
 | `predicate` | `Hash` | No | Download filter predicate |
-| `scientificName` | `String` | No | Scientific name of the species |
-| `year` | `Integer` | No | Year of occurrence |
 
 ### Operations
 
@@ -353,18 +329,6 @@ Return the entity name.
 ```ruby
 species = client.Species
 ```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `canonicalName` | `String` | No | Canonical name |
-| `confidence` | `Integer` | No | Confidence score of the match |
-| `key` | `Integer` | No | Unique GBIF species key |
-| `matchType` | `String` | No | Type of match |
-| `rank` | `String` | No | Taxonomic rank |
-| `scientificName` | `String` | No | Matched scientific name |
-| `usageKey` | `Integer` | No | GBIF taxon key |
 
 ### Operations
 
